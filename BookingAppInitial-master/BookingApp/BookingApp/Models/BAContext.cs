@@ -12,6 +12,22 @@ namespace BookingApp.Models
     {   
         public virtual DbSet<AppUser> AppUsers { get; set; }
 
+        public virtual DbSet<Accommodation> Accommodations { get; set; }
+
+        public virtual DbSet<AccommodationType> AccommodationTypes { get; set; }
+
+        public virtual DbSet<Room> Rooms { get; set; }
+
+        public virtual DbSet<RoomReservation> RoomReservations { get; set; }
+
+        public virtual DbSet<Comment> Comments { get; set; }
+
+        public virtual DbSet<Region> Regions { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<Place> Places { get; set; }
+
         public BAContext() : base("name=BADB")
         {            
         }
