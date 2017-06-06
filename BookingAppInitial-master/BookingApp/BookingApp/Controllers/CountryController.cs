@@ -12,7 +12,6 @@ using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
-    //[Authorize]
     [RoutePrefix("api")]
     public class CountryController : ApiController
     {
@@ -40,6 +39,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("Countries/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCountry(int id, Country country)
@@ -76,6 +76,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Countries")]
         [ResponseType(typeof(Country))]
         public IHttpActionResult PostCountry(Country country)
@@ -92,6 +93,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("Countries/{id}")]
         [ResponseType(typeof(Country))]
         public IHttpActionResult DeleteCountry(int id)

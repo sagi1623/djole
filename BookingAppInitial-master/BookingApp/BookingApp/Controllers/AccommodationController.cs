@@ -11,8 +11,7 @@ using System.Web.Http.Description;
 using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
-{
-    //[Authorize]
+{   
     [RoutePrefix("api")]
     public class AccommodationController : ApiController
     {
@@ -44,6 +43,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
+        [Authorize]
         [Route("Accommodations")]
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation(Accommodation a)
@@ -61,6 +61,7 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
+        [Authorize]
         [Route("Accommodations/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutAccommodation(int id, Accommodation a)
@@ -98,6 +99,7 @@ namespace BookingApp.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
+        [Authorize]
         [Route("Accommodations/{id}")]
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult DeleteAccommodation(int id)
