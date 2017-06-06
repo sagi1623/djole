@@ -110,6 +110,16 @@ namespace BookingApp.Controllers
                 return NotFound();
             }
 
+            List<RoomReservation> roomReservations = new List<RoomReservation>();
+            foreach (RoomReservation item in db.RoomReservations)
+            {
+                if (item.RoomId.Equals(id))
+                {
+                    roomReservations.Add(item);
+                }
+            }
+            db.RoomReservations.RemoveRange(roomReservations);
+
             db.Rooms.Remove(r);
             db.SaveChanges();
 

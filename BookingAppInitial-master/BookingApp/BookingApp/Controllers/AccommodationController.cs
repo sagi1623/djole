@@ -110,6 +110,16 @@ namespace BookingApp.Controllers
                 return NotFound();
             }
 
+            List<Comment> comments = new List<Comment>();
+            foreach (Comment item in db.Comments)
+            {
+                if (item.AccommodationId.Equals(id))
+                {
+                    comments.Add(item);
+                }
+            }
+            db.Comments.RemoveRange(comments);
+
             db.Accommodations.Remove(a);
             db.SaveChanges();
 
