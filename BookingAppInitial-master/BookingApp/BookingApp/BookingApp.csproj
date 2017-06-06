@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201706051035258_Initial model.Designer.cs">
       <DependentUpon>201706051035258_Initial model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706060837284_Unique constraint added to accommodation type name.cs" />
+    <Compile Include="Migrations\201706060837284_Unique constraint added to accommodation type name.Designer.cs">
+      <DependentUpon>201706060837284_Unique constraint added to accommodation type name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706051035258_Initial model.resx">
       <DependentUpon>201706051035258_Initial model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706060837284_Unique constraint added to accommodation type name.resx">
+      <DependentUpon>201706060837284_Unique constraint added to accommodation type name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
