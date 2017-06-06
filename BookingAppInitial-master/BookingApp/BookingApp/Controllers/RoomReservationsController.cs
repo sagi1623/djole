@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 
 namespace BookingApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api")]
     public class RoomReservationsController : ApiController
     {
@@ -54,7 +54,7 @@ namespace BookingApp.Controllers
             db.RoomReservations.Add(rr);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rr.Id }, rr);
+            return CreatedAtRoute("DefaultApi", new { controller = "RoomReservations", id = rr.Id }, rr);
         }
 
         // PUT api/<controller>/5
