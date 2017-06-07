@@ -1,0 +1,20 @@
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value)">
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" ngModel />
+  </div>
+  <div>
+    <label for="Code">Code: </label> <br/>
+    <input type = "text" name ="Code" id="Code" ngModel />
+  </div>
+    <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+</form>
+<h1>
+  List of countries
+</h1>
+<ul>
+  <li *ngFor ="let c of countries"><country [country]="c" ></country></li>
+</ul>
+
