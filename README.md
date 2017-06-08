@@ -8,3 +8,7 @@ Osoba 1: Caba Sagi
 Osoba 2: Borka Samardzic
 	-Model for classes: AccommodationType, Accommodation, Room, RoomReservation
 	-Components:
+
+
+
+TODO: kaskadno brisanje i authorizacija

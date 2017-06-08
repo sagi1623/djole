@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Country} from '../country/country.model';
 import {CountryListService} from './country-list.service'
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
   selector: 'country-list',
@@ -18,8 +19,9 @@ export class CountryListComponent implements OnInit {
      this.countryService.getAll().subscribe(x => this.countries =x.json());
   }
 
-  onSubmit(c: Country)
+  onSubmit(c: Country, form: FormGroup)
   {
+    form.reset();
     this.countryService.create(c).subscribe(x => console.log(x));
   }
 
