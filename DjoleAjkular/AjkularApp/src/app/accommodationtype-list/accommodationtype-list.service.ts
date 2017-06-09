@@ -19,7 +19,7 @@ export class AccommodationTypeListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/AccommodationTypes/${id}`,id);
+        return this.http.get(`http://localhost:54042/api/AccommodationTypes/${id}`);
     }
 
     create(at : AccommodationType): Observable<any>
@@ -32,6 +32,23 @@ export class AccommodationTypeListService
         opts.headers = header;
 
        return this.http.post("http://localhost:54042/api/AccommodationTypes", JSON.stringify(at),opts);
+    }
+
+    update(at: AccommodationType): Observable<any>
+    {
+        let header = new Headers();
+        header.append('Accept', 'application/json');
+        header.append('Content-type','application/json');
+        
+        let opts = new RequestOptions();
+        opts.headers = header;
+
+       return this.http.post(`http://localhost:54042/api/AccommodationTypes/${at.Id}`, JSON.stringify(at),opts);
+    }
+
+    delete(id: number): Observable<any>
+    {
+        return this.http.delete(`http://localhost:54042/api/AccommodationTypes/${id}`);
     }
 
 }

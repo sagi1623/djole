@@ -19,7 +19,7 @@ export class RoomReservationListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/RoomReservations/${id}`,id);
+        return this.http.get(`http://localhost:54042/api/RoomReservations/${id}`);
     }
 
     create(rr : RoomReservation): Observable<any>
@@ -34,4 +34,20 @@ export class RoomReservationListService
        return this.http.post("http://localhost:54042/api/RoomReservations", JSON.stringify(rr),opts);
     }
 
+    update(rr: RoomReservation): Observable<any>
+    {
+        let header = new Headers();
+        header.append('Accept', 'application/json');
+        header.append('Content-type','application/json');
+        
+        let opts = new RequestOptions();
+        opts.headers = header;
+
+       return this.http.post(`http://localhost:54042/api/RoomReservations/${rr.Id}`, JSON.stringify(rr),opts);
+    }
+
+    delete(id: number): Observable<any>
+    {
+        return this.http.delete(`http://localhost:54042/api/RoomReservations/${id}`);
+    }
 }
