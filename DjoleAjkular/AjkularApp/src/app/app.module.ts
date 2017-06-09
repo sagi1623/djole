@@ -21,9 +21,11 @@ import { RoomreservationComponent } from './roomreservation/roomreservation.comp
 import { RoomreservationListComponent } from './roomreservation-list/roomreservation-list.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { CountryDetailedComponent } from './country-detailed/country-detailed.component';
 
 const Routes = [
-  {path:"countries", component: CountryListComponent}
+  {path:"countries", component: CountryListComponent},
+  {path:"country-detailed/:Id", component: CountryDetailedComponent}
 ]
 
 @NgModule({
@@ -44,7 +46,8 @@ const Routes = [
     RoomreservationComponent,
     RoomreservationListComponent,
     CommentComponent,
-    CommentListComponent
+    CommentListComponent,
+    CountryDetailedComponent
   ],
   imports: [
     BrowserModule,

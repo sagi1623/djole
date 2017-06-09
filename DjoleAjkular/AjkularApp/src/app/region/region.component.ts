@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Region } from "../region/region.model";
 
 @Component({
-  selector: 'app-region',
+  selector: 'region',
   templateUrl: './region.component.html',
   styleUrls: ['./region.component.css']
 })
 export class RegionComponent implements OnInit {
+
+ @Input() region: Region
 
   constructor() { }
 

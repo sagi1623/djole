@@ -16,7 +16,7 @@ export class CountryListComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.countryService.getAll().subscribe(x => this.countries =x.json());
+     this.countryService.getAll().subscribe(x => this.countries = x.json() as Country[]);
   }
 
   onSubmit(c: Country, form: FormGroup)

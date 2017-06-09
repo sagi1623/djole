@@ -19,7 +19,7 @@ export class CountryListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/Countries/${id}`);
+        return this.http.get(`http://localhost:54042/api/Countries/${id}?$expand = Regions`);
     }
 
     create(c : Country): Observable<any>
