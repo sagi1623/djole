@@ -1,9 +1,10 @@
-<h6>
-  Country:
-</h6>
+ <fieldset>
+   <legend>Country detail view</legend>
   <p>Name: {{country.Name}}</p>
   <p>Code: {{country.Code}}</p>
   <p>Regions:</p>
+  <add-region [country]="country" ></add-region>
 <ul>
   <li *ngFor ="let r of country.Regions"><region [region]="r" ></region></li>
 </ul>
+ </fieldset>

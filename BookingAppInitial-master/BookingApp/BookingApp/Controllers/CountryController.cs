@@ -26,6 +26,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         [Route("Countries/{id}")]
         public IHttpActionResult GetCountry(int id)
         {

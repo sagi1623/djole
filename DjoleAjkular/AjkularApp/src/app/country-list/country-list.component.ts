@@ -19,10 +19,6 @@ export class CountryListComponent implements OnInit {
      this.countryService.getAll().subscribe(x => this.countries = x.json() as Country[]);
   }
 
-  onSubmit(c: Country, form: FormGroup)
-  {
-    form.reset();
-    this.countryService.create(c).subscribe(x => console.log(x));
-  }
+
 
 }
