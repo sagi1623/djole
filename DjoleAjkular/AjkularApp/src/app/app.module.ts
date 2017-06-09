@@ -25,6 +25,9 @@ import { CountryDetailedComponent } from './country-detailed/country-detailed.co
 import { AddRegionComponent } from './add-region/add-region.component';
 import { AddCountryComponent } from './add-country/add-country.component';
 import { EditCountryComponent } from './edit-country/edit-country.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -53,7 +56,10 @@ const Routes = [
     CountryDetailedComponent,
     AddRegionComponent,
     AddCountryComponent,
-    EditCountryComponent
+    EditCountryComponent,
+    RegisterComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

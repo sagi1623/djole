@@ -328,7 +328,9 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new BAIdentityUser() { UserName = model.Email, Email = model.Email };
+            AppUser newAppUser = new AppUser() { FirstName = model.FirstName, LastName = model.LastName };
+            string guidId = Guid.NewGuid().ToString();
+            var user = new BAIdentityUser() { Id = guidId, UserName = model.Email, Email = model.Email, appUser = newAppUser };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -336,6 +338,8 @@ namespace BookingApp.Controllers
             {
                 return GetErrorResult(result);
             }
+
+            UserManager.AddToRole(user.Id, model.Role);
 
             return Ok();
         }
