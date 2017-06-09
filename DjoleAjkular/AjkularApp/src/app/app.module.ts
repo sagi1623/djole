@@ -22,6 +22,9 @@ import { RoomreservationListComponent } from './roomreservation-list/roomreserva
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { CountryDetailedComponent } from './country-detailed/country-detailed.component';
+import { AddRegionComponent } from './add-region/add-region.component';
+import { AddCountryComponent } from './add-country/add-country.component';
+import { EditCountryComponent } from './edit-country/edit-country.component';
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -47,7 +50,10 @@ const Routes = [
     RoomreservationListComponent,
     CommentComponent,
     CommentListComponent,
-    CountryDetailedComponent
+    CountryDetailedComponent,
+    AddRegionComponent,
+    AddCountryComponent,
+    EditCountryComponent
   ],
   imports: [
     BrowserModule,
