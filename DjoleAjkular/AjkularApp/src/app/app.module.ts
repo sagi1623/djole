@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {RouterModule,Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CountryListComponent } from './country-list/country-list.component';
@@ -20,6 +21,10 @@ import { RoomreservationComponent } from './roomreservation/roomreservation.comp
 import { RoomreservationListComponent } from './roomreservation-list/roomreservation-list.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+
+const Routes = [
+  {path:"countries", component: CountryListComponent}
+]
 
 @NgModule({
   declarations: [
@@ -44,7 +49,8 @@ import { CommentListComponent } from './comment-list/comment-list.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule  
+    HttpModule,
+    RouterModule.forRoot(Routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
