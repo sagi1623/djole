@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Country} from '../country/country.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class CountryListService 
@@ -19,7 +19,7 @@ export class CountryListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/Countries/${id}?$expand = Regions`);
+        return this.http.get(`http://localhost:54042/api/Countries?$filter=Id eq ${id} &$expand=Regions`).map(res => res.json());
     }
 
     create(c : Country): Observable<any>

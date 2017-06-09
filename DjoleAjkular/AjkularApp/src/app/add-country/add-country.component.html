@@ -1,3 +1,16 @@
-<p>
-  add-country works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>add new Country</legend>
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" ngModel />
+  </div><br/>
+  <div>
+    <label for="Code">Code: </label> <br/>
+    <input type = "text" name ="Code" id="Code" ngModel />
+  </div><br/>
+    <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>
