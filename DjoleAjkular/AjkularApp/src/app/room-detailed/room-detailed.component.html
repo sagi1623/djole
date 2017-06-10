@@ -1,3 +1,9 @@
-<p>
-  room-detailed works!
-</p>
+ <fieldset>
+   <legend>room detail view</legend>
+  <p>Name: {{room.Name}}</p>
+  <add-roomreservation [room]="room" ></add-roomreservation>
+  <p>RoomReservations:</p>
+<ul>
+  <li *ngFor ="let rr of room.RoomReservations"><roomreservation [roomreservation]="rr" ></roomreservation></li>
+</ul>
+ </fieldset>

@@ -1,6 +1,6 @@
-import { AccommodationType } from "app/accommodationtype/accommodationtype.model";
-import { Room } from "app/room/room.model";
-import { Place } from "app/place/place.model";
+import { AccommodationType } from "../accommodationtype/accommodationtype.model";
+import { Room } from "../room/room.model";
+import { Place } from "../place/place.model";
 
 export class Accommodation {
 

@@ -1,3 +1,7 @@
-<p>
-  room-list works!
-</p>
+<fieldset>
+  <legend>list of rooms</legend>
+<ul>
+  <li *ngFor ="let r of rooms"><room [room]="r" ></room></li>
+</ul>
+</fieldset>
+

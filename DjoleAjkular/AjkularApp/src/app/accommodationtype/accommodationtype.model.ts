@@ -1,4 +1,4 @@
-import { Accommodation } from "app/accommodation/accommodation.model";
+import { Accommodation } from "../accommodation/accommodation.model";
 
 export class AccommodationType {
 
