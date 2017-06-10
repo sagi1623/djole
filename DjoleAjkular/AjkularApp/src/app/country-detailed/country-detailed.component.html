@@ -1,9 +1,9 @@
 <fieldset>
   <legend>country detail view</legend>
   <p>Name: {{country.Name}}</p>
-  <p>Code: {{country.Code}}</p>
-  <p>Regions:</p>
+  <p>Code: {{country.Code}}</p> 
   <add-region [country]="country" ></add-region>
+  <p>Regions:</p>
   <ul>
     <li *ngFor ="let r of country.Regions"><region [region]="r" ></region></li>
   </ul>

@@ -40,7 +40,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPut]
-        [Authorize]
+        //[Authorize]
         [Route("Comments/{accId}/{appId}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComment(int accId, int appId, Comment comment)
@@ -77,7 +77,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         [Route("Comments")]
         [ResponseType(typeof(Comment))]
         public IHttpActionResult PostComment(Comment comment)
@@ -94,7 +94,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
+        //[Authorize]
         [Route("Comments/{accId}/{appId}")]
         [ResponseType(typeof(Comment))]
         public IHttpActionResult DeleteComment(int accId, int appId)

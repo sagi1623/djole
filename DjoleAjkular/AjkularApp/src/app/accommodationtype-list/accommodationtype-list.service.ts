@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AccommodationType} from '../accommodationtype/accommodationtype.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AccommodationTypeListService 
@@ -19,7 +19,8 @@ export class AccommodationTypeListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/AccommodationTypes/${id}`);
+        //return this.http.get(`http://localhost:54042/api/AccommodationTypes/${id}`);
+        return this.http.get(`http://localhost:54042/api/AccommodationTypes?$filter=Id eq ${id} &$expand=Accommodations`).map(res => res.json());
     }
 
     create(at : AccommodationType): Observable<any>

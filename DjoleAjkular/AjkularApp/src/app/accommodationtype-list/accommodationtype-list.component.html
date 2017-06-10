@@ -1,3 +1,9 @@
-<p>
-  accommodationtype-list works!
-</p>
+<add-accommodationtype></add-accommodationtype>
+<br/>
+<fieldset>
+  <legend>list of accommodationtypes</legend>
+<ul>
+  <li *ngFor ="let at of accommodationtypes"><accommodationtype [accommodationtype]="at" ></accommodationtype></li>
+</ul>
+</fieldset>
+

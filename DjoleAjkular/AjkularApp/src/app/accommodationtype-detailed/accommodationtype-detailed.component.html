@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>accommodationtype detail view</legend>
+  <p>Name: {{accommodationtype.Name}}</p>
+  <add-accommodation [accommodationtype]="accommodationtype" ></add-accommodation>
+   <p>Accommodations:</p>
+  <ul>
+    <li *ngFor ="let a of accommodationtype.Accommodations"><accommodation [accommodation]="a" ></accommodation></li>
+  </ul>
+</fieldset>

@@ -1,8 +1,8 @@
  <fieldset>
    <legend>region detail view</legend>
   <p>Name: {{region.Name}}</p>
-  <p>Places:</p>
   <add-place [region]="region" ></add-place>
+  <p>Places:</p>
 <ul>
   <li *ngFor ="let p of region.Places"><place [place]="p" ></place></li>
 </ul>
