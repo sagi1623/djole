@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AddAccommodationComponent } from './add-accommodation.component';
 
 describe('AddAccommodationComponent', () => {

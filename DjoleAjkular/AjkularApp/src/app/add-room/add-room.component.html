@@ -1,3 +1,24 @@
-<p>
-  add-room works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>add new Room</legend>
+  <div>
+    <label for="RoomNumber">RoomNumber: </label> <br/>
+    <input type = "number" name ="RoomNumber" id="RoomNumber" min="1" step="1" ngModel />
+  </div> <br/>
+  <div>
+    <label for="BedCount">BedCount: </label> <br/>
+    <input type = "number" name ="BedCount" id="BedCount" min="1" step="1" ngModel />
+  </div> <br/>
+  <div>
+    <label for="Description">Description: </label> <br/>
+    <textarea name="Description" ngModel >Enter description here...</textarea>
+  </div> <br/>
+  <div>
+    <label for="PricePerNight">PricePerNight: </label> <br/>
+    <input type = "number" name ="PricePerNight" id="PricePerNight" min="1" ngModel />
+  </div> <br/>
+ <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>

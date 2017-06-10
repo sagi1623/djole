@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PlaceListService } from "app/place-list/place-list.service";
-import { Place } from "app/place/place.model";
+import { PlaceListService } from "../place-list/place-list.service";
+import { Place } from "../place/place.model";
 import { FormGroup } from "@angular/forms/forms";
-import { Region } from "app/region/region.model";
+import { Region } from "../region/region.model";
 
 @Component({
   selector: 'add-place',

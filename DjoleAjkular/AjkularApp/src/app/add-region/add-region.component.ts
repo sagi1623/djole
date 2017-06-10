@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RegionListService } from "app/region-list/region-list.service";
-import { Region } from "app/region/region.model";
+import { RegionListService } from "../region-list/region-list.service";
+import { Region } from "../region/region.model";
 import { FormGroup } from "@angular/forms/forms";
-import { Country } from "app/country/country.model";
+import { Country } from "../country/country.model";
 
 @Component({
   selector: 'add-region',

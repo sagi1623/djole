@@ -54,11 +54,11 @@ const Routes = [
   {path:"accommodation-detailed/:Id", component: AccommodationDetailedComponent},
   {path:"accommodationtypes", component: AccommodationtypeListComponent},
   {path:"accommodationtype-detailed/:Id", component: AccommodationtypeDetailedComponent},
-  {path:"room", component: RoomListComponent},
+  {path:"rooms", component: RoomListComponent},
   {path:"room-detailed/:Id", component: RoomDetailedComponent},
-  {path:"roomreservation", component: RoomreservationListComponent},
+  {path:"roomreservations", component: RoomreservationListComponent},
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
-  {path:"comment", component: CommentListComponent},
+  {path:"comments", component: CommentListComponent},
   {path:"comment-detailed/:Id", component: CommentDetailedComponent},
 
 ]
