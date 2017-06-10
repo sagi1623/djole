@@ -42,6 +42,8 @@ import { AccommodationtypeDetailedComponent } from './accommodationtype-detailed
 import { CommentDetailedComponent } from './comment-detailed/comment-detailed.component';
 import { RoomDetailedComponent } from './room-detailed/room-detailed.component';
 import { RoomreservationDetailedComponent } from './roomreservation-detailed/roomreservation-detailed.component';
+import { LocalStorageService } from "./localStorage.service";
+import { URLProviderService } from "./URLProvider.service";
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -110,7 +112,10 @@ const Routes = [
     HttpModule,
     RouterModule.forRoot(Routes)
   ],
-  providers: [],
+  providers: [
+    LocalStorageService,
+    URLProviderService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
