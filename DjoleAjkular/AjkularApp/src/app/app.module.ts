@@ -93,7 +93,7 @@ const Routes = [
     RegionDetailedComponent,
     PlaceDetailedComponent,
     AddAccommodationComponent,
-    RegisterManagerComponent
+    RegisterManagerComponent,
     AddAccommodationtypeComponent,
     AddRoomComponent,
     AddRoomreservationComponent,
