@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-roomreservation-list',
+  selector: 'roomreservation-list',
   templateUrl: './roomreservation-list.component.html',
   styleUrls: ['./roomreservation-list.component.css']
 })

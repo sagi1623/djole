@@ -32,6 +32,15 @@ import { AddPlaceComponent } from './add-place/add-place.component';
 import { RegionDetailedComponent } from './region-detailed/region-detailed.component';
 import { PlaceDetailedComponent } from './place-detailed/place-detailed.component';
 import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
+import { AddAccommodationtypeComponent } from './add-accommodationtype/add-accommodationtype.component';
+import { AddRoomComponent } from './add-room/add-room.component';
+import { AddRoomreservationComponent } from './add-roomreservation/add-roomreservation.component';
+import { AddCommentComponent } from './add-comment/add-comment.component';
+import { AccommodationDetailedComponent } from './accommodation-detailed/accommodation-detailed.component';
+import { AccommodationtypeDetailedComponent } from './accommodationtype-detailed/accommodationtype-detailed.component';
+import { CommentDetailedComponent } from './comment-detailed/comment-detailed.component';
+import { RoomDetailedComponent } from './room-detailed/room-detailed.component';
+import { RoomreservationDetailedComponent } from './roomreservation-detailed/roomreservation-detailed.component';
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -39,7 +48,18 @@ const Routes = [
   {path:"regions", component: RegionListComponent},
   {path:"region-detailed/:Id", component: RegionDetailedComponent},
   {path:"places", component: PlaceListComponent},
-  {path:"place-detailed/:Id", component: PlaceDetailedComponent}
+  {path:"place-detailed/:Id", component: PlaceDetailedComponent},
+  {path:"accommodations", component: AccommodationListComponent},
+  {path:"accommodation-detailed/:Id", component: AccommodationDetailedComponent},
+  {path:"accommodationtypes", component: AccommodationtypeListComponent},
+  {path:"accommodationtype-detailed/:Id", component: AccommodationtypeDetailedComponent},
+  {path:"room", component: RoomListComponent},
+  {path:"room-detailed/:Id", component: RoomDetailedComponent},
+  {path:"roomreservation", component: RoomreservationListComponent},
+  {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
+  {path:"comment", component: CommentListComponent},
+  {path:"comment-detailed/:Id", component: CommentDetailedComponent},
+
 ]
 
 @NgModule({
@@ -71,7 +91,16 @@ const Routes = [
     AddPlaceComponent,
     RegionDetailedComponent,
     PlaceDetailedComponent,
-    AddAccommodationComponent
+    AddAccommodationComponent,
+    AddAccommodationtypeComponent,
+    AddRoomComponent,
+    AddRoomreservationComponent,
+    AddCommentComponent,
+    AccommodationDetailedComponent,
+    AccommodationtypeDetailedComponent,
+    CommentDetailedComponent,
+    RoomDetailedComponent,
+    RoomreservationDetailedComponent
   ],
   imports: [
     BrowserModule,
