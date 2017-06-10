@@ -32,6 +32,7 @@ import { AddPlaceComponent } from './add-place/add-place.component';
 import { RegionDetailedComponent } from './region-detailed/region-detailed.component';
 import { PlaceDetailedComponent } from './place-detailed/place-detailed.component';
 import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
+import { RegisterManagerComponent } from './register-manager/register-manager.component';
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -71,7 +72,8 @@ const Routes = [
     AddPlaceComponent,
     RegionDetailedComponent,
     PlaceDetailedComponent,
-    AddAccommodationComponent
+    AddAccommodationComponent,
+    RegisterManagerComponent
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ export class RegisterService
         
         let opts = new RequestOptions();
         opts.headers = header;
+        regDTO.Banned = false;
         return this.http.post("http://localhost:54042/api/Account/Register", JSON.stringify(regDTO),opts); 
     }
 }

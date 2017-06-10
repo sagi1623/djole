@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from "../register/register.service";
 import { FormGroup } from "@angular/forms/forms";
-import { RegistrationDTO } from "app/register/registrationDTO.model";
+import { RegistrationDTO } from "../register/registrationDTO.model";
 
 @Component({
   selector: 'register',
@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
  onSubmit(regDTO: RegistrationDTO, form: FormGroup)
   {
     form.reset();
+    regDTO.Role = "AppUser";
     this.registerService.register(regDTO).subscribe(x => console.log(x));
   }
   
