@@ -3,24 +3,25 @@ import {AccommodationType} from '../accommodationtype/accommodationtype.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { URLProviderService } from "../URLProvider.service";
 
 @Injectable()
 export class AccommodationTypeListService 
 {
 
-    constructor(private http:Http)
+    constructor(private http:Http, private urlProviderService: URLProviderService)
     {
     }
 
     getAll(): Observable<any>
     {
-       return this.http.get("http://localhost:54042/api/AccommodationTypes");      
+       return this.http.get(this.urlProviderService.getURL() + "api/AccommodationTypes");      
     }
 
     getById(id: number): Observable<any>
     {
         //return this.http.get(`http://localhost:54042/api/AccommodationTypes/${id}`);
-        return this.http.get(`http://localhost:54042/api/AccommodationTypes?$filter=Id eq ${id} &$expand=Accommodations`).map(res => res.json());
+        return this.http.get(this.urlProviderService.getURL() + `api/AccommodationTypes?$filter=Id eq ${id} &$expand=Accommodations`).map(res => res.json());
     }
 
     create(at : AccommodationType): Observable<any>
@@ -32,7 +33,7 @@ export class AccommodationTypeListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post("http://localhost:54042/api/AccommodationTypes", JSON.stringify(at),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/AccommodationTypes", JSON.stringify(at),opts);
     }
 
     update(at: AccommodationType): Observable<any>
@@ -44,12 +45,12 @@ export class AccommodationTypeListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(`http://localhost:54042/api/AccommodationTypes/${at.Id}`, JSON.stringify(at),opts);
+       return this.http.post(this.urlProviderService.getURL() + `api/AccommodationTypes/${at.Id}`, JSON.stringify(at),opts);
     }
 
     delete(id: number): Observable<any>
     {
-        return this.http.delete(`http://localhost:54042/api/AccommodationTypes/${id}`);
+        return this.http.delete(this.urlProviderService.getURL() + `api/AccommodationTypes/${id}`);
     }
 
 }

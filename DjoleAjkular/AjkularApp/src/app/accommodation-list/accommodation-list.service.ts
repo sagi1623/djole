@@ -2,24 +2,25 @@ import {Injectable} from '@angular/core';
 import {Accommodation} from '../accommodation/accommodation.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import { URLProviderService } from "../URLProvider.service";
 
 
 @Injectable()
 export class AccommodationListService 
 {
 
-    constructor(private http:Http)
+    constructor(private http:Http, private urlProviderService: URLProviderService)
     {
     }
 
     getAll(): Observable<any>
     {
-       return this.http.get("http://localhost:54042/api/Accommodations");      
+       return this.http.get(this.urlProviderService.getURL() + "api/Accommodations");      
     }
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/Accommodations/${id}`);
+        return this.http.get(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
     }
 
     create(a : Accommodation): Observable<any>
@@ -31,7 +32,7 @@ export class AccommodationListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post("http://localhost:54042/api/Accommodation", JSON.stringify(a),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/Accommodation", JSON.stringify(a),opts);
     }
 
     update(a: Accommodation): Observable<any>
@@ -43,11 +44,11 @@ export class AccommodationListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(`http://localhost:54042/api/Accommodations/${a.Id}`, JSON.stringify(a),opts);
+       return this.http.post(this.urlProviderService.getURL() + `api/Accommodations/${a.Id}`, JSON.stringify(a),opts);
     }
 
     delete(id: number): Observable<any>
     {
-        return this.http.delete(`http://localhost:54042/api/Accommodations/${id}`);
+        return this.http.delete(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
     }
 }
