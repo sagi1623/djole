@@ -3,13 +3,13 @@ import {Accommodation} from '../accommodation/accommodation.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { URLProviderService } from "../URLProvider.service";
-
+import { LocalStorageService } from "../localStorage.service";
 
 @Injectable()
 export class AccommodationListService 
 {
 
-    constructor(private http:Http, private urlProviderService: URLProviderService)
+    constructor(private http:Http, private urlProviderService: URLProviderService, private localStorageService: LocalStorageService)
     {
     }
 
@@ -28,6 +28,7 @@ export class AccommodationListService
         let header = new Headers();
         header.append('Accept', 'application/json');
         header.append('Content-type','application/json');
+        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
         
         let opts = new RequestOptions();
         opts.headers = header;
@@ -40,6 +41,7 @@ export class AccommodationListService
         let header = new Headers();
         header.append('Accept', 'application/json');
         header.append('Content-type','application/json');
+        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
         
         let opts = new RequestOptions();
         opts.headers = header;
@@ -49,6 +51,12 @@ export class AccommodationListService
 
     delete(id: number): Observable<any>
     {
+        let header = new Headers();
+        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
+
+        let opts = new RequestOptions();
+        opts.headers = header;
+
         return this.http.delete(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
     }
 }

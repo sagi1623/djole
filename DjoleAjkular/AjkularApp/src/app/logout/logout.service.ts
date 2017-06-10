@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { LocalStorageService } from "../localStorage.service";
+import { URLProviderService } from "../URLProvider.service";
 
 @Injectable()
 export class LogOutService {
 
-    constructor(private http: Http,private localStorageService: LocalStorageService) {}
+    constructor(private http: Http,private urlProviderService: URLProviderService, private localStorageService: LocalStorageService) {}
 
     logout() : Observable<any> {
         let header = new Headers();
@@ -16,7 +17,7 @@ export class LogOutService {
         let opts = new RequestOptions();
         opts.headers = header;
 
-        return this.http.post(`http://localhost:54042/api/Account/Logout`, "", opts);
+        return this.http.post(this.urlProviderService.getURL() + `api/Account/Logout`, "", opts);
     }
 
 }

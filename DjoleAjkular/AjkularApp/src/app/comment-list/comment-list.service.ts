@@ -3,13 +3,14 @@ import {Comment} from '../comment/comment.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { URLProviderService } from "../URLProvider.service";
+import { LocalStorageService } from "../localStorage.service";
 
 
 @Injectable()
 export class CommentListService 
 {
 
-    constructor(private http:Http, private urlProviderService: URLProviderService)
+    constructor(private http:Http, private urlProviderService: URLProviderService, private localStorageService: LocalStorageService)
     {
     }
 
@@ -28,6 +29,7 @@ export class CommentListService
         let header = new Headers();
         header.append('Accept', 'application/json');
         header.append('Content-type','application/json');
+        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
         
         let opts = new RequestOptions();
         opts.headers = header;
@@ -49,7 +51,13 @@ export class CommentListService
 
     delete(id: number): Observable<any>
     {
-          return this.http.delete(this.urlProviderService.getURL() + `api/Comments/${id}`);
+        let header = new Headers();
+        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
+
+        let opts = new RequestOptions();
+        opts.headers = header;
+
+        return this.http.delete(this.urlProviderService.getURL() + `api/Comments/${id}`, opts);
     }
 
 }

@@ -62,7 +62,8 @@ const Routes = [
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
   {path:"comments", component: CommentListComponent},
   {path:"comment-detailed/:Id", component: CommentDetailedComponent},
-
+  {path:"login", component: LoginComponent},
+  {path:"register", component: RegisterComponent},
 ]
 
 @NgModule({

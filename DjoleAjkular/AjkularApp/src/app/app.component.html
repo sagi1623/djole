@@ -1,8 +1,9 @@
 <h1>
   {{title}}
 </h1>
-<login> </login>
-<logout></logout>
+<button [routerLink]= "['/login']">Log In</button>
+<logout> </logout>
+<button [routerLink]= "['/register']">Register</button>
   <ul>
     <li> <a [routerLink]= "['/accommodations']"> Accommodations </a></li>
     <li> <a [routerLink]= "['/accommodationtypes']"> AccommodationTypes </a></li>
