@@ -28,10 +28,18 @@ import { EditCountryComponent } from './edit-country/edit-country.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AddPlaceComponent } from './add-place/add-place.component';
+import { RegionDetailedComponent } from './region-detailed/region-detailed.component';
+import { PlaceDetailedComponent } from './place-detailed/place-detailed.component';
+import { AddAccommodationComponent } from './add-accommodation/add-accommodation.component';
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
-  {path:"country-detailed/:Id", component: CountryDetailedComponent}
+  {path:"country-detailed/:Id", component: CountryDetailedComponent},
+  {path:"regions", component: RegionListComponent},
+  {path:"region-detailed/:Id", component: RegionDetailedComponent},
+  {path:"places", component: PlaceListComponent},
+  {path:"place-detailed/:Id", component: PlaceDetailedComponent}
 ]
 
 @NgModule({
@@ -59,7 +67,11 @@ const Routes = [
     EditCountryComponent,
     RegisterComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    AddPlaceComponent,
+    RegionDetailedComponent,
+    PlaceDetailedComponent,
+    AddAccommodationComponent
   ],
   imports: [
     BrowserModule,

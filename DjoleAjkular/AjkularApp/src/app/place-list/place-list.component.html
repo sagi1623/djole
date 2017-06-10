@@ -1,3 +1,7 @@
-<p>
-  place-list works!
-</p>
+<fieldset>
+  <legend>list of places</legend>
+<ul>
+  <li *ngFor ="let p of places"><place [place]="p" ></place></li>
+</ul>
+</fieldset>
+

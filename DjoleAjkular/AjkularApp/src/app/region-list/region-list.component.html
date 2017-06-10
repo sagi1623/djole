@@ -1,3 +1,7 @@
-<p>
-  region-list works!
-</p>
+<fieldset>
+  <legend>list of regions</legend>
+<ul>
+  <li *ngFor ="let r of regions"><region [region]="r" ></region></li>
+</ul>
+</fieldset>
+

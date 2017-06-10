@@ -19,7 +19,8 @@ export class RegionListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/Regions/${id}`);
+       // return this.http.get(`http://localhost:54042/api/Regions/${id}`);
+        return this.http.get(`http://localhost:54042/api/Regions?$filter=Id eq ${id} &$expand=Places`).map(res => res.json());
     }
 
     create(r : Region): Observable<any>

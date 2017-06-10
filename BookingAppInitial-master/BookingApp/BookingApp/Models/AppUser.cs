@@ -23,5 +23,7 @@ namespace BookingApp.Models
         public List<Comment> Comments { get; set;}
 
         public List<RoomReservation> RoomReservations { get; set; }
+
+        public bool Banned { get; set; }
     }
 }

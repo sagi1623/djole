@@ -10,12 +10,16 @@ import { FormGroup } from "@angular/forms/forms";
   providers: [CountryListService]
 })
 export class CountryListComponent implements OnInit {
-  countries: Country []
-  constructor(private countryService: CountryListService) { 
+
+  countries: Country [];
+
+  constructor(private countryService: CountryListService)
+  { 
     this.countries=[];
   }
 
-  ngOnInit() {
+  ngOnInit()
+  {
      this.countryService.getAll().subscribe(x => this.countries = x.json() as Country[]);
   }
 

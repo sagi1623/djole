@@ -1,8 +1,9 @@
 <add-country></add-country>
-<h1>
-  List of countries
-</h1>
+<br/>
+<fieldset>
+  <legend>list of countries</legend>
 <ul>
   <li *ngFor ="let c of countries"><country [country]="c" ></country></li>
 </ul>
+</fieldset>
 

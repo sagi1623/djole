@@ -15,7 +15,7 @@ namespace BookingApp.Models
         [StringLength(256)]
         public string Name { get; set; }
 
-        public List<Accommodation> Accomodations { get; set; }
+        public List<Accommodation> Accommodations { get; set; }
 
         public Region Region { get; set; }
 

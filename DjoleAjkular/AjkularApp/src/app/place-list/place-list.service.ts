@@ -19,7 +19,8 @@ export class PlaceListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(`http://localhost:54042/api/Places/${id}`);
+        //return this.http.get(`http://localhost:54042/api/Places/${id}`);
+        return this.http.get(`http://localhost:54042/api/Places?$filter=Id eq ${id} &$expand=Accommodations`).map(res => res.json());
     }
 
     create(p : Place): Observable<any>
