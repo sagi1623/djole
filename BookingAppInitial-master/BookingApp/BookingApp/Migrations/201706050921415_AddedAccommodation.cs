@@ -15,9 +15,9 @@ namespace BookingApp.Migrations
                         Name = c.String(nullable: false, maxLength: 256),
                         Description = c.String(maxLength: 1024),
                         Address = c.String(nullable: false, maxLength: 256),
-                        AverageGrade = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Latitude = c.Double(nullable: false),
-                        Longitude = c.Double(nullable: false),
+                        AverageGrade = c.Decimal(nullable: true, precision: 18, scale: 2),
+                        Latitude = c.Double(nullable: true),
+                        Longitude = c.Double(nullable: true),
                         ImageUrl = c.String(),
                         Approved = c.Boolean(nullable: false),
                     })

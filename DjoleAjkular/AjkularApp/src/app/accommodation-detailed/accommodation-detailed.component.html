@@ -1,3 +1,17 @@
-<p>
-  accommodation-detailed works!
-</p>
+ <fieldset>
+   <legend>accommodation detail view</legend>
+  <p>Name: {{accommodation.Name}}</p>
+  <p>Description: {{accommodation.Description}}</p>
+  <p>Address: {{accommodation.Address}}</p>
+  <p>AvrgeGrade: {{accommodation.AvrgeGrade}}</p>
+  <add-room [accommodation]="accommodation" ></add-room>
+  <p>Rooms:</p>
+  <ul>
+    <li *ngFor ="let r of accommodation.Rooms"><room [room]="r" ></room></li>
+  </ul>
+ 
+  <p>Comments:</p>
+  <ul>
+    
+  </ul>
+ </fieldset>

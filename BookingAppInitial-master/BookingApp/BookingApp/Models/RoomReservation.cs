@@ -18,7 +18,7 @@ namespace BookingApp.Models
         public DateTime? EndDate { get; set; }
 
         [Timestamp]
-        public byte[] Timestamp { get; set; }
+        public byte?[] Timestamp { get; set; }
 
         public AppUser AppUser { get; set; }
 

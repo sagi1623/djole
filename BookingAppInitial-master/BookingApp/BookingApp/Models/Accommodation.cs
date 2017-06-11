@@ -23,13 +23,13 @@ namespace BookingApp.Models
         public string Address { get; set; }
 
         [Range(0,5)]
-        public decimal AverageGrade { get; set; }
+        public decimal? AverageGrade { get; set; }
 
         [Required]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         [Required]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         public string ImageUrl { get; set; }
 

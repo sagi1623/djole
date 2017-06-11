@@ -11,7 +11,7 @@ namespace BookingApp.Models
     {
         [Required]
         [Range(0,5)]
-        public int Grade { get; set; }
+        public int? Grade { get; set; }
         
         [StringLength(1024)]
         public string Text { get; set; } 

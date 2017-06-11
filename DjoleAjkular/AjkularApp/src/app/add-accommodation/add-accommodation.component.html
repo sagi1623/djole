@@ -1,3 +1,20 @@
-<p>
-  add-accommodation works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>add new Accommodation</legend>
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" ngModel />
+  </div> <br/>
+  <div>
+    <label for="Description">Description: </label> <br/>
+    <textarea name="Description" ngModel >Enter description here...</textarea>
+  </div> <br/>
+  <div>
+    <label for="Address">Address: </label> <br/>
+    <input type = "text" name ="Address" id="Address" ngModel />
+  </div> <br/>
+ <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>
