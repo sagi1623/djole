@@ -20,7 +20,8 @@ export class AccommodationListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
+        //return this.http.get(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
+        return this.http.get(this.urlProviderService.getURL() + `api/Accommodations?$filter=Id eq ${id} &$expand=Rooms &$expand=Comments`).map(res => res.json());
     }
 
     create(a : Accommodation): Observable<any>
@@ -33,7 +34,7 @@ export class AccommodationListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/Accommodation", JSON.stringify(a),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/Accommodations", JSON.stringify(a),opts);
     }
 
     update(a: Accommodation): Observable<any>

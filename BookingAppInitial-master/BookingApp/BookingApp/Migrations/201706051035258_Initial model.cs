@@ -22,12 +22,12 @@ namespace BookingApp.Migrations
                     {
                         AccommodationId = c.Int(nullable: false),
                         AppUserId = c.Int(nullable: false),
-                        Grade = c.Int(nullable: false),
+                        Grade = c.Int(nullable: true),
                         Text = c.String(maxLength: 1024),
                     })
                 .PrimaryKey(t => new { t.AccommodationId, t.AppUserId })
-                .ForeignKey("dbo.Accommodations", t => t.AccommodationId, cascadeDelete: false)
-                .ForeignKey("dbo.AppUsers", t => t.AppUserId, cascadeDelete: true)
+                .ForeignKey("dbo.Accommodations", t => t.AccommodationId, cascadeDelete: true)
+                .ForeignKey("dbo.AppUsers", t => t.AppUserId, cascadeDelete: false)
                 .Index(t => t.AccommodationId)
                 .Index(t => t.AppUserId);
             
@@ -38,13 +38,13 @@ namespace BookingApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
-                        Timestamp = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
+                        Timestamp = c.Binary(nullable: true, fixedLength: true, timestamp: true, storeType: "rowversion"),
                         AppUserId = c.Int(nullable: false),
                         RoomId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AppUsers", t => t.AppUserId, cascadeDelete: true)
-                .ForeignKey("dbo.Rooms", t => t.RoomId, cascadeDelete: false)
+                .ForeignKey("dbo.AppUsers", t => t.AppUserId, cascadeDelete: false)
+                .ForeignKey("dbo.Rooms", t => t.RoomId, cascadeDelete: true)
                 .Index(t => t.AppUserId)
                 .Index(t => t.RoomId);
             
