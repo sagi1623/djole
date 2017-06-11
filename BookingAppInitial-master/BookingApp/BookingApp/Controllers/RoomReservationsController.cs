@@ -12,7 +12,7 @@ using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
 {
-    //[Authorize]
+
     [RoutePrefix("api")]
     public class RoomReservationsController : ApiController
     {
@@ -44,7 +44,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [Route("RoomReservations")]
         [ResponseType(typeof(RoomReservation))]
         public IHttpActionResult PostRoomReservation(RoomReservation rr)
@@ -62,7 +62,7 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
-        //[Authorize]
+        [Authorize]
         [Route("RoomReservations/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRoomReservation(int id, RoomReservation rr)
@@ -100,7 +100,7 @@ namespace BookingApp.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        //[Authorize]
+        [Authorize]
         [Route("RoomReservations/{id}")]
         [ResponseType(typeof(RoomReservation))]
         public IHttpActionResult DeleteRoomReservation(int id)

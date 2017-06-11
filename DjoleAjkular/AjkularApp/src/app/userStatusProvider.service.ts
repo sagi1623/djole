@@ -21,8 +21,8 @@ export class UserStatusProviderService {
         return (this.localStorageService.get('role') === 'Manager' )
     }
 
-    isUserAppUser():boolean
+    isUserUser():boolean
     {
-        return (this.localStorageService.get('role') === 'AppUser' )
+        return (this.localStorageService.get('role') === 'User' )
     }
 }

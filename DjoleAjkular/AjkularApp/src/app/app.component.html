@@ -1,18 +1,17 @@
-<h1>
-  {{title}}
-</h1>
-<button *ngIf="!isUserLoggedIn()" [routerLink]= "['/login']">Log In</button>
-<logout *ngIf="isUserLoggedIn()"> </logout>
-<button *ngIf="!isUserLoggedIn()" [routerLink]= "['/register']">Register</button>
-  <ul>
-    <li> <a [routerLink]= "['/accommodations']"> Accommodations </a></li>
-    <li> <a [routerLink]= "['/accommodationtypes']"> AccommodationTypes </a></li>
-    <li> <a [routerLink]= "['/comments']"> Comments </a></li>
-    <li> <a [routerLink]= "['/countries']"> Countries </a></li>
-    <li> <a [routerLink]= "['/places']"> Places </a></li>
-    <li> <a [routerLink]= "['/regions']"> Regions </a></li>     
-    <li> <a [routerLink]= "['/rooms']"> Rooms </a></li>
-    <li> <a [routerLink]= "['/roomreservations']"> RoomReservations </a></li>
-  </ul>
-
+<div>
+<button [routerLink]= "['/home']">Home</button>
+<br/>
+</div>
+<div *ngIf="!isUserLoggedIn()">
+<button  [routerLink]= "['/login']">Log In</button>
+<br/>
+</div>
+<div *ngIf="isUserLoggedIn()">
+<logout>  </logout>
+<br/>
+</div>
+<div *ngIf="!isUserLoggedIn()">
+<button  [routerLink]= "['/register']">Register</button>
+<br/>
+</div>
 <router-outlet></router-outlet>

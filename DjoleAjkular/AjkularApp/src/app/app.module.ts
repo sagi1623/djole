@@ -45,8 +45,9 @@ import { RoomreservationDetailedComponent } from './roomreservation-detailed/roo
 import { LocalStorageService } from "./localStorage.service";
 import { URLProviderService } from "./URLProvider.service";
 import { UserStatusProviderService } from "./userStatusProvider.service";
+import { HomeComponent } from './home/home.component';
 
-const Routes = [
+const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
   {path:"country-detailed/:Id", component: CountryDetailedComponent},
   {path:"regions", component: RegionListComponent},
@@ -63,6 +64,11 @@ const Routes = [
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
   {path:"comments", component: CommentListComponent},
   {path:"comment-detailed/:Id", component: CommentDetailedComponent},
+  ]
+
+
+const Routes = [
+  {path:"home", component: HomeComponent, children: HomeRoutes},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
 ]
@@ -106,7 +112,8 @@ const Routes = [
     AccommodationtypeDetailedComponent,
     CommentDetailedComponent,
     RoomDetailedComponent,
-    RoomreservationDetailedComponent
+    RoomreservationDetailedComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
