@@ -44,6 +44,7 @@ import { RoomDetailedComponent } from './room-detailed/room-detailed.component';
 import { RoomreservationDetailedComponent } from './roomreservation-detailed/roomreservation-detailed.component';
 import { LocalStorageService } from "./localStorage.service";
 import { URLProviderService } from "./URLProvider.service";
+import { UserStatusProviderService } from "./userStatusProvider.service";
 
 const Routes = [
   {path:"countries", component: CountryListComponent},
@@ -115,7 +116,8 @@ const Routes = [
   ],
   providers: [
     LocalStorageService,
-    URLProviderService
+    URLProviderService,
+    UserStatusProviderService
     ],
   bootstrap: [AppComponent]
 })

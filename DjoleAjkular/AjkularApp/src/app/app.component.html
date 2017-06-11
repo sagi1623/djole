@@ -1,9 +1,9 @@
 <h1>
   {{title}}
 </h1>
-<button [routerLink]= "['/login']">Log In</button>
-<logout> </logout>
-<button [routerLink]= "['/register']">Register</button>
+<button *ngIf="!isUserLoggedIn()" [routerLink]= "['/login']">Log In</button>
+<logout *ngIf="isUserLoggedIn()"> </logout>
+<button *ngIf="!isUserLoggedIn()" [routerLink]= "['/register']">Register</button>
   <ul>
     <li> <a [routerLink]= "['/accommodations']"> Accommodations </a></li>
     <li> <a [routerLink]= "['/accommodationtypes']"> AccommodationTypes </a></li>
