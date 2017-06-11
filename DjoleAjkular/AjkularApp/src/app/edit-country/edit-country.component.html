@@ -1,16 +1,16 @@
-<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+<form #f="ngForm" (ngSubmit) = "onSubmit(f)">
   <fieldset>
     <legend>edit country</legend>
   <div>
     <label for="Name">Name: </label> <br/>
-    <input type = "text" name ="Name" id="Name" value="${country.Name}" ngModel />
+    <input type = "text" name ="Name" id="Name" [(ngModel)]="country.Name" />
   </div><br/>
   <div>
     <label for="Code">Code: </label> <br/>
-    <input type = "text" name ="Code" id="Code" value="${country.Code}"  ngModel />
+    <input type = "text" name ="Code" id="Code" [(ngModel)]="country.Code" />
   </div><br/>
     <div>
-    <input type = "submit" name="Submit"  value="add" />
+    <input type = "submit" name="Submit"  value="edit" />
   </div>
   </fieldset>
 </form>

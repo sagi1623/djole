@@ -17,12 +17,11 @@ export class EditCountryComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(c: Country, form: FormGroup)
+  onSubmit(form: FormGroup)
   {
-    form.reset();
     if(form.dirty)
     {
-    this.countryService.update(c).subscribe(x => console.log(x));
+    this.countryService.update(this.country).subscribe(x => console.log(x));
     }
   }
 }
