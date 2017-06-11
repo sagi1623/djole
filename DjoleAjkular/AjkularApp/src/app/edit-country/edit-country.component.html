@@ -1,3 +1,16 @@
-<p>
-  edit-country works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>edit country</legend>
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" value="${country.Name}" ngModel />
+  </div><br/>
+  <div>
+    <label for="Code">Code: </label> <br/>
+    <input type = "text" name ="Code" id="Code" value="${country.Code}"  ngModel />
+  </div><br/>
+    <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>

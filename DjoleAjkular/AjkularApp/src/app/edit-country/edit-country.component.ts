@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CountryListService } from "../country-list/country-list.service";
+import { Country } from "../country/country.model";
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
   selector: 'edit-country',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditCountryComponent implements OnInit {
 
-  constructor() { }
+  @Input() country: Country;
+
+  constructor(private countryService: CountryListService) { }
 
   ngOnInit() {
   }
 
+  onSubmit(c: Country, form: FormGroup)
+  {
+    form.reset();
+    if(form.dirty)
+    {
+    this.countryService.update(c).subscribe(x => console.log(x));
+    }
+  }
 }
