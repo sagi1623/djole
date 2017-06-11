@@ -27,9 +27,10 @@ export class AddAccommodationComponent implements OnInit {
     a.Approved=false;
     a.PlaceId=this.place.Id;
     a.Latitude=0;
-    a.Longitude-0;
+    a.Longitude=0;
     //a.AccommodationTypeId=this.accommodationtype.Id;
     a.AccommodationTypeId=1;
+    a.AppUserId=1;
     this.accommodationService.create(a).subscribe(x => console.log(x));
   }
 

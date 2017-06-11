@@ -29,7 +29,7 @@ namespace BookingApp.Models
 
         [Required]
         [ForeignKey("Accommodation")]
-        public int AccomodationId { get; set; }
+        public int AccommodationId { get; set; }
 
         public List<RoomReservation> RoomReservations { get; set; }
     }
