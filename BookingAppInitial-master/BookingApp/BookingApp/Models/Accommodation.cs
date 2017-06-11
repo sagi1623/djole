@@ -25,10 +25,8 @@ namespace BookingApp.Models
         [Range(0,5)]
         public decimal? AverageGrade { get; set; }
 
-        [Required]
         public double? Latitude { get; set; }
-
-        [Required]
+       
         public double? Longitude { get; set; }
 
         public string ImageUrl { get; set; }
@@ -40,7 +38,7 @@ namespace BookingApp.Models
 
         [Required]
         [ForeignKey("AccommodationType")]
-        public int AccomodationTypeId { get; set; }
+        public int AccommodationTypeId { get; set; }
 
         public List<Room> Rooms { get; set; }
         

@@ -312,6 +312,10 @@
     <Compile Include="Migrations\201706111010212_Unknown changes.Designer.cs">
       <DependentUpon>201706111010212_Unknown changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706111043220_cao.cs" />
+    <Compile Include="Migrations\201706111043220_cao.Designer.cs">
+      <DependentUpon>201706111043220_cao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -425,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706111010212_Unknown changes.resx">
       <DependentUpon>201706111010212_Unknown changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706111043220_cao.resx">
+      <DependentUpon>201706111043220_cao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
