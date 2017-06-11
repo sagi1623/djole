@@ -46,6 +46,7 @@ import { LocalStorageService } from "./localStorage.service";
 import { URLProviderService } from "./URLProvider.service";
 import { UserStatusProviderService } from "./userStatusProvider.service";
 import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -113,7 +114,8 @@ const Routes = [
     CommentDetailedComponent,
     RoomDetailedComponent,
     RoomreservationDetailedComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

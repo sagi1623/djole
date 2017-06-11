@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RegisterService } from "../register/register.service";
 import { FormGroup } from "@angular/forms/forms";
 import { RegistrationDTO } from "../register/registrationDTO.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'register',
@@ -11,7 +12,7 @@ import { RegistrationDTO } from "../register/registrationDTO.model";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private router: Router, private registerService: RegisterService) { }
 
   ngOnInit() {
   }
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   {
     form.reset();
     regDTO.Role = "AppUser";
-    this.registerService.register(regDTO).subscribe(x => console.log(x));
+    this.registerService.register(regDTO).subscribe(x => { console.log(x); this.router.navigate(['/home']); }, x => alert('Failed to register'));
   }
   
 }

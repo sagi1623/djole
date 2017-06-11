@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class AppComponent implements OnInit  {
   title = 'app';
 
-  constructor(private router: Router,private userStatusProviderService: UserStatusProviderService)
+  constructor(private router: Router, private userStatusProviderService: UserStatusProviderService)
   {
 
   }

@@ -3,6 +3,7 @@ import { LoginDTO } from "../login/loginDTO.model";
 import { FormGroup } from "@angular/forms/forms";
 import { LoginService } from "../login/login.service";
 import { TokenParserService } from "../login/token-parser-service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'login',
@@ -12,7 +13,7 @@ import { TokenParserService } from "../login/token-parser-service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private tokenParserService: TokenParserService ) { }
+  constructor(private router: Router, private loginService: LoginService, private tokenParserService: TokenParserService ) { }
 
   ngOnInit() {
   }
@@ -20,6 +21,6 @@ export class LoginComponent implements OnInit {
  onSubmit(loginDTO: LoginDTO, form: FormGroup)
   {
     form.reset();
-    this.loginService.login(loginDTO).subscribe(x =>  this.tokenParserService.parse(x));
+    this.loginService.login(loginDTO).subscribe(x => { this.tokenParserService.parse(x); this.router.navigate(['/home']); }, x => alert('Failed to log in!'));
   }
 }
