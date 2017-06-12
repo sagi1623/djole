@@ -21,7 +21,7 @@ export class RoomListService
     getById(id: number): Observable<any>
     {
         //return this.http.get(`http://localhost:54042/api/Rooms/${id}`);
-        return this.http.get(this.urlProviderService.getURL() + `api/Rooms?$filter=Id eq ${id}`).map(res => res.json());
+        return this.http.get(this.urlProviderService.getURL() + `api/Rooms?$filter=Id eq ${id} &$expand=RoomReservations`).map(res => res.json());
     }
 
     create(r : Room): Observable<any>

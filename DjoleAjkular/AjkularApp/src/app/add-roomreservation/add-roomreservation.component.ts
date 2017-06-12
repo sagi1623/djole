@@ -14,9 +14,20 @@ export class AddRoomreservationComponent implements OnInit {
 
   @Input() room: Room;
 
-  constructor() { }
+  constructor(private roomreservationService: RoomReservationListService) 
+  { 
+
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(r: RoomReservation, form: FormGroup)
+  {
+    form.reset();
+    r.RoomId=this.room.Id;
+    r.AppUserId=1;
+    this.roomreservationService.create(r).subscribe(x => console.log(x));
   }
 
 }
