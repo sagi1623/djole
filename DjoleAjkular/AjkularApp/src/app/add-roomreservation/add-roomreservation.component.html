@@ -1,3 +1,16 @@
-<p>
-  add-roomreservation works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>add new RoomReservation</legend>
+  <div>
+    <label for="StartDate">StartDate: </label> <br/>
+    <input type = "date" name ="StartDate" id="StartDate" ngModel />
+  </div> <br/>
+  <div>
+    <label for="EndDate">EndDate: </label> <br/>
+    <input type = "date" name ="EndDate" id="EndDate" ngModel />
+  </div> <br/>
+ <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>

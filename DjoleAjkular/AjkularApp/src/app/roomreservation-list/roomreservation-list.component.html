@@ -1,3 +1,7 @@
-<p>
-  roomreservation-list works!
-</p>
+<fieldset>
+  <legend>list of roomreservations</legend>
+<ul>
+  <li *ngFor ="let rr of roomreservations"><roomreservation [roomreservation]="rr" ></roomreservation></li>
+</ul>
+</fieldset>
+

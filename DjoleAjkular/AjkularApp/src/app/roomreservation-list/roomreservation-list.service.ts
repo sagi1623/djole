@@ -20,7 +20,8 @@ export class RoomReservationListService
 
     getById(id: number): Observable<any>
     {
-        return this.http.get(this.urlProviderService.getURL() + `api/RoomReservations/${id}`);
+        //return this.http.get(this.urlProviderService.getURL() + `api/RoomReservations/${id}`);
+        return this.http.get(this.urlProviderService.getURL() + `api/RoomReservations?$filter=Id eq ${id}`).map(res => res.json());
     }
 
     create(rr : RoomReservation): Observable<any>

@@ -26,8 +26,6 @@ export class AddAccommodationComponent implements OnInit {
     form.reset();
     a.Approved=false;
     a.PlaceId=this.place.Id;
-    a.Latitude=0;
-    a.Longitude=0;
     //a.AccommodationTypeId=this.accommodationtype.Id;
     a.AccommodationTypeId=1;
     a.AppUserId=1;
