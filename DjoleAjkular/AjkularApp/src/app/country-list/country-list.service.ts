@@ -34,7 +34,7 @@ export class CountryListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/Countries", JSON.stringify(c),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/Countries", JSON.stringify(c),opts).map(res => res.json());
     }
 
     update(c: Country): Observable<any>

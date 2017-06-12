@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Country } from "../country/country.model";
 import { FormGroup } from "@angular/forms/forms";
 import { CountryListService } from "../country-list/country-list.service";
@@ -11,7 +11,14 @@ import { CountryListService } from "../country-list/country-list.service";
 })
 export class AddCountryComponent implements OnInit {
 
-  constructor(private countryService: CountryListService) { }
+  private country: Country;
+
+  @Output() onCountryAdded: EventEmitter<Country>
+
+  constructor(private countryService: CountryListService)
+  {
+    this.onCountryAdded = new EventEmitter();
+  }
 
   ngOnInit() {
   }
@@ -19,7 +26,7 @@ export class AddCountryComponent implements OnInit {
   onSubmit(c: Country, form: FormGroup)
   {
     form.reset();
-    this.countryService.create(c).subscribe(x => console.log(x));
+    this.countryService.create(c).subscribe(x => { this.onCountryAdded.emit(x as Country) } );
   }
 
 }

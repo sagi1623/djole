@@ -26,16 +26,6 @@ export class CountryDetailedComponent implements OnInit {
    this.countryService.getById(this.Id).subscribe(x =>  this.country = x[0] as Country);
   }
 
-  removeCountry()
-  {
-    this.countryService.delete(this.Id).subscribe(x => console.log(x));
-  }
-
-  shouldShowRemove(): boolean
-  {
-    return this.userStatusProviderService.isUserAdmin();
-  }
-
   shouldShowAdd(): boolean
   {
     return this.userStatusProviderService.isUserAdmin();

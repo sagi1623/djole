@@ -7,7 +7,6 @@
   <p>Name: {{country.Name}}</p>
   <p>Code: {{country.Code}}</p>
   </div> 
-  <button *ngIf="shouldShowRemove()" (click)="removeCountry()">Remove</button>
   <add-region *ngIf="shouldShowAdd()" [country]="country" ></add-region>
   <p>Regions:</p>
   <ul>

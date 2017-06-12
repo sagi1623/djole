@@ -1,9 +1,9 @@
-<add-country></add-country>
+<add-country (onCountryAdded)="countryWasAdded($event)"></add-country>
 <br/>
 <fieldset>
   <legend>list of countries</legend>
 <ul>
-  <li *ngFor ="let c of countries"><country [country]="c" ></country></li>
+  <li *ngFor ="let c of countries"><country [country]="c" (onCountryDeleted)="countryWasDeleted($event)" ></country></li>
 </ul>
 </fieldset>
 

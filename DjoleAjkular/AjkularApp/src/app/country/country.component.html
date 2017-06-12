@@ -1,4 +1,5 @@
 <div>
   <p>Name: {{country.Name}}</p>
   <a [routerLink]= "['/home/country-detailed/', country.Id]"> detailed </a>
+  <button *ngIf="shouldShowRemove()" (click)="removeCountry()">Remove</button>
 </div>

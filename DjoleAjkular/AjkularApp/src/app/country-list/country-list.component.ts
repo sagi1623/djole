@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Country} from '../country/country.model';
 import {CountryListService} from './country-list.service'
 import { FormGroup } from "@angular/forms/forms";
@@ -23,6 +23,18 @@ export class CountryListComponent implements OnInit {
      this.countryService.getAll().subscribe(x => this.countries = x.json() as Country[]);
   }
 
+  countryWasDeleted(country: Country)
+  {
+    var index = this.countries.indexOf(country, 0);
+    if (index > -1) 
+    {
+      this.countries.splice(index, 1);
+    }
+  }
 
+  countryWasAdded(country: Country)
+  {
+    this.countries.push(country);
+  }
 
 }
