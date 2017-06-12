@@ -14,6 +14,7 @@ export class AddRegionComponent implements OnInit {
 
 @Input() country: Country
 
+
   constructor(private regionService: RegionListService) 
   { 
 
@@ -26,7 +27,7 @@ export class AddRegionComponent implements OnInit {
   {
     form.reset();
     r.CountryId=this.country.Id;
-    this.regionService.create(r).subscribe(x => console.log(x));
+    this.regionService.create(r).subscribe(x => this.country.Regions.push(x as Region));
   }
 
 }

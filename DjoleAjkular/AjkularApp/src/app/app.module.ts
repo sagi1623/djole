@@ -72,6 +72,7 @@ const Routes = [
   {path:"home", component: HomeComponent, children: HomeRoutes},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
+  {path:"register-manager", component: RegisterManagerComponent},
 ]
 
 @NgModule({

@@ -14,4 +14,8 @@
 <button  [routerLink]= "['/register']">Register</button>
 <br/>
 </div>
+<div *ngIf="!isUserLoggedIn()">
+<button  [routerLink]= "['/register-manager']">Register Manager</button>
+<br/>
+</div>
 <router-outlet></router-outlet>

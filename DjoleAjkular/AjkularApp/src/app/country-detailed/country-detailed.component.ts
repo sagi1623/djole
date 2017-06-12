@@ -3,6 +3,7 @@ import { Country } from "../country/country.model";
 import { CountryListService } from "../country-list/country-list.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserStatusProviderService } from "../userStatusProvider.service";
+import { Region } from "../region/region.model";
 
 @Component({
   selector: 'country-detailed',
