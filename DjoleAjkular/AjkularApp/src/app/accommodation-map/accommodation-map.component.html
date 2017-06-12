@@ -1,0 +1,10 @@
+<p>
+  <!-- Kreiramo mapu -->
+  <agm-map [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" [zoom]="17">
+   
+    <!-- Postavljamo markere -->
+    <agm-marker [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" [title]="accommodation.Name" >
+
+    </agm-marker>
+  </agm-map>
+</p>

@@ -16,8 +16,11 @@ export class TokenParserService {
         console.log(access_token);      
         let role = response.headers.get('Role');
         console.log(role);
+        let appUserID = response.headers.get('appUserID');
+        console.log(appUserID);
         this.localStorageService.store('token',access_token);
         this.localStorageService.store('role',role);      
+        this.localStorageService.store('appUserID',appUserID);     
     }
 
 }

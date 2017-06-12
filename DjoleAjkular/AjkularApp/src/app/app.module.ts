@@ -54,6 +54,8 @@ import { EditPlaceComponent } from './edit-place/edit-place.component';
 import { EditRegionComponent } from './edit-region/edit-region.component';
 import { EditRoomComponent } from './edit-room/edit-room.component';
 import { EditRoomreservationComponent } from './edit-roomreservation/edit-roomreservation.component';
+import { AccommodationMapComponent } from './accommodation-map/accommodation-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -130,13 +132,15 @@ const Routes = [
     EditPlaceComponent,
     EditRegionComponent,
     EditRoomComponent,
-    EditRoomreservationComponent
+    EditRoomreservationComponent,
+    AccommodationMapComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(Routes)
+    RouterModule.forRoot(Routes),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyBTjr76WZ5EC5qQgF1ImE1VM_dyta7N1UY'})
   ],
   providers: [
     LocalStorageService,

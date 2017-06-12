@@ -31,11 +31,14 @@ namespace BookingApp.Providers
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
             var roleHeader = "Role";
-            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { roleHeader });
+            var userIDHeader = "appUserID";
+            context.OwinContext.Response.Headers.Add("Access-Control-Expose-Headers", new[] { roleHeader, userIDHeader});
 
             ApplicationUserManager userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             BAIdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
+
+            context.OwinContext.Response.Headers.Add(userIDHeader, new[] { user.appUserId.ToString() });
 
             if (user == null)
             {
