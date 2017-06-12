@@ -47,6 +47,13 @@ import { URLProviderService } from "./URLProvider.service";
 import { UserStatusProviderService } from "./userStatusProvider.service";
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
+import { EditAccommodationComponent } from './edit-accommodation/edit-accommodation.component';
+import { EditAccommodationtypeComponent } from './edit-accommodationtype/edit-accommodationtype.component';
+import { EditCommentComponent } from './edit-comment/edit-comment.component';
+import { EditPlaceComponent } from './edit-place/edit-place.component';
+import { EditRegionComponent } from './edit-region/edit-region.component';
+import { EditRoomComponent } from './edit-room/edit-room.component';
+import { EditRoomreservationComponent } from './edit-roomreservation/edit-roomreservation.component';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -116,7 +123,14 @@ const Routes = [
     RoomDetailedComponent,
     RoomreservationDetailedComponent,
     HomeComponent,
-    ErrorComponent
+    ErrorComponent,
+    EditAccommodationComponent,
+    EditAccommodationtypeComponent,
+    EditCommentComponent,
+    EditPlaceComponent,
+    EditRegionComponent,
+    EditRoomComponent,
+    EditRoomreservationComponent
   ],
   imports: [
     BrowserModule,
