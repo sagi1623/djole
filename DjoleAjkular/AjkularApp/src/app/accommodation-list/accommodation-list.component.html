@@ -1,7 +1,8 @@
 <fieldset>
   <legend>list of accommodations</legend>
-<ul>
-  <li *ngFor ="let a of accommodations"><accommodation [accommodation]="a" ></accommodation></li>
-</ul>
+  
+  <ul>
+    <li *ngFor ="let a of accommodations"><accommodation [accommodation]="a" (onAccommodationDeleted)="accommodationWasDeleted($event)" ></accommodation></li>
+  </ul>
 </fieldset>
 

@@ -1,3 +1,35 @@
-<p>
-  edit-accommodation works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f)">
+  <fieldset>
+    <legend>edit accommodation</legend>
+
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" [(ngModel)]="accommodation.Name" />
+  </div><br/>
+  <div>
+    <label for="Description">Description: </label> <br/>
+    <textarea name="Description" [(ngModel)]="accommodation.Description" ></textarea>
+  </div> <br/>
+  <div>
+    <label for="Address">Address: </label> <br/>
+    <input type = "text" name ="Address" id="Address" [(ngModel)]="accommodation.Address" />
+  </div> <br/>
+  <div>
+    <label for="Latitude">Latitude: </label> <br/>
+    <input type = "number" name ="Latitude" id="Latitude" min="0" [(ngModel)]="accommodation.Latitude" />
+  </div> <br/>
+  <div>
+    <label for="Longitude">Longitude: </label> <br/>
+    <input type = "number" name ="Longitude" id="Longitude" min="0" [(ngModel)]="accommodation.Longitude" />
+  </div> <br/>
+  <div>
+    <label for="AccommodationType">AccommodationType: </label><br/>
+    <select name="AccommodationType" id="AccommodationType" ngModel >
+      
+    </select>
+  </div>
+    <div>
+    <input type = "submit" name="Submit"  value="edit" />
+  </div>
+  </fieldset>
+</form>

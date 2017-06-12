@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AccommodationListService } from "../accommodation-list/accommodation-list.service";
 import { AccommodationType } from "../accommodationtype/accommodationtype.model";
 import { Place } from "../place/place.model";
@@ -15,11 +15,14 @@ export class AddAccommodationComponent implements OnInit {
 
   @Input() accommodationtype: AccommodationType
   @Input() place: Place
+  @Output() onAccommodationAdded: EventEmitter<Accommodation>
   
-  constructor(private accommodationService: AccommodationListService) { }
-
-  ngOnInit() {
+  constructor(private accommodationService: AccommodationListService)
+  {
+    this.onAccommodationAdded = new EventEmitter();
   }
+
+  ngOnInit() { }
 
   onSubmit(a: Accommodation, form: FormGroup)
   {
@@ -29,7 +32,6 @@ export class AddAccommodationComponent implements OnInit {
     //a.AccommodationTypeId=this.accommodationtype.Id;
     a.AccommodationTypeId=1;
     a.AppUserId=1;
-    this.accommodationService.create(a).subscribe(x => console.log(x));
+    this.accommodationService.create(a).subscribe(x => this.place.Accommodations.push(x as Accommodation));
   }
-
 }

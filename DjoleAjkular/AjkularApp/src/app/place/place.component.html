@@ -1,5 +1,5 @@
 <div>
   <p>{{place.Name}}</p>
-  <a [routerLink]= "['/home/place-detailed/', place.Id]"> detailed </a> 
+  <a [routerLink]= "['/home/place-detailed/', place.Id]">detailed</a> 
   <button *ngIf="shouldShowRemove()" (click)="removePlace()">remove</button>
 </div>

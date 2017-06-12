@@ -1,9 +1,12 @@
-<add-accommodationtype></add-accommodationtype>
-<br/>
+<div *ngIf="shouldShowAdd()" >
+  <add-accommodationtype (onAccommodationTypeAdded)="accommodationtypeWasAdded($event)" ></add-accommodationtype><br/>
+</div>
+
 <fieldset>
   <legend>list of accommodationtypes</legend>
-<ul>
-  <li *ngFor ="let at of accommodationtypes"><accommodationtype [accommodationtype]="at" ></accommodationtype></li>
-</ul>
+  
+  <ul>
+    <li *ngFor ="let at of accommodationtypes"><accommodationtype [accommodationtype]="at" (onAccommodationTypeDeleted)="accommodationtypeWasDeleted($event)" ></accommodationtype></li>
+  </ul>
 </fieldset>
 

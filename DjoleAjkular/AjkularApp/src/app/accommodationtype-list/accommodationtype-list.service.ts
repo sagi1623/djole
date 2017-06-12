@@ -35,7 +35,8 @@ export class AccommodationTypeListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/AccommodationTypes", JSON.stringify(at),opts);
+       //return this.http.post(this.urlProviderService.getURL() + "api/AccommodationTypes", JSON.stringify(at),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/AccommodationTypes", JSON.stringify(at),opts).map(res => res.json());
     }
 
     update(at: AccommodationType): Observable<any>
@@ -48,7 +49,7 @@ export class AccommodationTypeListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + `api/AccommodationTypes/${at.Id}`, JSON.stringify(at),opts);
+       return this.http.put(this.urlProviderService.getURL() + `api/AccommodationTypes/${at.Id}`, JSON.stringify(at),opts);
     }
 
     delete(id: number): Observable<any>
@@ -59,7 +60,7 @@ export class AccommodationTypeListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-        return this.http.delete(this.urlProviderService.getURL() + `api/AccommodationTypes/${id}`);
+        return this.http.delete(this.urlProviderService.getURL() + `api/AccommodationTypes/${id}`, opts);
     }
 
 }

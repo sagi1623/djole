@@ -48,7 +48,7 @@ export class RegionListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.put(this.urlProviderService.getURL() + `api/Places/${r.Id}`,JSON.stringify(r),opts);
+       return this.http.put(this.urlProviderService.getURL() + `api/Regions/${r.Id}`,JSON.stringify(r),opts);
     }
 
     delete(id: number): Observable<any>

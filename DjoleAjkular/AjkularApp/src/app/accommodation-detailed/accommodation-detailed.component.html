@@ -1,14 +1,27 @@
  <fieldset>
    <legend>accommodation detail view</legend>
-  <p>Name: {{accommodation.Name}}</p>
-  <p>Description: {{accommodation.Description}}</p>
-  <p>Address: {{accommodation.Address}}</p>
-  <p>AvrgeGrade: {{accommodation.AvrgeGrade}}</p>
+
+   <div *ngIf="shouldShowEdit()">
+     <edit-accommodation [accommodation]="accommodation" ></edit-accommodation>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
+    <p>Name: {{accommodation.Name}}</p>
+    <p>Description: {{accommodation.Description}}</p>
+    <p>Address: {{accommodation.Address}}</p>
+    <p>AvrgeGrade: {{accommodation.AvrgeGrade}}</p>
+    <p>Latitude: {{accommodation.Latitude}}</p>
+    <p>Longitude: {{accommodation.Longitude}}</p>
+    <p>AccommodationTypeId: {{accommodation.AccommodationTypeId}}</p>
+  </div>
+
   <accommodation-map [accommodation] ="accommodation"> </accommodation-map>
-  <add-room [accommodation]="accommodation" ></add-room>
+
+  <add-room *ngIf="shouldShowAdd()" [accommodation]="accommodation" ></add-room>
+
   <p>Rooms:</p>
   <ul>
-    <li *ngFor ="let r of accommodation.Rooms"><room [room]="r" ></room></li>
+    <li *ngFor ="let r of accommodation.Rooms"><room [room]="r" (onRoomDeleted)="roomWasDeleted($event)" ></room></li>
   </ul>
  
   <p>Comments:</p>

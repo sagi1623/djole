@@ -1,9 +1,16 @@
 <fieldset>
   <legend>accommodationtype detail view</legend>
-  <p>Name: {{accommodationtype.Name}}</p>
 
-   <p>Accommodations:</p>
+  <div *ngIf="shouldShowEdit()">
+    <edit-accommodationtype [accommodationtype]="accommodationtype" > </edit-accommodationtype>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
+  <p>Name: {{accommodationtype.Name}}</p>
+  </div>
+  
+  <p>Accommodations:</p>
   <ul>
-    <li *ngFor ="let a of accommodationtype.Accommodations"><accommodation [accommodation]="a" ></accommodation></li>
+    <li *ngFor ="let a of accommodationtype.Accommodations"><accommodation [accommodation]="a" (onAccommodationDeleted)="accommodationWasDeleted($event)" ></accommodation></li>
   </ul>
 </fieldset>

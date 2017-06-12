@@ -10,7 +10,7 @@ import { AccommodationListService } from "../accommodation-list/accommodation-li
   selector: 'place-detailed',
   templateUrl: './place-detailed.component.html',
   styleUrls: ['./place-detailed.component.css'],
-  providers: [PlaceListService]
+  providers: [PlaceListService, AccommodationListService]
 })
 export class PlaceDetailedComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class PlaceDetailedComponent implements OnInit {
 
   shouldShowAdd(): boolean
   {
-    return this.userStatusProviderService.isUserAdmin();
+    return this.userStatusProviderService.isUserManager();
   }
 
   shouldShowEdit(): boolean

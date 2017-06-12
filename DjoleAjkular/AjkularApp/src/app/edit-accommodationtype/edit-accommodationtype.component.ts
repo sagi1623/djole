@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AccommodationTypeListService } from "../accommodationtype-list/accommodationtype-list.service";
+import { AccommodationType } from "../accommodationtype/accommodationtype.model";
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
-  selector: 'app-edit-accommodationtype',
+  selector: 'edit-accommodationtype',
   templateUrl: './edit-accommodationtype.component.html',
   styleUrls: ['./edit-accommodationtype.component.css']
 })
 export class EditAccommodationtypeComponent implements OnInit {
 
-  constructor() { }
+  @Input() accommodationtype: AccommodationType;
 
-  ngOnInit() {
+  constructor(private accommodationtypeService: AccommodationTypeListService) { }
+
+  ngOnInit() { }
+
+  onSubmit(form: FormGroup)
+  {
+    if(form.dirty)
+    {
+    this.accommodationtypeService.update(this.accommodationtype).subscribe(x => console.log(x));
+    }
   }
-
 }

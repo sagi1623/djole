@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AccommodationType } from "../accommodationtype/accommodationtype.model";
+import { AccommodationTypeListService } from "../accommodationtype-list/accommodationtype-list.service";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'accommodationtype',
@@ -7,12 +9,24 @@ import { AccommodationType } from "../accommodationtype/accommodationtype.model"
   styleUrls: ['./accommodationtype.component.css']
 })
 export class AccommodationtypeComponent implements OnInit {
+  
+  @Input() accommodationtype: AccommodationType
+  @Output() onAccommodationTypeDeleted: EventEmitter<AccommodationType>;
 
-@Input() accommodationtype: AccommodationType
+  constructor(private accommodationtypeService: AccommodationTypeListService, private userStatusProviderService: UserStatusProviderService)
+   {
+      this.onAccommodationTypeDeleted = new EventEmitter();
+   }
 
-  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
+  removeAccommodationType()
+  {
+    this.accommodationtypeService.delete(this.accommodationtype.Id).subscribe(x => { console.log(x); this.onAccommodationTypeDeleted.emit(this.accommodationtype)});
   }
 
+  shouldShowRemove(): boolean
+  {
+    return this.userStatusProviderService.isUserAdmin();
+  }
 }

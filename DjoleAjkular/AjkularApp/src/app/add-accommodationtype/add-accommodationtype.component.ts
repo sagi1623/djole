@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AccommodationType } from "../accommodationtype/accommodationtype.model";
 import { FormGroup } from "@angular/forms/forms";
 import { AccommodationTypeListService } from "../accommodationtype-list/accommodationtype-list.service";
@@ -11,17 +11,20 @@ import { AccommodationTypeListService } from "../accommodationtype-list/accommod
 })
 export class AddAccommodationtypeComponent implements OnInit {
 
-  constructor(private accommodationtypeService: AccommodationTypeListService) { }
+  private accommodationtype: AccommodationType;
+  @Output() onAccommodationTypeAdded: EventEmitter<AccommodationType>
 
-  ngOnInit()
+  constructor(private accommodationtypeService: AccommodationTypeListService)
   {
-    
+    this.onAccommodationTypeAdded = new EventEmitter();
   }
+
+  ngOnInit() { }
 
    onSubmit(at: AccommodationType, form: FormGroup)
   {
     form.reset();
-    this.accommodationtypeService.create(at).subscribe(x => console.log(x));
+    this.accommodationtypeService.create(at).subscribe(x => { this.onAccommodationTypeAdded.emit(x as AccommodationType)});
   }
 
 }
