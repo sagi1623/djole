@@ -14,8 +14,7 @@ export class EditCountryComponent implements OnInit {
 
   constructor(private countryService: CountryListService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit(form: FormGroup)
   {

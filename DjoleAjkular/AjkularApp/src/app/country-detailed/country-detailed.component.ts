@@ -4,12 +4,13 @@ import { CountryListService } from "../country-list/country-list.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserStatusProviderService } from "../userStatusProvider.service";
 import { Region } from "../region/region.model";
+import { RegionListService } from "../region-list/region-list.service";
 
 @Component({
   selector: 'country-detailed',
   templateUrl: './country-detailed.component.html',
   styleUrls: ['./country-detailed.component.css'],
-  providers: [CountryListService]
+  providers: [CountryListService, RegionListService]
 })
 export class CountryDetailedComponent implements OnInit {
 

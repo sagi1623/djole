@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RegionListService } from "../region-list/region-list.service";
+import { Region } from "../region/region.model";
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
-  selector: 'app-edit-region',
+  selector: 'edit-region',
   templateUrl: './edit-region.component.html',
   styleUrls: ['./edit-region.component.css']
 })
 export class EditRegionComponent implements OnInit {
 
-  constructor() { }
+  @Input() region: Region;
 
-  ngOnInit() {
+  constructor(private regionService: RegionListService) { }
+
+  ngOnInit() { }
+
+  onSubmit(form: FormGroup)
+  {
+    if(form.dirty)
+    {
+    this.regionService.update(this.region).subscribe(x => console.log(x));
+    }
   }
-
 }

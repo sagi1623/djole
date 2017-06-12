@@ -20,8 +20,7 @@ export class AddCountryComponent implements OnInit {
     this.onCountryAdded = new EventEmitter();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit(c: Country, form: FormGroup)
   {

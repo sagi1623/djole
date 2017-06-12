@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RegionListService } from "../region-list/region-list.service";
 import { Region } from "../region/region.model";
 import { FormGroup } from "@angular/forms/forms";
@@ -11,17 +11,16 @@ import { Country } from "../country/country.model";
   providers: [RegionListService]
 })
 export class AddRegionComponent implements OnInit {
-
-@Input() country: Country
-
+  
+  @Input() country: Country
+  @Output() onRegionAdded: EventEmitter<Region>
 
   constructor(private regionService: RegionListService) 
   { 
-
+     this.onRegionAdded = new EventEmitter();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSubmit(r: Region, form: FormGroup)
   {

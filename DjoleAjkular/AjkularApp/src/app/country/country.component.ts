@@ -19,8 +19,7 @@ export class CountryComponent implements OnInit {
       this.onCountryDeleted = new EventEmitter();
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   removeCountry()
   {
