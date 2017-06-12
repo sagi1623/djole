@@ -14,6 +14,6 @@
 
   <p>Regions:</p>
   <ul>
-    <li *ngFor ="let r of country.Regions"><region [region]="r" ></region></li>
+    <li *ngFor ="let r of country.Regions"><region [region]="r" (onRegionDeleted)="regionWasDeleted($event)" ></region></li>
   </ul>
 </fieldset>

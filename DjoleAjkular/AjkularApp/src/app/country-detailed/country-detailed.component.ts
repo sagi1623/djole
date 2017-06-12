@@ -38,4 +38,13 @@ export class CountryDetailedComponent implements OnInit {
     return this.userStatusProviderService.isUserAdmin();
   }
 
+  regionWasDeleted(region:Region)
+  {
+    var index = this.country.Regions.indexOf(region, 0);
+    if (index > -1) 
+    {
+      this.country.Regions.splice(index, 1);
+    }
+  }
+
 }
