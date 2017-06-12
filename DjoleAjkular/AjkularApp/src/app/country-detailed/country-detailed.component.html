@@ -1,13 +1,17 @@
 <fieldset>
   <legend>country detail view</legend>
+
   <div *ngIf="shouldShowEdit()">
-  <edit-country [country]="country" > </edit-country>
+    <edit-country [country]="country" > </edit-country>
   </div>
+
   <div *ngIf="!shouldShowEdit()">
-  <p>Name: {{country.Name}}</p>
-  <p>Code: {{country.Code}}</p>
+    <p>Name: {{country.Name}}</p>
+    <p>Code: {{country.Code}}</p>
   </div> 
+
   <add-region *ngIf="shouldShowAdd()" [country]="country" ></add-region>
+
   <p>Regions:</p>
   <ul>
     <li *ngFor ="let r of country.Regions"><region [region]="r" ></region></li>

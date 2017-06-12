@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Region} from '../region/region.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { URLProviderService } from "../URLProvider.service";
 import { LocalStorageService } from "../localStorage.service";
-
 
 @Injectable()
 export class RegionListService 

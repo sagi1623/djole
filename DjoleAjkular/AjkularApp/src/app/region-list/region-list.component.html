@@ -1,7 +1,9 @@
+
 <fieldset>
   <legend>list of regions</legend>
-<ul>
-  <li *ngFor ="let r of regions"><region [region]="r" ></region></li>
-</ul>
+  
+  <ul>
+    <li *ngFor ="let r of regions"><region [region]="r" (onRegionDeleted)="regionWasDeleted($event)" ></region></li>
+  </ul>
 </fieldset>
 

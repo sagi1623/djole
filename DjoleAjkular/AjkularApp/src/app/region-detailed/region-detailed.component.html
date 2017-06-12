@@ -1,9 +1,18 @@
  <fieldset>
    <legend>region detail view</legend>
+   
+   <div *ngIf="shouldShowEdit()">
+     <edit-region [region]="region" ></edit-region>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
   <p>Name: {{region.Name}}</p>
-  <add-place [region]="region" ></add-place>
+  </div>
+
+  <add-place *ngIf="shouldShowAdd()" [region]="region" ></add-place>
+
   <p>Places:</p>
-<ul>
-  <li *ngFor ="let p of region.Places"><place [place]="p" ></place></li>
-</ul>
+  <ul>
+    <li *ngFor ="let p of region.Places"><place [place]="p" ></place></li>
+  </ul>
  </fieldset>

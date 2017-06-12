@@ -1,9 +1,12 @@
-<add-country (onCountryAdded)="countryWasAdded($event)"></add-country>
-<br/>
+<div *ngIf="shouldShowAdd()" >
+  <add-country (onCountryAdded)="countryWasAdded($event)"></add-country><br/>
+</div>
+
 <fieldset>
   <legend>list of countries</legend>
-<ul>
-  <li *ngFor ="let c of countries"><country [country]="c" (onCountryDeleted)="countryWasDeleted($event)" ></country></li>
-</ul>
+  
+  <ul>
+    <li *ngFor ="let c of countries"><country [country]="c" (onCountryDeleted)="countryWasDeleted($event)" ></country></li>
+  </ul>
 </fieldset>
 

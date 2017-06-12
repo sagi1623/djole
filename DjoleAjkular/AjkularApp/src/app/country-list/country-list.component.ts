@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import {Country} from '../country/country.model';
 import {CountryListService} from './country-list.service'
 import { FormGroup } from "@angular/forms/forms";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'country-list',
@@ -13,7 +14,7 @@ export class CountryListComponent implements OnInit {
 
   countries: Country [];
 
-  constructor(private countryService: CountryListService)
+  constructor(private countryService: CountryListService, private userStatusProviderService: UserStatusProviderService)
   { 
     this.countries=[];
   }
@@ -37,4 +38,8 @@ export class CountryListComponent implements OnInit {
     this.countries.push(country);
   }
 
+  shouldShowAdd(): boolean
+  {
+    return this.userStatusProviderService.isUserAdmin();
+  }
 }
