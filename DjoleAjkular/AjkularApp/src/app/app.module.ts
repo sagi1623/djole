@@ -56,6 +56,7 @@ import { EditRoomComponent } from './edit-room/edit-room.component';
 import { EditRoomreservationComponent } from './edit-roomreservation/edit-roomreservation.component';
 import { AccommodationMapComponent } from './accommodation-map/accommodation-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { SearchAccommodationComponent } from './search-accommodation/search-accommodation.component';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -82,6 +83,7 @@ const Routes = [
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
   {path:"register-manager", component: RegisterManagerComponent},
+  {path:"search-accommodation", component: SearchAccommodationComponent}
 ]
 
 @NgModule({
@@ -133,7 +135,8 @@ const Routes = [
     EditRegionComponent,
     EditRoomComponent,
     EditRoomreservationComponent,
-    AccommodationMapComponent
+    AccommodationMapComponent,
+    SearchAccommodationComponent
   ],
   imports: [
     BrowserModule,

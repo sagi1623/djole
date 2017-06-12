@@ -1,0 +1,22 @@
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value,f)">
+  <fieldset>
+    <legend></legend>
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" ngModel />
+  </div><br/>
+  <div>
+    <label for="Grade">Grade: </label> <br/>
+    <input type = "text" name ="Grade" id="Grade" ngModel />
+  </div><br/>
+    <div>
+    <input type = "submit" name="Filter"  value="filter" />
+  </div>
+  </fieldset>
+</form>
+<br/>
+<br/>
+<legend>Results</legend>
+<ul>
+  <li *ngFor ="let a of accommodations"><accommodation [accommodation]="a" ></accommodation></li>
+</ul>

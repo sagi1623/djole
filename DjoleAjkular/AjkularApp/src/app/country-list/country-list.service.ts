@@ -60,5 +60,4 @@ export class CountryListService
         
         return this.http.delete(this.urlProviderService.getURL() + `api/Countries/${id}`, opts);
     }
-
 }

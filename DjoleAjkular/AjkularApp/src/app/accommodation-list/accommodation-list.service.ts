@@ -4,6 +4,7 @@ import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { URLProviderService } from "../URLProvider.service";
 import { LocalStorageService } from "../localStorage.service";
+import { SearchParams } from "../search-accommodation/searchParams.model";
 
 @Injectable()
 export class AccommodationListService 
@@ -60,4 +61,17 @@ export class AccommodationListService
 
         return this.http.delete(this.urlProviderService.getURL() + `api/Accommodations/${id}`);
     }
+
+    search(searchParams: SearchParams): Observable<any>
+    {
+        let searchPattern= "";
+
+        if (searchParams.Name != null)
+        {
+            searchPattern += `filter=Name eq '${searchParams.Name}'`;
+        }
+
+        return this.http.get(this.urlProviderService.getURL() + "api/Accommodations?$" + searchPattern).map(res => res.json());   
+    }
+
 }
