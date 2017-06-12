@@ -1,3 +1,14 @@
-<p>
-  edit-place works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f)">
+  <fieldset>
+    <legend>edit place</legend>
+
+  <div>
+    <label for="Name">Name: </label> <br/>
+    <input type = "text" name ="Name" id="Name" [(ngModel)]="place.Name" />
+  </div><br/>
+  
+    <div>
+    <input type = "submit" name="Submit"  value="edit" />
+  </div>
+  </fieldset>
+</form>

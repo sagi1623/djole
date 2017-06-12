@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { PlaceListService } from "../place-list/place-list.service";
+import { Place } from "../place/place.model";
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
-  selector: 'app-edit-place',
+  selector: 'edit-place',
   templateUrl: './edit-place.component.html',
   styleUrls: ['./edit-place.component.css']
 })
 export class EditPlaceComponent implements OnInit {
 
-  constructor() { }
+  @Input() place: Place;
 
-  ngOnInit() {
+  constructor(private placeService: PlaceListService) { }
+
+  ngOnInit() { }
+
+  onSubmit(form: FormGroup)
+  {
+    if(form.dirty)
+    {
+    this.placeService.update(this.place).subscribe(x => console.log(x));
+    }
   }
-
 }

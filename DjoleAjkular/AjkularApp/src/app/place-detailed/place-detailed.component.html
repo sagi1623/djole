@@ -1,9 +1,18 @@
  <fieldset>
    <legend>place detail view</legend>
+
+   <div *ngIf="shouldShowEdit()">
+     <edit-place [place]="place" ></edit-place>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
   <p>Name: {{place.Name}}</p>
-  <add-accommodation [place]="place" ></add-accommodation>
+  </div>
+
+  <add-accommodation *ngIf="shouldShowAdd()" [place]="place" ></add-accommodation>
+
   <p>Accommodations:</p>
-<ul>
-  <li *ngFor ="let a of place.Accommodations"><accommodation [accommodation]="a" ></accommodation></li>
-</ul>
+  <ul>
+    <li *ngFor ="let a of place.Accommodations"><accommodation [accommodation]="a" (onAccommodationDeleted)="accommodationWasDeleted($event)" ></accommodation></li>
+  </ul>
  </fieldset>

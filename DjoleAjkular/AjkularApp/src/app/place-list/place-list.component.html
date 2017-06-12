@@ -1,7 +1,8 @@
 <fieldset>
   <legend>list of places</legend>
-<ul>
-  <li *ngFor ="let p of places"><place [place]="p" ></place></li>
-</ul>
+  
+  <ul>
+    <li *ngFor ="let p of places"><place [place]="p" (onPlaceDeleted)="placeWasDeleted($event)" ></place></li>
+  </ul>
 </fieldset>
 
