@@ -13,6 +13,6 @@
 
   <p>Places:</p>
   <ul>
-    <li *ngFor ="let p of region.Places"><place [place]="p" ></place></li>
+    <li *ngFor ="let p of region.Places"><place [place]="p" (onPlaceDeleted)="placeWasDeleted($event)" ></place></li>
   </ul>
  </fieldset>

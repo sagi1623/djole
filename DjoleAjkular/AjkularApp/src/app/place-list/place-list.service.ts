@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Place} from '../place/place.model';
 import {Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { URLProviderService } from "../URLProvider.service";
 import { LocalStorageService } from "../localStorage.service";
 
@@ -34,7 +35,7 @@ export class PlaceListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/Places", JSON.stringify(p),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/Places", JSON.stringify(p),opts).map(res => res.json());
     }
 
     update(p: Place): Observable<any>

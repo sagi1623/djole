@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Place } from "../place/place.model";
+import { PlaceListService } from "../place-list/place-list.service";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'place',
@@ -8,11 +10,24 @@ import { Place } from "../place/place.model";
 })
 export class PlaceComponent implements OnInit {
 
-   @Input() place: Place
+  @Input() place: Place
+  @Output() onPlaceDeleted: EventEmitter<Place>;
 
-  constructor() { }
+  constructor(private placeService: PlaceListService, private userStatusProviderService: UserStatusProviderService)
+   {
+      this.onPlaceDeleted = new EventEmitter();
+   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  removePlace()
+  {
+    this.placeService.delete(this.place.Id).subscribe(x => { console.log(x); this.onPlaceDeleted.emit(this.place) } );
+  }
+
+  shouldShowRemove(): boolean
+  {
+    return this.userStatusProviderService.isUserAdmin();
   }
 
 }

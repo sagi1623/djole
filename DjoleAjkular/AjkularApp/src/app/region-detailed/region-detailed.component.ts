@@ -3,12 +3,14 @@ import { Region } from "../region/region.model";
 import { RegionListService } from "../region-list/region-list.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserStatusProviderService } from "../userStatusProvider.service";
+import { Place } from "../place/place.model";
+import { PlaceListService } from "../place-list/place-list.service";
 
 @Component({
   selector: 'region-detailed',
   templateUrl: './region-detailed.component.html',
   styleUrls: ['./region-detailed.component.css'],
-  providers: [RegionListService]
+  providers: [RegionListService, PlaceListService]
 })
 export class RegionDetailedComponent implements OnInit {
 
@@ -36,4 +38,12 @@ export class RegionDetailedComponent implements OnInit {
     return this.userStatusProviderService.isUserAdmin();
   }
 
+  placeWasDeleted(place:Place)
+  {
+    var index = this.region.Places.indexOf(place, 0);
+    if (index > -1) 
+    {
+      this.region.Places.splice(index, 1);
+    }
+  }
 }

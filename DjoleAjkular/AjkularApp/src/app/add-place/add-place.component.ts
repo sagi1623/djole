@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlaceListService } from "../place-list/place-list.service";
 import { Place } from "../place/place.model";
 import { FormGroup } from "@angular/forms/forms";
@@ -11,19 +11,21 @@ import { Region } from "../region/region.model";
   providers: [PlaceListService]
 })
 export class AddPlaceComponent implements OnInit {
+  
+  @Input() region: Region
+  @Output() onPlaceAdded: EventEmitter<Place>
 
-@Input() region: Region
-
-  constructor(private placeService: PlaceListService) { }
-
-  ngOnInit() {
+  constructor(private placeService: PlaceListService)
+  {
+    this.onPlaceAdded = new EventEmitter();
   }
+
+  ngOnInit() { }
 
   onSubmit(p: Place, form: FormGroup)
   {
     form.reset();
     p.RegionId=this.region.Id;
-    this.placeService.create(p).subscribe(x => console.log(x));
+    this.placeService.create(p).subscribe(x => this.region.Places.push(x as Place));
   }
-
 }
