@@ -57,6 +57,7 @@ import { EditRoomreservationComponent } from './edit-roomreservation/edit-roomre
 import { AccommodationMapComponent } from './accommodation-map/accommodation-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { SearchAccommodationComponent } from './search-accommodation/search-accommodation.component';
+import { ODataQueryBuilderService } from "./search-accommodation/oDataQueryBuilder.service";
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -148,7 +149,8 @@ const Routes = [
   providers: [
     LocalStorageService,
     URLProviderService,
-    UserStatusProviderService
+    UserStatusProviderService,
+    ODataQueryBuilderService
     ],
   bootstrap: [AppComponent]
 })
