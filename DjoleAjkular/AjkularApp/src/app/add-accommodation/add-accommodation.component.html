@@ -22,11 +22,12 @@
     <input type = "number" name ="Longitude" id="Longitude" min="0" ngModel />
   </div> <br/>
   <div>
-    <label for="AccommodationType">AccommodationType: </label><br/>
-    <select name="AccommodationType" id="AccommodationType" ngModel >
+    <label for="AccommodationTypeId">AccommodationType: </label><br/>
+    <select name="AccommodationTypeId" id="AccommodationTypeId" ngModel >
       <option value="">None</option>
+      <option *ngFor ="let at of accommodationtypes" value={{at.Id}} >{{at.Name}}</option>
     </select>
-  </div>
+  </div><br/>
  <div>
     <input type = "submit" name="Submit"  value="add" />
   </div>
