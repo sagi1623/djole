@@ -34,7 +34,7 @@ export class RoomReservationListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/RoomReservations", JSON.stringify(rr),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/RoomReservations", JSON.stringify(rr),opts).map(res => res.json());
     }
 
     update(rr: RoomReservation): Observable<any>
@@ -47,7 +47,7 @@ export class RoomReservationListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + `api/RoomReservations/${rr.Id}`, JSON.stringify(rr),opts);
+       return this.http.put(this.urlProviderService.getURL() + `api/RoomReservations/${rr.Id}`, JSON.stringify(rr),opts);
     }
 
     delete(id: number): Observable<any>

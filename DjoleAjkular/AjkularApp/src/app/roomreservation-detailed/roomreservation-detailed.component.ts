@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RoomReservation } from "../roomreservation/roomreservation.model";
 import { RoomReservationListService } from "../roomreservation-list/roomreservation-list.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'roomreservation-detailed',
@@ -14,7 +15,7 @@ export class RoomreservationDetailedComponent implements OnInit {
   Id: number = -1;
   roomreservation: RoomReservation;
 
-  constructor(private roomreservationService: RoomReservationListService,private router: Router, private activatedRoute: ActivatedRoute)
+  constructor(private roomreservationService: RoomReservationListService,private router: Router, private activatedRoute: ActivatedRoute, private userStatusProviderService: UserStatusProviderService)
   {
     this.roomreservation = new RoomReservation();
     activatedRoute.params.subscribe(params => {this.Id = parseInt(params["Id"])});
@@ -23,5 +24,10 @@ export class RoomreservationDetailedComponent implements OnInit {
   ngOnInit()
   {
     this.roomreservationService.getById(this.Id).subscribe(x =>  this.roomreservation = x[0] as RoomReservation);
+  }
+
+  shouldShowEdit(): boolean
+  {
+    return this.userStatusProviderService.isUserUser();
   }
 }

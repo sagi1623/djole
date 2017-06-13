@@ -33,9 +33,4 @@ export class AccommodationListComponent implements OnInit {
       this.accommodations.splice(index, 1);
     }
   }
-
-  accommodationWasAdded(accommodation: Accommodation)
-  {
-    this.accommodations.push(accommodation);
-  }
 }

@@ -32,9 +32,4 @@ export class RegionListComponent implements OnInit {
       this.regions.splice(index, 1);
     }
   }
-
-  regionWasAdded(region: Region)
-  {
-    this.regions.push(region);
-  }
 }

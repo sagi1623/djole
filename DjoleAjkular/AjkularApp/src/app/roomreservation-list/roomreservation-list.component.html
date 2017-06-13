@@ -1,7 +1,7 @@
 <fieldset>
   <legend>list of roomreservations</legend>
 <ul>
-  <li *ngFor ="let rr of roomreservations"><roomreservation [roomreservation]="rr" ></roomreservation></li>
+  <li *ngFor ="let rr of roomreservations"><roomreservation [roomreservation]="rr" (onRoomReservationDeleted)="roomreservationWasDeleted($event)" ></roomreservation></li>
 </ul>
 </fieldset>
 

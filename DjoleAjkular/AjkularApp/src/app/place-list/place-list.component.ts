@@ -32,9 +32,4 @@ export class PlaceListComponent implements OnInit {
       this.places.splice(index, 1);
     }
   }
-
-  placeWasAdded(place: Place)
-  {
-    this.places.push(place);
-  }
 }
