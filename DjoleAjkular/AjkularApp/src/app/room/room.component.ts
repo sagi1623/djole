@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Room } from "../room/room.model";
+import { RoomListService } from "../room-list/room-list.service";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'room',
@@ -7,12 +9,24 @@ import { Room } from "../room/room.model";
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  
+  @Input() room: Room
+  @Output() onRoomDeleted: EventEmitter<Room>;
 
-   @Input() room: Room
+  constructor(private roomService: RoomListService, private userStatusProviderService: UserStatusProviderService)
+   {
+      this.onRoomDeleted = new EventEmitter();
+   }
 
-  constructor() { }
+  ngOnInit() { }
 
-  ngOnInit() {
+  removeRoom()
+  {
+    this.roomService.delete(this.room.Id).subscribe(x => { console.log(x); this.onRoomDeleted.emit(this.room)});
   }
 
+  shouldShowRemove(): boolean
+  {
+    return this.userStatusProviderService.isUserManager();
+  }
 }

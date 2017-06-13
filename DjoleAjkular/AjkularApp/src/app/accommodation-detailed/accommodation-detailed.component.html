@@ -3,6 +3,7 @@
 
    <div *ngIf="shouldShowEdit()">
      <edit-accommodation [accommodation]="accommodation" ></edit-accommodation>
+     <p>AccommodationTypeId: {{accommodation.AccommodationTypeId}}</p>
   </div>
 
   <div *ngIf="!shouldShowEdit()">
