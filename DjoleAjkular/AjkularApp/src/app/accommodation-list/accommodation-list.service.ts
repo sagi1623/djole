@@ -6,12 +6,13 @@ import 'rxjs/add/operator/map';
 import { URLProviderService } from "../URLProvider.service";
 import { LocalStorageService } from "../localStorage.service";
 import { SearchParams } from "../search-accommodation/searchParams.model";
+import { ODataQueryBuilderService } from "../search-accommodation/oDataQueryBuilder.service";
 
 @Injectable()
 export class AccommodationListService 
 {
 
-    constructor(private http:Http, private urlProviderService: URLProviderService, private localStorageService: LocalStorageService)
+    constructor(private http:Http, private urlProviderService: URLProviderService, private localStorageService: LocalStorageService, private odataQueryBuilderService: ODataQueryBuilderService)
     {
     }
 
@@ -65,14 +66,8 @@ export class AccommodationListService
 
     search(searchParams: SearchParams): Observable<any>
     {
-        let searchPattern= "";
-
-        if (searchParams.Name != null)
-        {
-            searchPattern += `filter=Name eq '${searchParams.Name}'`;
-        }
-
-        return this.http.get(this.urlProviderService.getURL() + "api/Accommodations?$" + searchPattern).map(res => res.json());   
+        let searchPattern = this.odataQueryBuilderService.generateQuery(searchParams);
+        return this.http.get(this.urlProviderService.getURL() + "api/Accommodations" + searchPattern).map(res => res.json());   
     }
 
 }
