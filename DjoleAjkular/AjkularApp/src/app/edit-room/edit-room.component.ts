@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RoomListService } from "../room-list/room-list.service";
+import { Room } from "../room/room.model";
+import { FormGroup } from "@angular/forms/forms";
 
 @Component({
-  selector: 'app-edit-room',
+  selector: 'edit-room',
   templateUrl: './edit-room.component.html',
   styleUrls: ['./edit-room.component.css']
 })
 export class EditRoomComponent implements OnInit {
 
-  constructor() { }
+  @Input() room: Room;
 
-  ngOnInit() {
+  constructor(private roomService: RoomListService) { }
+
+  ngOnInit() { }
+
+  onSubmit(form: FormGroup)
+  {
+    if(form.dirty)
+    {
+      this.roomService.update(this.room).subscribe(x => console.log(x));
+    }
   }
-
 }

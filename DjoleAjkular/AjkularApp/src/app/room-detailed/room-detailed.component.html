@@ -1,12 +1,21 @@
  <fieldset>
    <legend>room detail view</legend>
-  <p>RoomNumber: {{room.RoomNumber}}</p>
-  <p>BedCount: {{room.BedCount}}</p>
-  <p>Description: {{room.Description}}</p>
-  <p>PricePerNight: {{room.PricePerNight}}</p>
-  <add-roomreservation [room]="room" ></add-roomreservation>
+
+   <div *ngIf="shouldShowEdit()">
+     <edit-room [room]="room" ></edit-room>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
+    <p>RoomNumber: {{room.RoomNumber}}</p>
+    <p>BedCount: {{room.BedCount}}</p>
+    <p>Description: {{room.Description}}</p>
+    <p>PricePerNight: {{room.PricePerNight}}</p>
+  </div>
+
+  <add-roomreservation  *ngIf="shouldShowAdd()" [room]="room" ></add-roomreservation>
+
   <p>RoomReservations:</p>
-<ul>
-  <li *ngFor ="let rr of room.RoomReservations"><roomreservation [roomreservation]="rr" ></roomreservation></li>
-</ul>
+  <ul>
+    <li *ngFor ="let rr of room.RoomReservations"><roomreservation [roomreservation]="rr" (onRoomReservationDeleted)="roomreservationWasDeleted($event)" ></roomreservation></li>
+  </ul>
  </fieldset>

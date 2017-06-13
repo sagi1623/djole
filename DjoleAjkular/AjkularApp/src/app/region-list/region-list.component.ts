@@ -37,9 +37,4 @@ export class RegionListComponent implements OnInit {
   {
     this.regions.push(region);
   }
-
-  shouldShowAdd(): boolean
-  {
-    return this.userStatusProviderService.isUserAdmin();
-  }
 }

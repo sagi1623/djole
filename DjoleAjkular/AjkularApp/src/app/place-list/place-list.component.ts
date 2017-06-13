@@ -37,9 +37,4 @@ export class PlaceListComponent implements OnInit {
   {
     this.places.push(place);
   }
-
-  shouldShowAdd(): boolean
-  {
-    return this.userStatusProviderService.isUserAdmin();
-  }
 }
