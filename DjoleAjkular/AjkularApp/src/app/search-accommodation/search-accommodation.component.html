@@ -46,3 +46,5 @@
 <ul>
   <li *ngFor ="let a of accommodations"><accommodation [accommodation]="a" ></accommodation></li>
 </ul>
+ <button *ngIf="shouldShowPrevious()" (click)="previous()">Previous</button>
+  <button *ngIf="shouldShowNext()" (click)="next()">Next</button>

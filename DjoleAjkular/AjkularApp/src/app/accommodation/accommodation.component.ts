@@ -6,7 +6,8 @@ import { UserStatusProviderService } from "../userStatusProvider.service";
 @Component({
   selector: 'accommodation',
   templateUrl: './accommodation.component.html',
-  styleUrls: ['./accommodation.component.css']
+  styleUrls: ['./accommodation.component.css'],
+  providers:[AccommodationListService]
 })
 export class AccommodationComponent implements OnInit {
 

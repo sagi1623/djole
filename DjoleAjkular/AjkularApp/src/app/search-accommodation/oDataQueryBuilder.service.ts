@@ -120,8 +120,15 @@ export class ODataQueryBuilderService {
 
         if(searchPattern != "")
         {
-          searchPattern = '?$' + searchPattern; 
+          searchPattern = '?$inlinecount=allpages' + searchPattern; 
         }
+        else
+        {
+           searchPattern = '?$inlinecount=allpages';
+        }
+
+        searchPattern += `&$top=1`;
+        searchPattern += `&$skip=${searchParams.skip}`;
 
         return searchPattern;
     }

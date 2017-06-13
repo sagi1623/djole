@@ -58,6 +58,7 @@ import { AccommodationMapComponent } from './accommodation-map/accommodation-map
 import { AgmCoreModule } from '@agm/core';
 import { SearchAccommodationComponent } from './search-accommodation/search-accommodation.component';
 import { ODataQueryBuilderService } from "./search-accommodation/oDataQueryBuilder.service";
+import { AccommodationListODataService } from "./accommodation-list/accommodation-list-OData-service";
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -150,7 +151,8 @@ const Routes = [
     LocalStorageService,
     URLProviderService,
     UserStatusProviderService,
-    ODataQueryBuilderService
+    ODataQueryBuilderService,
+    AccommodationListODataService
     ],
   bootstrap: [AppComponent]
 })
