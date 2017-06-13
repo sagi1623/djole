@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RoomReservation } from "../roomreservation/roomreservation.model";
 import { FormGroup } from "@angular/forms/forms";
 import { RoomReservationListService } from "../roomreservation-list/roomreservation-list.service";
+import { UserStatusProviderService } from "../userStatusProvider.service";
 
 @Component({
   selector: 'roomreservation',
@@ -12,16 +13,22 @@ import { RoomReservationListService } from "../roomreservation-list/roomreservat
 export class RoomreservationComponent implements OnInit {
 
    @Input() roomreservation: RoomReservation
+   @Output() onRoomReservationDeleted: EventEmitter<RoomReservation>;
 
-  roomreservations: RoomReservation[];
-
-  constructor(private roomreservationService: RoomReservationListService)
+  constructor(private roomreservationService: RoomReservationListService, private userStatusProviderService: UserStatusProviderService)
   {
-    this.roomreservations=[];
+    this.onRoomReservationDeleted=new EventEmitter();
   }
 
-  ngOnInit()
+  ngOnInit() { }
+
+  removeRoomReservation()
   {
-    this.roomreservationService.getAll().subscribe(x => this.roomreservations = x.json() as RoomReservation[]);
+    this.roomreservationService.delete(this.roomreservation.Id).subscribe(x => { console.log(x); this.onRoomReservationDeleted.emit(this.roomreservation)});
+  }
+
+  shouldShowRemove(): boolean
+  {
+    return this.userStatusProviderService.isUserUser();
   }
 }

@@ -1,6 +1,14 @@
  <fieldset>
    <legend>roomreservation detail view</legend>
-  <p>Id: {{roomreservation.Id}}</p>
-  <p>StartDate: {{roomreservation.StartDate}}</p>
-  <p>EndDate: {{roomreservation.EndDate}}</p>
+
+   <div *ngIf="shouldShowEdit()">
+     <edit-roomreservation [roomreservation]="roomreservation" ></edit-roomreservation>
+  </div>
+
+  <div *ngIf="!shouldShowEdit()">
+    <p>Id: {{roomreservation.Id}}</p>
+    <p>StartDate: {{roomreservation.StartDate}}</p>
+    <p>EndDate: {{roomreservation.EndDate}}</p>
+  </div>
+
  </fieldset>

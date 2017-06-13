@@ -27,6 +27,6 @@ export class RoomComponent implements OnInit {
 
   shouldShowRemove(): boolean
   {
-    return this.userStatusProviderService.isUserManager();
+    return this.userStatusProviderService.isUserUser();
   }
 }

@@ -32,9 +32,4 @@ export class RoomListComponent implements OnInit {
       this.rooms.splice(index, 1);
     }
   }
-
-  roomWasAdded(room: Room)
-  {
-    this.rooms.push(room);
-  }
 }
