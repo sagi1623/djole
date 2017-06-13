@@ -3,19 +3,20 @@ import { RoomReservationListService } from "../roomreservation-list/roomreservat
 import { RoomReservation } from "../roomreservation/roomreservation.model";
 import { FormGroup } from "@angular/forms/forms";
 import { Room } from "../room/room.model";
+import { LocalStorageService } from "../localStorage.service";
 
 @Component({
   selector: 'add-roomreservation',
   templateUrl: './add-roomreservation.component.html',
   styleUrls: ['./add-roomreservation.component.css'],
-  providers: [RoomReservationListService]
+  providers: [RoomReservationListService, LocalStorageService]
 })
 export class AddRoomreservationComponent implements OnInit {
 
   @Input() room: Room;
   @Output() onRoomReservationAdded: EventEmitter<RoomReservation>;
 
-  constructor(private roomreservationService: RoomReservationListService) 
+  constructor(private roomreservationService: RoomReservationListService, private localStorageService: LocalStorageService) 
   { 
     this.onRoomReservationAdded = new EventEmitter();
   }
@@ -26,7 +27,7 @@ export class AddRoomreservationComponent implements OnInit {
   {
     form.reset();
     r.RoomId=this.room.Id;
-    r.AppUserId=1;
+    r.AppUserId=parseInt(this.localStorageService.get('appUserID'));
     this.roomreservationService.create(r).subscribe(x => this.room.RoomReservations.push(x as RoomReservation));
   }
 }

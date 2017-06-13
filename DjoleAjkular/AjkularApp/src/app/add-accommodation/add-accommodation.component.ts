@@ -5,12 +5,13 @@ import { Place } from "../place/place.model";
 import { Accommodation } from "../accommodation/accommodation.model";
 import { FormGroup } from "@angular/forms/forms";
 import { AccommodationTypeListService } from "../accommodationtype-list/accommodationtype-list.service";
+import { LocalStorageService } from "../localStorage.service";
 
 @Component({
   selector: 'add-accommodation',
   templateUrl: './add-accommodation.component.html',
   styleUrls: ['./add-accommodation.component.css'],
-  providers: [AccommodationListService, AccommodationTypeListService]
+  providers: [AccommodationListService, AccommodationTypeListService, LocalStorageService]
 })
 export class AddAccommodationComponent implements OnInit {
 
@@ -18,7 +19,7 @@ export class AddAccommodationComponent implements OnInit {
   @Input() place: Place
   @Output() onAccommodationAdded: EventEmitter<Accommodation>
   
-  constructor(private accommodationService: AccommodationListService, private accommodationtypeService: AccommodationTypeListService)
+  constructor(private accommodationService: AccommodationListService, private accommodationtypeService: AccommodationTypeListService, private localStorageService: LocalStorageService)
   {
     this.onAccommodationAdded = new EventEmitter();
   }
@@ -34,7 +35,7 @@ export class AddAccommodationComponent implements OnInit {
     a.Approved=false;
     a.AverageGrade=0;
     a.PlaceId=this.place.Id;
-    a.AppUserId=1;
+    a.AppUserId=parseInt(this.localStorageService.get('appUserID'));
     this.accommodationService.create(a).subscribe(x => this.place.Accommodations.push(x as Accommodation));
   }
 }

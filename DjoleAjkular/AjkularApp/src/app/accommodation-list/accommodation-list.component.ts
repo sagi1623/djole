@@ -14,14 +14,14 @@ export class AccommodationListComponent implements OnInit {
 
   accommodations: Accommodation[];
 
-  constructor(private placeService: AccommodationListService, private userStatusProviderService: UserStatusProviderService)
+  constructor(private accommodationService: AccommodationListService, private userStatusProviderService: UserStatusProviderService)
   {
     this.accommodations=[];
   }
 
   ngOnInit()
   {
-    this.placeService.getAll().subscribe(x => this.accommodations = x.json() as Accommodation[]);
+    this.accommodationService.getAll().subscribe(x => this.accommodations = x.json() as Accommodation[]);
     //this.accommodationtypeService.getAll().subscribe(x => this.accommodations = x.json() as Accommodation[]);
   }
 
