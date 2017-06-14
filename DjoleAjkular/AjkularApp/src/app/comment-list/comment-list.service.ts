@@ -19,9 +19,9 @@ export class CommentListService
        return this.http.get(this.urlProviderService.getURL() + "api/Comments");      
     }
 
-    getById(id: number): Observable<any>
+    getById(accId: number, appId: number): Observable<any>
     {
-        return this.http.get(this.urlProviderService.getURL() + `api/Comments/${id}`);
+        return this.http.get(this.urlProviderService.getURL() + `api/Comments/${accId}/${appId}`).map(res => res.json());
     }
 
     create(c : Comment): Observable<any>
@@ -34,7 +34,7 @@ export class CommentListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/Comments", JSON.stringify(c),opts);
+       return this.http.post(this.urlProviderService.getURL() + "api/Comments", JSON.stringify(c),opts).map(res => res.json());
     }
 
     // update(c: Comment): Observable<any>
@@ -49,7 +49,7 @@ export class CommentListService
     //    return this.http.put(`http://localhost:54042/api/Comments/${c.Id}`,JSON.stringify(c),opts);
     // }
 
-    delete(id: number): Observable<any>
+    delete(accId: number, appId: number): Observable<any>
     {
         let header = new Headers();
         header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
@@ -57,7 +57,7 @@ export class CommentListService
         let opts = new RequestOptions();
         opts.headers = header;
 
-        return this.http.delete(this.urlProviderService.getURL() + `api/Comments/${id}`, opts);
+        return this.http.delete(this.urlProviderService.getURL() + `api/Comments/${accId}/${appId}`, opts);
     }
 
 }

@@ -24,9 +24,11 @@
   <ul>
     <li *ngFor ="let r of accommodation.Rooms"><room [room]="r" (onRoomDeleted)="roomWasDeleted($event)" ></room></li>
   </ul>
- 
+
+  <add-comment *ngIf="shouldShowAddComment()" [accommodation]="accommodation" ></add-comment>
+  
   <p>Comments:</p>
   <ul>
-    
+    <li *ngFor="let c of accommodation.Comments"><comment [comment]="c" (onCommentDeleted)="commentWasDeleted($event)" ></comment></li>
   </ul>
  </fieldset>

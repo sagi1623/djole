@@ -1,3 +1,8 @@
-<p>
-  comment-list works!
-</p>
+<fieldset>
+  <legend>list of comments</legend>
+  
+  <ul>
+    <li *ngFor ="let c of comments"><comment [comment]="c" (onCommentDeleted)="commentWasDeleted($event)" ></comment></li>
+  </ul>
+</fieldset>
+

@@ -1,6 +1,8 @@
 import { AccommodationType } from "../accommodationtype/accommodationtype.model";
 import { Room } from "../room/room.model";
 import { Place } from "../place/place.model";
+import { Comment } from "../comment/comment.model";
+
 
 export class Accommodation {
 
