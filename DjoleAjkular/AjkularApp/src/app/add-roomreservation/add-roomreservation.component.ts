@@ -26,6 +26,7 @@ export class AddRoomreservationComponent implements OnInit {
   onSubmit(r: RoomReservation, form: FormGroup)
   {
     form.reset();
+    r.Canceled=false;
     r.RoomId=this.room.Id;
     r.AppUserId=parseInt(this.localStorageService.get('appUserID'));
     this.roomreservationService.create(r).subscribe(x => this.room.RoomReservations.push(x as RoomReservation));

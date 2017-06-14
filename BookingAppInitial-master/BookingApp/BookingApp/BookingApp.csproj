@@ -335,6 +335,10 @@
     <Compile Include="Migrations\201706111107216_Room updated.Designer.cs">
       <DependentUpon>201706111107216_Room updated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706141115145_RoomReservation updated.cs" />
+    <Compile Include="Migrations\201706141115145_RoomReservation updated.Designer.cs">
+      <DependentUpon>201706141115145_RoomReservation updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accommodation.cs" />
     <Compile Include="Models\AccommodationType.cs" />
@@ -456,6 +460,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706111107216_Room updated.resx">
       <DependentUpon>201706111107216_Room updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706141115145_RoomReservation updated.resx">
+      <DependentUpon>201706141115145_RoomReservation updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

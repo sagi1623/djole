@@ -25,17 +25,25 @@ export class RoomreservationComponent implements OnInit {
 
   ngOnInit() { }
 
-  removeRoomReservation()
+  cancelRoomReservation()
   {
-    this.roomreservationService.delete(this.roomreservation.Id).subscribe(x => { console.log(x); this.onRoomReservationDeleted.emit(this.roomreservation)});
+    //this.roomreservationService.delete(this.roomreservation.Id).subscribe(x => { console.log(x); this.onRoomReservationDeleted.emit(this.roomreservation)});
+    //dodaj
+    this.roomreservation.Canceled=true;
+    this.roomreservationService.update(this.roomreservation).subscribe(x => console.log(x));
   }
 
-  shouldShowRemove(): boolean
+  shouldShowCancel(): boolean
   {
     if(parseInt(this.localStorageService.get('appUserID'))==this.roomreservation.AppUserId)
     {
       this.show=true;
     }
     return (this.userStatusProviderService.isUserUser() && (this.show));
+  }
+
+  isCanceled()
+  {
+    return this.roomreservation.Canceled; //false za nije otkazano, true ako jeste
   }
 }
