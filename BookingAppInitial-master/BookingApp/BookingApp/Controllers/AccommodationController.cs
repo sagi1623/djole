@@ -1,4 +1,5 @@
-﻿using BookingApp.Models;
+﻿using BookingApp.Hubs;
+using BookingApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -72,7 +73,7 @@ namespace BookingApp.Controllers
 
             db.Accommodations.Add(a);
             db.SaveChanges();
-
+            AccommodationNotificationHub.AccommodationAdded(a);
             return CreatedAtRoute("DefaultApi", new { controller = "Accommodation", id = a.Id }, a);
         }
 
