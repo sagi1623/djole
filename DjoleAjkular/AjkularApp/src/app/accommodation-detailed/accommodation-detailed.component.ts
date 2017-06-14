@@ -42,6 +42,11 @@ export class AccommodationDetailedComponent implements OnInit {
     return (this.userStatusProviderService.isUserManager() && (this.show));
   }
 
+  shouldShowAddComment(): boolean
+  {
+    return this.userStatusProviderService.isUserUser();
+  }
+
   shouldShowEdit(): boolean
   {
     if(parseInt(this.localStorageService.get('appUserID'))==this.accommodation.AppUserId)
@@ -57,6 +62,15 @@ export class AccommodationDetailedComponent implements OnInit {
     if (index > -1) 
     {
       this.accommodation.Rooms.splice(index, 1);
+    }
+  }
+
+  commentWasDeleted(comment:Comment)
+  {
+    var index = this.accommodation.Comments.indexOf(comment, 0);
+    if (index > -1) 
+    {
+      this.accommodation.Comments.splice(index, 1);
     }
   }
 }

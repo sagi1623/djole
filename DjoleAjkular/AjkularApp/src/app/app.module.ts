@@ -76,7 +76,7 @@ const HomeRoutes = [
   {path:"roomreservations", component: RoomreservationListComponent},
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
   {path:"comments", component: CommentListComponent},
-  {path:"comment-detailed/:Id", component: CommentDetailedComponent},
+  {path:"comment-detailed/:accId/:appId", component: CommentDetailedComponent},
   ]
 
 

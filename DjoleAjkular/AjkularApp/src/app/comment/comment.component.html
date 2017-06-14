@@ -1,3 +1,5 @@
-<p>
-  comment works!
-</p>
+<div>
+  <p>AccommodationId:{{comment.AccommodationId}}</p>
+  <a [routerLink]= "['/home/comment-detailed/', comment.AccommodationId, comment.AppUserId]">detailed</a>
+  <button *ngIf="shouldShowRemove()" (click)="removeComment()">remove</button>
+</div>

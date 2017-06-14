@@ -1,3 +1,16 @@
-<p>
-  add-comment works!
-</p>
+<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <fieldset>
+    <legend>add new Comment</legend>
+  <div>
+    <label for="Grade">Grade: </label> <br/>
+    <input type = "number" name ="Grade" id="Grade" min="1" max="5" step="1" ngModel />
+  </div> <br/>
+  <div>
+    <label for="Text">Text: </label> <br/>
+    <textarea name="Text" ngModel >Enter text here...</textarea>
+  </div> <br/>
+ <div>
+    <input type = "submit" name="Submit"  value="add" />
+  </div>
+  </fieldset>
+</form>
