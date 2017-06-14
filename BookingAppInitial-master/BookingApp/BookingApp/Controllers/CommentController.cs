@@ -1,4 +1,7 @@
 ﻿using BookingApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -17,6 +20,20 @@ namespace BookingApp.Controllers
     public class CommentController : ApiController
     {
         private BAContext db = new BAContext();
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         [HttpGet]
         [EnableQuery]
@@ -40,11 +57,15 @@ namespace BookingApp.Controllers
         }
 
         [HttpPut]
-        [Authorize]
+        [Authorize(Roles = "AppUser")]
         [Route("Comments/{accId}/{appId}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutComment(int accId, int appId, Comment comment)
         {
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -53,6 +74,11 @@ namespace BookingApp.Controllers
             if ((accId != comment.AccommodationId )|| (appId != comment.AppUserId))
             {
                 return BadRequest();
+            }
+
+            if (comment.AppUserId != userId)
+            {
+                return Unauthorized();
             }
 
             db.Entry(comment).State = EntityState.Modified;
@@ -77,7 +103,7 @@ namespace BookingApp.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "AppUser")]
         [Route("Comments")]
         [ResponseType(typeof(Comment))]
         public IHttpActionResult PostComment(Comment comment)
@@ -94,15 +120,24 @@ namespace BookingApp.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles = "AppUser")]
         [Route("Comments/{accId}/{appId}")]
         [ResponseType(typeof(Comment))]
         public IHttpActionResult DeleteComment(int accId, int appId)
         {
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             Comment comment = db.Comments.Find(accId,appId);
             if (comment == null)
             {
                 return NotFound();
+            }
+
+            if (comment.AppUserId != userId)
+            {
+                return Unauthorized();
             }
 
             db.Comments.Remove(comment);

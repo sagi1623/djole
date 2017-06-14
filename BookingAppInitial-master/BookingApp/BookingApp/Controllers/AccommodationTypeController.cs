@@ -43,7 +43,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("AccommodationTypes")]
         [ResponseType(typeof(AccommodationType))]
         public IHttpActionResult PostAccommodationType(AccommodationType at)
@@ -61,7 +61,7 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("AccommodationTypes/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutAccommodationType(int id, AccommodationType at)
@@ -99,7 +99,7 @@ namespace BookingApp.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("AccommodationTypes/{id}")]
         [ResponseType(typeof(AccommodationType))]
         public IHttpActionResult DeleteAccommodationType(int id)

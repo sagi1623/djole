@@ -1,4 +1,7 @@
 ﻿using BookingApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +19,20 @@ namespace BookingApp.Controllers
     public class RoomController : ApiController
     {
         private BAContext db = new BAContext();
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET api/<controller>
         [HttpGet]
@@ -43,7 +60,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Rooms")]
         [ResponseType(typeof(Room))]
         public IHttpActionResult PostRoom(Room r)
@@ -61,11 +78,15 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Rooms/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutRoom(int id, Room r)
         {
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +95,11 @@ namespace BookingApp.Controllers
             if (id != r.Id)
             {
                 return BadRequest();
+            }
+
+            if (r.Accommodation.AppUserId != userId)
+            {
+                return Unauthorized();
             }
 
             db.Entry(r).State = EntityState.Modified;
@@ -99,26 +125,25 @@ namespace BookingApp.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Rooms/{id}")]
         [ResponseType(typeof(Room))]
         public IHttpActionResult DeleteRoom(int id)
         {
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             Room r = db.Rooms.Find(id);
             if (r == null)
             {
                 return NotFound();
             }
 
-            List<RoomReservation> roomReservations = new List<RoomReservation>();
-            foreach (RoomReservation item in db.RoomReservations)
+            if (r.Accommodation.AppUserId != userId)
             {
-                if (item.RoomId.Equals(id))
-                {
-                    roomReservations.Add(item);
-                }
+                return Unauthorized();
             }
-            db.RoomReservations.RemoveRange(roomReservations);
 
             db.Rooms.Remove(r);
             db.SaveChanges();

@@ -16,7 +16,7 @@ export class SearchAccommodationComponent implements OnInit {
   count: number = 0;
   skip: number = 0;
   searchParamsSave;
-  readonly entitiesPerPage = 1; 
+  entitiesPerPage = 1; 
 
   constructor(private accommodationODataService: AccommodationListODataService) { }
 
@@ -26,6 +26,7 @@ export class SearchAccommodationComponent implements OnInit {
  onSubmit(searchParams:SearchParams, form: FormGroup)
   {
     this.skip = 0;
+    searchParams.pageSize = this.entitiesPerPage;
     searchParams.skip = this.skip;
     this.searchParamsSave = new SearchParams(searchParams.Name,searchParams.Country,searchParams.Region,searchParams.Place,searchParams.AccommodationType,searchParams.BedCount,searchParams.Grade,searchParams.PriceMin,searchParams.PriceMax,searchParams.skip);
     this.accommodationODataService.search(searchParams).subscribe(x => this.oDataResponseParser(x));

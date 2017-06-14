@@ -1,4 +1,7 @@
 ﻿using BookingApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,6 +19,20 @@ namespace BookingApp.Controllers
     public class AccommodationController : ApiController
     {
         private BAContext db = new BAContext();
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         // GET api/<controller>
         [HttpGet]
@@ -43,7 +60,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Accommodations")]
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation(Accommodation a)
@@ -61,11 +78,16 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Accommodations/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutAccommodation(int id, Accommodation a)
         {
+
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -74,6 +96,11 @@ namespace BookingApp.Controllers
             if (id != a.Id)
             {
                 return BadRequest();
+            }
+
+            if (a.AppUserId != userId)
+            {
+                return Unauthorized();
             }
 
             db.Entry(a).State = EntityState.Modified;
@@ -99,26 +126,26 @@ namespace BookingApp.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Accommodations/{id}")]
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult DeleteAccommodation(int id)
         {
+
+            IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
+
+            int? userId = (user as BAIdentityUser).appUserId;
+
             Accommodation a = db.Accommodations.Find(id);
             if (a == null)
             {
                 return NotFound();
             }
 
-            List<Comment> comments = new List<Comment>();
-            foreach (Comment item in db.Comments)
+            if (a.AppUserId != userId)
             {
-                if (item.AccommodationId.Equals(id))
-                {
-                    comments.Add(item);
-                }
+                return Unauthorized();
             }
-            db.Comments.RemoveRange(comments);
 
             db.Accommodations.Remove(a);
             db.SaveChanges();

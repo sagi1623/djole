@@ -90,7 +90,7 @@ export class ODataQueryBuilderService {
           {
             searchPattern += `filter=`;
           }
-          searchPattern += `AverageGrade eq ${searchParams.Grade}`;
+          searchPattern += `AverageGrade ge ${searchParams.Grade}`;
         }
 
         if (searchParams.PriceMin || searchParams.PriceMax)
@@ -127,7 +127,7 @@ export class ODataQueryBuilderService {
            searchPattern = '?$inlinecount=allpages';
         }
 
-        searchPattern += `&$top=1`;
+        searchPattern += `&$top=${searchParams.pageSize}`;
         searchPattern += `&$skip=${searchParams.skip}`;
 
         return searchPattern;
