@@ -8,29 +8,41 @@ import { RoomListService } from "../room-list/room-list.service";
 import { Comment } from "../comment/comment.model";
 import { CommentListService } from "../comment-list/comment-list.service";
 import { LocalStorageService } from "../localStorage.service";
+import { URLProviderService } from "../URLProvider.service";
 
 @Component({
   selector: 'accommodation-detailed',
   templateUrl: './accommodation-detailed.component.html',
   styleUrls: ['./accommodation-detailed.component.css'],
-  providers: [AccommodationListService, RoomListService, CommentListService, LocalStorageService]
+  providers: [AccommodationListService, RoomListService, CommentListService, LocalStorageService, URLProviderService]
 })
 export class AccommodationDetailedComponent implements OnInit {
 
   Id: number = -1;
   accommodation: Accommodation;
   show: boolean;
+  img: string;
 
-  constructor(private accommodationService: AccommodationListService,private router: Router, private activatedRoute: ActivatedRoute, private userStatusProviderService: UserStatusProviderService, private localStorageService: LocalStorageService)
+  constructor(private accommodationService: AccommodationListService,private router: Router, private activatedRoute: ActivatedRoute, private userStatusProviderService: UserStatusProviderService, private localStorageService: LocalStorageService, private urlProviderService: URLProviderService)
   {
     this.accommodation = new Accommodation();
+    this.accommodation.ImageUrl="";
     activatedRoute.params.subscribe(params => {this.Id = parseInt(params["Id"])}); 
     this.show=false; 
+    this.img="";
   }
 
   ngOnInit()
   {
-    this.accommodationService.getById(this.Id).subscribe(x =>  this.accommodation = x[0] as Accommodation);
+    this.accommodationService.getById(this.Id).subscribe(x => this.f(x));
+    
+  }
+
+  f(x: any)
+  {
+    this.accommodation = x[0] as Accommodation;
+    this.img=this.urlProviderService.getURL()+this.accommodation.ImageUrl;
+    console.log(this.accommodation.ImageUrl);
   }
 
   shouldShowAdd(): boolean

@@ -15,9 +15,10 @@ import { LocalStorageService } from "../localStorage.service";
 })
 export class AddAccommodationComponent implements OnInit {
 
-  @Input() accommodationtypes: AccommodationType[]
-  @Input() place: Place
-  @Output() onAccommodationAdded: EventEmitter<Accommodation>
+  @Input() accommodationtypes: AccommodationType[];
+  @Input() place: Place;
+  @Output() onAccommodationAdded: EventEmitter<Accommodation>;
+  file: File;
   
   constructor(private accommodationService: AccommodationListService, private accommodationtypeService: AccommodationTypeListService, private localStorageService: LocalStorageService)
   {
@@ -36,6 +37,16 @@ export class AddAccommodationComponent implements OnInit {
     a.AverageGrade=0;
     a.PlaceId=this.place.Id;
     a.AppUserId=parseInt(this.localStorageService.get('appUserID'));
-    this.accommodationService.create(a).subscribe(x => this.place.Accommodations.push(x as Accommodation));
+    //image
+    this.accommodationService.create(a,this.file).subscribe(x=>this.place.Accommodations.push(x as Accommodation));
   }
+
+  onChange(event: EventTarget)
+  {
+        let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
+        let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+        let files: FileList = target.files;
+        this.file = files[0];
+        console.log(this.file);
+    }
 }
