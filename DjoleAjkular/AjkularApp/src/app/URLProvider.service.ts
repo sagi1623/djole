@@ -6,5 +6,4 @@ export class URLProviderService {
     {
       return "http://localhost:54042/";
     }
-
 }

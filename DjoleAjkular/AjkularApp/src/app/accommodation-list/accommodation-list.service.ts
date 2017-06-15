@@ -27,18 +27,32 @@ export class AccommodationListService
         return this.http.get(this.urlProviderService.getURL() + `api/Accommodations?$filter=Id eq ${id} &$expand=Rooms,Comments`).map(res => res.json());
     }
 
-    create(a : Accommodation): Observable<any>
+    create(a : Accommodation, file: File): Observable<any>
     {
-        let header = new Headers();
-        header.append('Accept', 'application/json');
-        header.append('Content-type','application/json');
-        header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
+        // let header = new Headers();
+        // header.append('Accept', 'application/json');
+        // header.append('Content-type','application/json');
+        // header.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
         
-        let opts = new RequestOptions();
-        opts.headers = header;
+        // let opts = new RequestOptions();
+        // opts.headers = header;
 
-       return this.http.post(this.urlProviderService.getURL() + "api/Accommodations", JSON.stringify(a),opts).map(res => res.json());
-    }
+        console.log(a);
+        let formData:FormData = new FormData();
+        formData.append('a', JSON.stringify(a));
+        formData.append('uploadFile', file, file.name);
+        console.log(formData);
+        let headers = new Headers();
+        headers.append('enctype', 'multipart/form-data');
+
+        headers.append('Authorization', 'Bearer ' + this.localStorageService.get('token'));
+        
+        headers.append('Accept', 'application/json');
+        let options = new RequestOptions({ headers: headers });
+
+       //return this.http.post(this.urlProviderService.getURL() + "api/Accommodations", JSON.stringify(a),opts).map(res => res.json());
+       return this.http.post(this.urlProviderService.getURL() + "api/Accommodations",formData,options).map(res => res.json());
+}
 
     update(a: Accommodation): Observable<any>
     {

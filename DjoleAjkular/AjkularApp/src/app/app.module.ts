@@ -60,6 +60,7 @@ import { SearchAccommodationComponent } from './search-accommodation/search-acco
 import { ODataQueryBuilderService } from "./search-accommodation/oDataQueryBuilder.service";
 import { AccommodationListODataService } from "./accommodation-list/accommodation-list-OData-service";
 import { NotificationHandlerService } from "./notificationHandler.service";
+import { AppUserComponent } from './app-user/app-user.component';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -139,7 +140,8 @@ const Routes = [
     EditRoomComponent,
     EditRoomreservationComponent,
     AccommodationMapComponent,
-    SearchAccommodationComponent
+    SearchAccommodationComponent,
+    AppUserComponent
   ],
   imports: [
     BrowserModule,

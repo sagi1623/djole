@@ -21,7 +21,8 @@ export class CommentListService
 
     getById(accId: number, appId: number): Observable<any>
     {
-        return this.http.get(this.urlProviderService.getURL() + `api/Comments/${accId}/${appId}`).map(res => res.json());
+        //return this.http.get(this.urlProviderService.getURL() + `api/Comments/${accId}/${appId}`).map(res => res.json());
+        return this.http.get(this.urlProviderService.getURL() + `api/Comments?$filter=AccommodationId eq ${accId} and AppUserId eq ${appId} &$expand=AppUser`).map(res => res.json());
     }
 
     create(c : Comment): Observable<any>

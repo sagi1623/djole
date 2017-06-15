@@ -23,11 +23,15 @@ export class CommentDetailedComponent implements OnInit {
     this.comment = new Comment();
     activatedRoute.params.subscribe(params => {this.accId = parseInt(params["accId"]); this.appId = parseInt(params["appId"])});
     this.show=false;
-  
   }
 
   ngOnInit()
   {
-    this.commentService.getById(this.accId, this.appId).subscribe(x =>  this.comment = x as Comment);
+    this.commentService.getById(this.accId, this.appId).subscribe(x =>  this.f(x));
+  }
+
+  f(x:any)
+  {
+   // this.comment as Comment;
   }
 }

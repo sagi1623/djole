@@ -4,6 +4,7 @@ import { Comment } from "../comment/comment.model";
 import { FormGroup } from "@angular/forms/forms";
 import { Accommodation } from "../accommodation/accommodation.model";
 import { LocalStorageService } from "../localStorage.service";
+import { AppUser } from "../app-user/app-user.model";
 
 @Component({
   selector: 'add-comment',
@@ -28,6 +29,7 @@ export class AddCommentComponent implements OnInit {
     form.reset();
     c.AccommodationId=this.accommodation.Id;
     c.AppUserId=parseInt(this.localStorageService.get('appUserID'));
+    
     this.commentService.create(c).subscribe(x => this.accommodation.Comments.push(x as Comment));
   }
 }

@@ -3,6 +3,7 @@ using BookingApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +11,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.OData;
@@ -61,14 +63,42 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [Route("Accommodations")]
         [ResponseType(typeof(Accommodation))]
-        public IHttpActionResult PostAccommodation(Accommodation a)
+        public IHttpActionResult PostAccommodation()
         {
+            Accommodation a = new Accommodation();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            var httpRequest = HttpContext.Current.Request;
+            a = JsonConvert.DeserializeObject<Accommodation>(httpRequest.Form[0]);
+
+            foreach (string file in httpRequest.Files)
+            {
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+
+                var postedFile = httpRequest.Files[file];
+                if (postedFile != null && postedFile.ContentLength > 0)
+                {
+                    IList<string> AllowedFileExtensions = new List<string> { ".jpg", ".gif", ".png" };
+                    var ext = postedFile.FileName.Substring(postedFile.FileName.LastIndexOf('.'));
+                    var extension = ext.ToLower();
+                    if (!AllowedFileExtensions.Contains(extension))
+                    {
+                        return BadRequest();
+                    }
+                    else
+                    {
+                        var filePath = HttpContext.Current.Server.MapPath("~/Content/AccommodationPictures/" + postedFile.FileName);
+                        a.ImageUrl = "Content/AccommodationPictures/" + postedFile.FileName;
+                        postedFile.SaveAs(filePath);
+                    }
+                }
             }
 
             db.Accommodations.Add(a);

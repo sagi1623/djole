@@ -15,13 +15,18 @@ export class AddRoomreservationComponent implements OnInit {
 
   @Input() room: Room;
   @Output() onRoomReservationAdded: EventEmitter<RoomReservation>;
+  currentDate: string;
 
   constructor(private roomreservationService: RoomReservationListService, private localStorageService: LocalStorageService) 
   { 
     this.onRoomReservationAdded = new EventEmitter();
+
   }
 
-  ngOnInit() { }
+  ngOnInit() 
+  {
+    this.currentDate = new Date().toJSON().split('T')[0];
+  }
 
   onSubmit(r: RoomReservation, form: FormGroup)
   {
