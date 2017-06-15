@@ -71,12 +71,12 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            if ((accId != comment.AccommodationId )|| (appId != comment.AppUserId))
+            if ((accId != comment.AccommodationId )|| (appId != comment.CustomerId))
             {
                 return BadRequest();
             }
 
-            if (comment.AppUserId != userId)
+            if (comment.CustomerId != userId)
             {
                 return Unauthorized();
             }
@@ -116,7 +116,7 @@ namespace BookingApp.Controllers
             db.Comments.Add(comment);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.AppUserId }, comment);
+            return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.CustomerId }, comment);
         }
 
         [HttpDelete]
@@ -135,7 +135,7 @@ namespace BookingApp.Controllers
                 return NotFound();
             }
 
-            if (comment.AppUserId != userId)
+            if (comment.CustomerId != userId)
             {
                 return Unauthorized();
             }
@@ -157,7 +157,7 @@ namespace BookingApp.Controllers
 
         private bool CommentExists(int accId, int appId)
         {
-            return db.Comments.Count(e => (e.AccommodationId == accId) &&(e.AppUserId == appId)) > 0;
+            return db.Comments.Count(e => (e.AccommodationId == accId) &&(e.CustomerId == appId)) > 0;
         }
 
 

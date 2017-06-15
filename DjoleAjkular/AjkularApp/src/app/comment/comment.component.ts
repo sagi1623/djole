@@ -26,12 +26,12 @@ export class CommentComponent implements OnInit {
 
   removeComment()
   {
-    this.commentService.delete(this.comment.AccommodationId,this.comment.AppUserId).subscribe(x => { console.log(x); this.onCommentDeleted.emit(this.comment)});
+    this.commentService.delete(this.comment.AccommodationId,this.comment.CustomerId).subscribe(x => { console.log(x); this.onCommentDeleted.emit(this.comment)});
   }
 
   shouldShowRemove(): boolean
   {
-    if(parseInt(this.localStorageService.get('appUserID'))==this.comment.AppUserId)
+    if(parseInt(this.localStorageService.get('appUserID'))==this.comment.CustomerId)
     {
       this.show=true;
     }

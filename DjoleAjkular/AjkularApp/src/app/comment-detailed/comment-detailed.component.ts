@@ -32,6 +32,6 @@ export class CommentDetailedComponent implements OnInit {
 
   f(x:any)
   {
-   // this.comment as Comment;
+    this.comment as Comment;
   }
 }

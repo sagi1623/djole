@@ -23,11 +23,11 @@ namespace BookingApp.Models
         [ForeignKey("Accommodation")]
         public int AccommodationId { get; set; }
 
-        public AppUser AppUser { get; set; }
+        public AppUser Customer { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        [ForeignKey("AppUser")]
-        public int AppUserId { get; set; }
+        [ForeignKey("Customer")]
+        public int CustomerId { get; set; }
     }
 }
