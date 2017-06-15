@@ -21,6 +21,16 @@ export class AccommodationListService
        return this.http.get(this.urlProviderService.getURL() + "api/Accommodations");      
     }
 
+    getAllApproved(): Observable<any>
+    {
+       return this.http.get(this.urlProviderService.getURL() + "api/Accommodations?$filter=Approved eq true");      
+    }
+
+    getAllUnapproved(): Observable<any>
+    {
+       return this.http.get(this.urlProviderService.getURL() + "api/Accommodations?$filter=Approved eq false");      
+    }
+
     getById(id: number): Observable<any>
     {
         //return this.http.get(this.urlProviderService.getURL() + `api/Accommodations/${id}`);

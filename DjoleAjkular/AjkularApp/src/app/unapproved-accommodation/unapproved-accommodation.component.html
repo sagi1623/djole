@@ -1,6 +1,0 @@
-<div>
-  <p>{{accommodation.Name}}</p>
-  <a [routerLink]= "['/home/accommodation-detailed/', accommodation.Id]">detailed</a> 
-  <button *ngIf="shouldShowApprove()" (click)="approveAccommodation()">remove</button>
-  <button *ngIf="shouldShowRemove()" (click)="removeAccommodation()">remove</button>
-</div>

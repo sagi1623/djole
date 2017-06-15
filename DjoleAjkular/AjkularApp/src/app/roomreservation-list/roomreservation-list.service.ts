@@ -18,6 +18,11 @@ export class RoomReservationListService
        return this.http.get(this.urlProviderService.getURL() + "api/RoomReservations");      
     }
 
+    getAllCanceledFalse(): Observable<any>
+    {
+       return this.http.get(this.urlProviderService.getURL() + "api/RoomReservations?$filter=Canceled eq false");      
+    }
+
     getById(id: number): Observable<any>
     {
         //return this.http.get(this.urlProviderService.getURL() + `api/RoomReservations/${id}`);

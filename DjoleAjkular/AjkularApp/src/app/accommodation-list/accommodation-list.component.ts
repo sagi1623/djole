@@ -21,8 +21,24 @@ export class AccommodationListComponent implements OnInit {
 
   ngOnInit()
   {
+    if(this.userStatusProviderService.isUserAdmin())
+    {
+      this.getAllAccommodations();
+    }
+    else
+    {
+      this.getApprovedAccommodations();
+    }
+  }
+
+  getAllAccommodations()
+  {
     this.accommodationService.getAll().subscribe(x => this.accommodations = x.json() as Accommodation[]);
-    //this.accommodationtypeService.getAll().subscribe(x => this.accommodations = x.json() as Accommodation[]);
+  }
+
+  getApprovedAccommodations()
+  {
+    this.accommodationService.getAllApproved().subscribe(x => this.accommodations = x.json() as Accommodation[]);
   }
 
   accommodationWasDeleted(accommodation: Accommodation)
