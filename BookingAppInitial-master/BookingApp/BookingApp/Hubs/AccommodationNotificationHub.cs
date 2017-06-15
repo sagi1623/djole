@@ -16,8 +16,16 @@ namespace BookingApp.Hubs
 
         public static void AccommodationAdded(Accommodation a)
         {
-            //hubContext.Clients.Group("Admins").accommodationAddedNotification(a);
-            hubContext.Clients.All.accommodationAddedNotification(a);
+            hubContext.Clients.Group("Admin").accommodationAddedNotification(a);
+            //hubContext.Clients.All.accommodationAddedNotification(a);
+        }
+
+        public void RegisterToRole(string Role)
+        {
+            if (Context.User != null)
+            {
+                Groups.Add(Context.ConnectionId, Role);
+            }
         }
 
         public override Task OnConnected()
@@ -27,23 +35,26 @@ namespace BookingApp.Hubs
 
             //Groups.Add(Context.ConnectionId, "Admins");
 
-            ////if (Context.User.IsInRole("Admin"))
-            ////{
-            ////    Groups.Add(Context.ConnectionId, "Admins");
-            ////}          
-
+            //if (Context.User != null)
+            //{
+            //    if (Context.User.IsInRole("Admin"))
+            //    {
+            //        Groups.Add(Context.ConnectionId, "Admins");
+            //    }
+            //}
             return base.OnConnected();
         }
 
         public override Task OnDisconnected(bool stopCalled)
         {
             //Groups.Remove(Context.ConnectionId, "Admins");
-
-            //if (Context.User.IsInRole("Admin"))
+            //if (Context.User != null)
             //{
-            //    Groups.Remove(Context.ConnectionId, "Admins");
+            //    if (Context.User.IsInRole("Admin"))
+            //    {
+            //        Groups.Remove(Context.ConnectionId, "Admins");
+            //    }
             //}
-
             return base.OnDisconnected(stopCalled);
         }
 

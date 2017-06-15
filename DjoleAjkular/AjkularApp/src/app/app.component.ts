@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { UserStatusProviderService } from "./userStatusProvider.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NotificationHandlerService } from "./notificationHandler.service";
+import { Accommodation } from "./accommodation/accommodation.model";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit  {
 
   ngOnInit()
   {
+    this.subscribeForNotifications ();
     this.router.navigate(['/home']);
   }
 
@@ -25,8 +27,7 @@ export class AppComponent implements OnInit  {
     this.notificator.accommodationAddedNotification.subscribe(e => this.onNotification(e));
   }
 
-  public onNotification(notif: string) {
-
+  public onNotification(notif: Accommodation) {
       this.ngZone.run(() => { 
        alert('Accommodation is added.');  
       });  
