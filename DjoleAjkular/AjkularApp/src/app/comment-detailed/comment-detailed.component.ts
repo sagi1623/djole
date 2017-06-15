@@ -27,11 +27,6 @@ export class CommentDetailedComponent implements OnInit {
 
   ngOnInit()
   {
-    this.commentService.getById(this.accId, this.appId).subscribe(x =>  this.f(x));
-  }
-
-  f(x:any)
-  {
-    this.comment as Comment;
+    this.commentService.getById(this.accId, this.appId).subscribe(x =>  this.comment = x[0] as Comment);
   }
 }
