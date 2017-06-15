@@ -16,7 +16,8 @@ namespace BookingApp.Hubs
 
         public static void AccommodationAdded(Accommodation a)
         {
-            hubContext.Clients.Group("Admins").accommodationAddedNotification(a);
+            //hubContext.Clients.Group("Admins").accommodationAddedNotification(a);
+            hubContext.Clients.All.accommodationAddedNotification(a);
         }
 
         public override Task OnConnected()
@@ -26,10 +27,10 @@ namespace BookingApp.Hubs
 
             //Groups.Add(Context.ConnectionId, "Admins");
 
-            if (Context.User.IsInRole("Admin"))
-            {
-                Groups.Add(Context.ConnectionId, "Admins");
-            }          
+            ////if (Context.User.IsInRole("Admin"))
+            ////{
+            ////    Groups.Add(Context.ConnectionId, "Admins");
+            ////}          
 
             return base.OnConnected();
         }
@@ -38,10 +39,10 @@ namespace BookingApp.Hubs
         {
             //Groups.Remove(Context.ConnectionId, "Admins");
 
-            if (Context.User.IsInRole("Admin"))
-            {
-                Groups.Remove(Context.ConnectionId, "Admins");
-            }
+            //if (Context.User.IsInRole("Admin"))
+            //{
+            //    Groups.Remove(Context.ConnectionId, "Admins");
+            //}
 
             return base.OnDisconnected(stopCalled);
         }

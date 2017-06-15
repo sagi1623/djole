@@ -47,9 +47,12 @@ export class NotificationHandlerService {
     }  
     private registerOnAccommodationAddedEvents(): void {  
         
-        this.proxy.on('AccommodationAdded', (data: Accommodation) => {  
-            this.accommodationAddedNotification.emit(data);
+        this.proxy.on('accommodationAddedNotification', (data: Accommodation) => this.f(data)); 
+    }
+
+    f(data: Accommodation)
+    {
+                    this.accommodationAddedNotification.emit(data);
             console.log('Accommodation added');  
-        }); 
     }  
 }  
