@@ -5,12 +5,12 @@ import { UserStatusProviderService } from "../userStatusProvider.service";
 import { LocalStorageService } from "../localStorage.service";
 
 @Component({
-  selector: 'accommodation',
-  templateUrl: './accommodation.component.html',
-  styleUrls: ['./accommodation.component.css'],
+  selector: 'unapproved-accommodation',
+  templateUrl: './unapproved-accommodation.component.html',
+  styleUrls: ['./unapproved-accommodation.component.css'],
   providers:[AccommodationListService, LocalStorageService]
 })
-export class AccommodationComponent implements OnInit {
+export class UnapprovedAccommodationComponent implements OnInit {
 
   @Input() accommodation: Accommodation
   @Output() onAccommodationDeleted: EventEmitter<Accommodation>;
@@ -46,22 +46,6 @@ export class AccommodationComponent implements OnInit {
 
   shouldShowApprove(): boolean
   {
-    return (this.userStatusProviderService.isUserAdmin() && !this.accommodation.Approved);
-  }
-
-  showAccommodation(): boolean
-  {
-    if(this.accommodation.Approved==true)
-    {
-      return true;
-    }
-    else
-    {
-      if(this.userStatusProviderService.isUserAdmin())
-      {
-        return true;
-      }
-    }
-    return false;
+    return this.userStatusProviderService.isUserAdmin();
   }
 }

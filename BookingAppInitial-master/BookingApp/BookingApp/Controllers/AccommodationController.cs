@@ -109,7 +109,7 @@ namespace BookingApp.Controllers
 
         // PUT api/<controller>/5
         [HttpPut]
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Manager, Admin")]
         [Route("Accommodations/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutAccommodation(int id, Accommodation a)
@@ -118,6 +118,10 @@ namespace BookingApp.Controllers
             IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
 
             int? userId = (user as BAIdentityUser).appUserId;
+
+            var userRole = user.Roles.First().RoleId;
+            BAContext BAContext = new BAContext();
+            var role = BAContext.Roles.FirstOrDefault(r => r.Id == userRole);
 
             if (!ModelState.IsValid)
             {
@@ -129,7 +133,7 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            if (a.AppUserId != userId)
+            if ((!role.Name.Equals("Admin")) && !(role.Name.Equals("Manager")) && (a.AppUserId!=userId))
             {
                 return Unauthorized();
             }
