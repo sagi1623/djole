@@ -113,7 +113,27 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Comments.Add(comment);
+            Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();
+            if (a != null)
+            {
+                Room r = db.Rooms.Where((x) => x.AccommodationId.Equals(a.Id)).FirstOrDefault();
+                if (r != null)
+                {
+                    RoomReservation rr = db.RoomReservations.Where((x) => x.RoomId.Equals(r.Id)).FirstOrDefault();
+                    if (rr != null)
+                    {
+                        if (rr.AppUserId.Equals(comment.CustomerId))
+                        {
+                            if (rr.StartDate < DateTime.Now)
+                            {
+                                db.Comments.Add(comment);
+                            }
+                        }
+                    }
+                }
+            }
+
+            //db.Comments.Add(comment);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.CustomerId }, comment);

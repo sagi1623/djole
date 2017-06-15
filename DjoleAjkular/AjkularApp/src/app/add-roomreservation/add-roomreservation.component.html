@@ -7,7 +7,7 @@
   </div> <br/>
   <div>
     <label for="EndDate">EndDate: </label> <br/>
-    <input type = "date" name ="EndDate" id="EndDate" ngModel />
+    <input type = "date" name ="EndDate" id="EndDate" [min]="currentDate" ngModel />
   </div> <br/>
  <div>
     <input type = "submit" name="Submit"  value="add" />
