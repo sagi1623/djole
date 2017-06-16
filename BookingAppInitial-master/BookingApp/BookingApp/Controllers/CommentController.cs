@@ -137,7 +137,7 @@ namespace BookingApp.Controllers
 			{
 			int? average = 0;
 
-            Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
+            //Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
             List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
             foreach (Comment c in comments)
             {

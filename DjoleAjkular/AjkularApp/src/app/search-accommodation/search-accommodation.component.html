@@ -1,50 +1,51 @@
-<form #f="ngForm" (ngSubmit) = "onSubmit(f.value,f)">
+<form class="form-horizontal col-lg-3" #f="ngForm" (ngSubmit) = "onSubmit(f.value,f)">
   <fieldset>
     <legend></legend>
-  <div>
-    <label for="Name">Name: </label> <br/>
-    <input type = "text" name ="Name" id="Name" ngModel />
+  <div class="form-group">
+    <label class="col-md-3"  for="Name">Name: </label> <br/>
+    <input class="form-control" type = "text" name ="Name" id="Name" ngModel />
   </div><br/>
-  <div>
-    <label for="Country">Country: </label> <br/>
-    <input type = "text" name ="Country" id="Country" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="Country">Country: </label> <br/>
+    <input class="form-control" type = "text" name ="Country" id="Country" ngModel />
   </div><br/>
-  <div>
-    <label for="Region">Region: </label> <br/>
-    <input type = "text" name ="Region" id="Region" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="Region">Region: </label> <br/>
+    <input class="form-control" type = "text" name ="Region" id="Region" ngModel />
   </div><br/>
-  <div>
-    <label for="Place">Place: </label> <br/>
-    <input type = "text" name ="Place" id="Place" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="Place">Place: </label> <br/>
+    <input class="form-control" type = "text" name ="Place" id="Place" ngModel />
   </div><br/>
-  <div>
-    <label for="AccommodationType">Accommodation Type: </label> <br/>
-    <input type = "text" name ="AccommodationType" id="AccommodationType" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="AccommodationType">Accommodation Type: </label> <br/>
+    <input class="form-control" type = "text" name ="AccommodationType" id="AccommodationType" ngModel />
   </div><br/>
-  <div>
-    <label for="BedCount">Bed Count: </label> <br/>
-    <input type = "number" name ="BedCount" id="BedCount" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="BedCount">Bed Count: </label> <br/>
+    <input class="form-control" type = "number" name ="BedCount" id="BedCount" ngModel />
   </div><br/>
-  <div>
-    <label for="Grade">Grade: </label> <br/>
-    <input type = "number" name ="Grade" id="Grade" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="Grade">Grade: </label> <br/>
+    <input class="form-control" type = "number" name ="Grade" id="Grade" ngModel />
   </div><br/>
-  <div>
-    <label for="PriceMin">Price: </label>
-    <input type = "number" name ="PriceMin" id="PriceMin" ngModel />
-    <label for="PriceMax">to: </label>
-    <input type = "number" name ="PriceMax" id="PriceMax" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="PriceMin">Price: </label>
+    <input class="form-control" type = "number" name ="PriceMin" id="PriceMin" ngModel />
+    <label class="col-md-3" for="PriceMax">to: </label>
+    <input class="form-control" type = "number" name ="PriceMax" id="PriceMax" ngModel />
   </div><br/>
-  <div>
-    <select name="entitiesPerPage" [(ngModel)]="entitiesPerPage">
+  <div class="form-group">
+     <label class="col-md-3" for="Grade">Show: </label> <br/>
+    <select class="form-control" name="entitiesPerPage" [(ngModel)]="entitiesPerPage">
       <option value="1" selected = "selected">1</option>
       <option value="5">15</option>
       <option value="10">10</option>
       <option value="9007199254740991">All</option>
     </select>
   </div><br/>
-    <div>
-    <input type = "submit" name="Filter"  value="filter" />
+    <div class="form-group">
+    <input class="btn btn-warning"  type = "submit" name="Filter"  value="filter" />
   </div>
   </fieldset>
 </form>
