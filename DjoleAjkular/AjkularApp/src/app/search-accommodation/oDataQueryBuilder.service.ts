@@ -95,8 +95,8 @@ export class ODataQueryBuilderService {
 
         if (searchParams.PriceMin || searchParams.PriceMax)
         {
-          let min = Number.MIN_VALUE;
-          let max = Number.MAX_VALUE;
+          let min = 0;
+          let max = 1000000;
           if(searchParams.PriceMin)
           {
             min = searchParams.PriceMin;

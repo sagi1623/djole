@@ -40,26 +40,28 @@ export class SearchAccommodationComponent implements OnInit {
 
   next()
   {
-    this.skip += this.entitiesPerPage;
+    this.skip +=  parseInt(this.entitiesPerPage.toString());
+    this.searchParamsSave.pageSize = this.entitiesPerPage;
     this.searchParamsSave.skip = this.skip;
     this.accommodationODataService.search(this.searchParamsSave).subscribe(x => this.oDataResponseParser(x));
   }
 
   previous()
   {
-    this.skip -= this.entitiesPerPage;
+    this.skip -=  parseInt(this.entitiesPerPage.toString());
+    this.searchParamsSave.pageSize = this.entitiesPerPage;
     this.searchParamsSave.skip = this.skip;
     this.accommodationODataService.search(this.searchParamsSave).subscribe(x => this.oDataResponseParser(x));
   }
 
   shouldShowNext():boolean
   {
-    return (this.skip + this.entitiesPerPage) < this.count;
+    return (this.skip + parseInt(this.entitiesPerPage.toString())) < this.count;
   }
 
   shouldShowPrevious():boolean
   {
-    return (this.skip - this.entitiesPerPage ) >= 0;
+    return (this.skip -  parseInt(this.entitiesPerPage.toString()) ) >= 0;
   }
 
 }
