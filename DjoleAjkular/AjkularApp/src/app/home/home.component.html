@@ -2,6 +2,7 @@
   Welcome to the best booking site EVER !
 </h3>
   <ul>
+<<<<<<< HEAD
     <li> <a class="btn btn-link" [routerLink]= "['/home/accommodations']"> Accommodations </a></li>
     <li> <a class="btn btn-link" [routerLink]= "['/home/accommodationtypes']"> AccommodationTypes </a></li>
     <li> <a class="btn btn-link" [routerLink]= "['/home/comments']"> Comments </a></li>
@@ -10,5 +11,6 @@
     <li> <a class="btn btn-link" [routerLink]= "['/home/regions']"> Regions </a></li>     
     <li> <a class="btn btn-link" [routerLink]= "['/home/rooms']"> Rooms </a></li>
     <li> <a class="btn btn-link" [routerLink]= "['/home/roomreservations']"> RoomReservations </a></li>
+    <li *ngIf="shouldShowManagers()" > <a class="btn btn-link" [routerLink]= "['/home/managers']"> Managers </a></li>
   </ul>  
 <router-outlet> </router-outlet>

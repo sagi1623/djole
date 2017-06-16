@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RoomReservation} from '../roomreservation/roomreservation.model';
-import {RoomReservationListService} from './roomreservation-list.service'
+import {RoomReservationListService} from './roomreservation-list.service';
 import { FormGroup } from "@angular/forms/forms";
 import { UserStatusProviderService } from "../userStatusProvider.service";
 

@@ -1,3 +1,4 @@
-<p>
-  user works!
-</p>
+<div >
+  <p>{{user.Id}} {{user.FirstName}} {{user.LastName}}</p>
+  <button *ngIf="shouldShowBann()" (click)="bannUser()">bann</button>
+</div>

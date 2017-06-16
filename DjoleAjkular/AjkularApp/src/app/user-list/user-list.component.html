@@ -1,0 +1,8 @@
+<div *ngIf="shouldShow()" >
+  <fieldset>
+  <legend>list of managers</legend>
+<ul>
+  <li *ngFor ="let u of users"><user [user]="u" ></user></li>
+</ul>
+</fieldset>
+</div>
