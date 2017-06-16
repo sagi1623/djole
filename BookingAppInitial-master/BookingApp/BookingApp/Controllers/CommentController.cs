@@ -112,48 +112,48 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-			bool added = false;
-			Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();
-            if (a != null)
+            bool added = false;
+            if (db.Comments.Where((x) => x.AccommodationId.Equals(comment.AccommodationId) && x.CustomerId.Equals(comment.CustomerId)).FirstOrDefault()!=null)
             {
-                Room r = db.Rooms.Where((x) => x.AccommodationId.Equals(a.Id)).FirstOrDefault();
-                if (r != null)
+                return BadRequest();
+            }
+
+            Accommodation acc = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();
+            List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
+            RoomReservation rr = db.RoomReservations.Where((x) => x.AppUserId.Equals(comment.CustomerId) && (x.StartDate < DateTime.Now) && (x.Canceled!=false)).FirstOrDefault();
+            if (rr != null)
+            {
+                db.Comments.Add(comment);
+                added = true;
+            }
+
+            if (added)
+            {
+                int? average = 0;
+                int commentCount = 0;
+                              
+                foreach (Comment c in comments)
                 {
-                    RoomReservation rr = db.RoomReservations.Where((x) => x.RoomId.Equals(r.Id)).FirstOrDefault();
-                    if (rr != null)
+                    if (c.Grade != null)
                     {
-                        if (rr.AppUserId.Equals(comment.CustomerId))
-                        {
-                            if (rr.StartDate < DateTime.Now)
-                            {
-                                db.Comments.Add(comment);
-								added = true;
-                            }
-                        }
+                        average += c.Grade;
+                        commentCount++;
                     }
                 }
-            }
-			if(added)
-			{
-			int? average = 0;
+                average += comment.Grade;
+                commentCount++;
 
-            //Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
-            List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
-            foreach (Comment c in comments)
-            {
-                if (c.Grade != null)
-                {
-                    average += c.Grade;
-                }      
+                acc.AverageGrade = ((decimal)average / (commentCount));
+                db.Entry(acc).State = EntityState.Modified;
+                db.Entry(comment).State = EntityState.Added;
             }
-            average += comment.Grade;
-            a.AverageGrade = Math.Floor((decimal)(average / (comments.Count + 1)));
-            db.Entry(a).State = EntityState.Modified;
-            db.Entry(comment).State = EntityState.Added;
-			}
+            else
+            {
+                return BadRequest();
+            }
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.CustomerId }, comment);
+            return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId, appId = comment.CustomerId }, comment);
         }
 
         [HttpDelete]
