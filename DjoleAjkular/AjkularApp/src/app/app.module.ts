@@ -78,16 +78,17 @@ const HomeRoutes = [
   {path:"roomreservations", component: RoomreservationListComponent},
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
   {path:"comments", component: CommentListComponent},
-  {path:"comment-detailed/:accId/:appId", component: CommentDetailedComponent},
+  {path:"comment-detailed/:accId/:appId", component: CommentDetailedComponent}
   ]
 
 
 const Routes = [
-  {path:"home", component: HomeComponent, children: HomeRoutes},
   {path:"login", component: LoginComponent},
   {path:"register", component: RegisterComponent},
   {path:"register-manager", component: RegisterManagerComponent},
-  {path:"search-accommodation", component: SearchAccommodationComponent}
+  {path:"search-accommodation", component: SearchAccommodationComponent},
+  {path:"home", component: HomeComponent, children: HomeRoutes},
+  {path:'**', redirectTo: '/home', pathMatch: 'full'}
 ]
 
 @NgModule({

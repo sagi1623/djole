@@ -1,5 +1,5 @@
 <div>
   <p>AccommodationId:{{comment.AccommodationId}}</p>
-  <a [routerLink]= "['/home/comment-detailed/', comment.AccommodationId, comment.AppUserId]">detailed</a>
+  <a [routerLink]= "['/home/comment-detailed/', comment.AccommodationId, comment.CustomerId]">detailed</a>
   <button *ngIf="shouldShowRemove()" (click)="removeComment()">remove</button>
 </div>

@@ -112,8 +112,22 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             db.Comments.Add(comment);
+            int? average = 0;
+
+            Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
+            List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
+            foreach (Comment c in comments)
+            {
+                if (c.Grade != null)
+                {
+                    average += c.Grade;
+                }      
+            }
+            average += comment.Grade;
+            a.AverageGrade = Math.Floor((decimal)(average / (comments.Count + 1)));
+            db.Entry(a).State = EntityState.Modified;
+            db.Entry(comment).State = EntityState.Added;
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.CustomerId }, comment);
@@ -127,9 +141,18 @@ namespace BookingApp.Controllers
         {
             IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
 
+            //var role = db.Roles.Where(x => x.Name.Equals("Manager")).FirstOrDefault();
+
+            //List<AppUser> appUser = new List<AppUser>();
+            //foreach (var usy in role.Users)
+            //{
+            //    var manager = this.UserManager.Users.Where(x => x.Id.Equals(usy.UserId)).FirstOrDefault();
+            //    appUser.Add(db.AppUsers.Where(x => x.Id == manager.appUserId).FirstOrDefault());
+            //}
+
             int? userId = (user as BAIdentityUser).appUserId;
 
-            Comment comment = db.Comments.Find(accId,appId);
+            Comment comment = db.Comments.Find(accId, appId);
             if (comment == null)
             {
                 return NotFound();
@@ -140,7 +163,29 @@ namespace BookingApp.Controllers
                 return Unauthorized();
             }
 
+            int? average = 0;
+
             db.Comments.Remove(comment);
+            db.SaveChanges();
+
+            Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
+            List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
+            foreach (Comment c in comments)
+            {
+                if (c.Grade != null)
+                {
+                    average += c.Grade;
+                }
+            }
+            if (comments.Count == 0)
+            {
+                a.AverageGrade = 0;
+            }
+            else
+            {
+                a.AverageGrade = Math.Floor((decimal)(average / (comments.Count)));
+            }  
+            db.Entry(a).State = EntityState.Modified;
             db.SaveChanges();
 
             return Ok(comment);

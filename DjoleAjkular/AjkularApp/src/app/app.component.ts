@@ -20,7 +20,7 @@ export class AppComponent implements OnInit  {
   ngOnInit()
   {
     this.subscribeForNotifications ();
-    this.router.navigate(['/home']);
+    //this.router.navigate(['/home']);
   }
 
     private subscribeForNotifications () {
