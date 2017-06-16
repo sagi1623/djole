@@ -17,7 +17,7 @@ using System.Web.Http.Description;
 using System.Web.Http.OData;
 
 namespace BookingApp.Controllers
-{   
+{
     [RoutePrefix("api")]
     public class AccommodationController : ApiController
     {
@@ -73,10 +73,16 @@ namespace BookingApp.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }          
+            }
 
             var httpRequest = HttpContext.Current.Request;
             a = JsonConvert.DeserializeObject<Accommodation>(httpRequest.Form[0]);
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
+            {
+                return Unauthorized();
+            }
 
             foreach (string file in httpRequest.Files)
             {
@@ -116,9 +122,7 @@ namespace BookingApp.Controllers
         {
 
             IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
-
             int? userId = (user as BAIdentityUser).appUserId;
-
             var userRole = user.Roles.First().RoleId;
             BAContext BAContext = new BAContext();
             var role = BAContext.Roles.FirstOrDefault(r => r.Id == userRole);
@@ -133,7 +137,13 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            if ((!role.Name.Equals("Admin")) && !(role.Name.Equals("Manager")) && (a.AppUserId!=userId))
+            if (!(role.Name.Equals("Admin")) && !(role.Name.Equals("Manager")) && (a.AppUserId != userId))
+            {
+                return Unauthorized();
+            }
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();
             }
@@ -175,6 +185,12 @@ namespace BookingApp.Controllers
             if (a == null)
             {
                 return NotFound();
+            }
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
+            {
+                return Unauthorized();
             }
 
             if (a.AppUserId != userId)

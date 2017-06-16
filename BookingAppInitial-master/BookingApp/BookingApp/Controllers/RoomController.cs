@@ -70,6 +70,12 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
+            {
+                return Unauthorized();
+            }
+
             db.Rooms.Add(r);
             db.SaveChanges();
 
@@ -98,6 +104,12 @@ namespace BookingApp.Controllers
             }
 
             if (r.Accommodation.AppUserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();
             }
@@ -141,6 +153,12 @@ namespace BookingApp.Controllers
             }
 
             if (r.Accommodation.AppUserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();
             }
