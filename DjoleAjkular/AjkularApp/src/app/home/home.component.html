@@ -10,5 +10,6 @@
     <li> <a [routerLink]= "['/home/regions']"> Regions </a></li>     
     <li> <a [routerLink]= "['/home/rooms']"> Rooms </a></li>
     <li> <a [routerLink]= "['/home/roomreservations']"> RoomReservations </a></li>
+     <li *ngIf="shouldShowManagers()" > <a [routerLink]= "['/home/managers']"> Managers </a></li>
   </ul>  
 <router-outlet> </router-outlet>

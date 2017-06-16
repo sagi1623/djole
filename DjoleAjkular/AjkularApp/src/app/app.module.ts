@@ -61,6 +61,7 @@ import { ODataQueryBuilderService } from "./search-accommodation/oDataQueryBuild
 import { AccommodationListODataService } from "./accommodation-list/accommodation-list-OData-service";
 import { NotificationHandlerService } from "./notificationHandler.service";
 import { UserComponent } from './user/user.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -78,7 +79,8 @@ const HomeRoutes = [
   {path:"roomreservations", component: RoomreservationListComponent},
   {path:"roomreservation-detailed/:Id", component: RoomreservationDetailedComponent},
   {path:"comments", component: CommentListComponent},
-  {path:"comment-detailed/:accId/:appId", component: CommentDetailedComponent}
+  {path:"comment-detailed/:accId/:appId", component: CommentDetailedComponent},
+  {path:"managers", component: UserListComponent}
   ]
 
 
@@ -142,7 +144,8 @@ const Routes = [
     EditRoomreservationComponent,
     AccommodationMapComponent,
     SearchAccommodationComponent,
-    UserComponent
+    UserComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

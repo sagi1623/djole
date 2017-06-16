@@ -164,15 +164,6 @@ namespace BookingApp.Controllers
         {
             IdentityUser user = this.UserManager.FindById(User.Identity.GetUserId());
 
-            //var role = db.Roles.Where(x => x.Name.Equals("Manager")).FirstOrDefault();
-
-            //List<AppUser> appUser = new List<AppUser>();
-            //foreach (var usy in role.Users)
-            //{
-            //    var manager = this.UserManager.Users.Where(x => x.Id.Equals(usy.UserId)).FirstOrDefault();
-            //    appUser.Add(db.AppUsers.Where(x => x.Id == manager.appUserId).FirstOrDefault());
-            //}
-
             int? userId = (user as BAIdentityUser).appUserId;
 
             Comment comment = db.Comments.Find(accId, appId);

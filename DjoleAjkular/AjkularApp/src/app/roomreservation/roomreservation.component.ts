@@ -42,7 +42,7 @@ export class RoomreservationComponent implements OnInit {
     return (this.userStatusProviderService.isUserUser() && (this.show));
   }
 
-  isCanceled()
+  isCanceled(): boolean
   {
     return this.roomreservation.Canceled; //false za nije otkazano, true ako jeste
   }
