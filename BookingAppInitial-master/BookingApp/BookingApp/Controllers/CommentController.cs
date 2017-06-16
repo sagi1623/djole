@@ -112,8 +112,30 @@ namespace BookingApp.Controllers
             {
                 return BadRequest(ModelState);
             }
-            db.Comments.Add(comment);
-            int? average = 0;
+			bool added = false;
+			Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();
+            if (a != null)
+            {
+                Room r = db.Rooms.Where((x) => x.AccommodationId.Equals(a.Id)).FirstOrDefault();
+                if (r != null)
+                {
+                    RoomReservation rr = db.RoomReservations.Where((x) => x.RoomId.Equals(r.Id)).FirstOrDefault();
+                    if (rr != null)
+                    {
+                        if (rr.AppUserId.Equals(comment.CustomerId))
+                        {
+                            if (rr.StartDate < DateTime.Now)
+                            {
+                                db.Comments.Add(comment);
+								added = true;
+                            }
+                        }
+                    }
+                }
+            }
+			if(added)
+			{
+			int? average = 0;
 
             Accommodation a = db.Accommodations.Where(x => x.Id == comment.AccommodationId).FirstOrDefault();
             List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
@@ -128,6 +150,7 @@ namespace BookingApp.Controllers
             a.AverageGrade = Math.Floor((decimal)(average / (comments.Count + 1)));
             db.Entry(a).State = EntityState.Modified;
             db.Entry(comment).State = EntityState.Added;
+			}
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { controller = "Comment", accid = comment.AccommodationId , appId = comment.CustomerId }, comment);

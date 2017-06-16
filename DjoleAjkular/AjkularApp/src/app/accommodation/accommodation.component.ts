@@ -29,6 +29,12 @@ export class AccommodationComponent implements OnInit {
     this.accommodationService.delete(this.accommodation.Id).subscribe(x => { console.log(x); this.onAccommodationDeleted.emit(this.accommodation)});
   }
 
+  approveAccommodation()
+  {
+    this.accommodation.Approved=true;
+    this.accommodationService.update(this.accommodation).subscribe(x => console.log(x));
+  }
+
   shouldShowRemove(): boolean
   {
     if(parseInt(this.localStorageService.get('appUserID'))==this.accommodation.AppUserId)
@@ -36,5 +42,26 @@ export class AccommodationComponent implements OnInit {
       this.show=true;
     }
     return (this.userStatusProviderService.isUserManager() && (this.show));
+  }
+
+  shouldShowApprove(): boolean
+  {
+    return (this.userStatusProviderService.isUserAdmin() && !this.accommodation.Approved);
+  }
+
+  showAccommodation(): boolean
+  {
+    if(this.accommodation.Approved==true)
+    {
+      return true;
+    }
+    else
+    {
+      if(this.userStatusProviderService.isUserAdmin())
+      {
+        return true;
+      }
+    }
+    return false;
   }
 }

@@ -21,7 +21,8 @@ export class RoomreservationListComponent implements OnInit {
 
   ngOnInit()
   {
-    this.roomreservationService.getAll().subscribe(x => this.roomreservations = x.json() as RoomReservation[]);
+    //this.roomreservationService.getAll().subscribe(x => this.roomreservations = x.json() as RoomReservation[]);
+    this.roomreservationService.getAllCanceledFalse().subscribe(x => this.roomreservations = x.json() as RoomReservation[]);
   }
 
    roomreservationWasDeleted(roomreservation: RoomReservation)
