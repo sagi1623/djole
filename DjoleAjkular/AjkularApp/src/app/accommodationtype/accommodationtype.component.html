@@ -1,5 +1,5 @@
 <div>
   <p>Name: {{accommodationtype.Name}}</p>
-  <a [routerLink]= "['/home/accommodationtype-detailed/', accommodationtype.Id]">detailed</a>
-  <button *ngIf="shouldShowRemove()" (click)="removeAccommodationType()">remove</button>
+  <a class="btn btn-link" [routerLink]= "['/home/accommodationtype-detailed/', accommodationtype.Id]">detailed</a>
+  <button class="btn btn-danger" *ngIf="shouldShowRemove()" (click)="removeAccommodationType()">remove</button>
 </div>

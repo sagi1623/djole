@@ -1,5 +1,5 @@
 <div *ngIf="!isCanceled()">
   <p>{{roomreservation.Id}}</p>
-  <a [routerLink]= "['/home/roomreservation-detailed/', roomreservation.Id]">detailed</a>
-  <button *ngIf="shouldShowCancel()" (click)="cancelRoomReservation()">cancel</button>
+  <a class="btn btn-link" [routerLink]= "['/home/roomreservation-detailed/', roomreservation.Id]">detailed</a>
+  <button class="btn btn-danger" *ngIf="shouldShowCancel()" (click)="cancelRoomReservation()">cancel</button>
 </div>

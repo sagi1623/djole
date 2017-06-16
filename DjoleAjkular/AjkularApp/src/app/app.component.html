@@ -9,7 +9,6 @@
       </button>
       <a class="navbar-brand" [routerLink]= "['/home']" >TBBAPPE</a>
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li >
@@ -21,13 +20,13 @@
         <li >
             <button *ngIf="!isUserLoggedIn()" class="btn btn-danger" [routerLink]= "['/register']">Register</button>
         </li>
+        <li >
+           <button  class="btn btn-danger"  [routerLink]= "['/search-accommodation']">Search</button>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-<div>
-<button  class="btn btn-danger"  [routerLink]= "['/search-accommodation']">Search</button>
-</div>
 <div class="container">
     <router-outlet></router-outlet>
 </div>

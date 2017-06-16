@@ -39,7 +39,7 @@
      <label class="col-md-3" for="Grade">Show: </label> <br/>
     <select class="form-control" name="entitiesPerPage" [(ngModel)]="entitiesPerPage">
       <option value="1" selected = "selected">1</option>
-      <option value="5">15</option>
+      <option value="5">5</option>
       <option value="10">10</option>
       <option value="9007199254740991">All</option>
     </select>
@@ -55,5 +55,5 @@
 <ul>
   <li *ngFor ="let a of accommodations"><accommodation [accommodation]="a" ></accommodation></li>
 </ul>
- <button *ngIf="shouldShowPrevious()" (click)="previous()">Previous</button>
-  <button *ngIf="shouldShowNext()" (click)="next()">Next</button>
+ <button class="btn btn-danger" *ngIf="shouldShowPrevious()" (click)="previous()">Previous</button>
+  <button class="btn btn-danger" *ngIf="shouldShowNext()" (click)="next()">Next</button>

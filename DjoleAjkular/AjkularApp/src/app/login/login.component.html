@@ -1,13 +1,13 @@
-<form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
-  <div>
-    <label for="Username">Username: </label> <br/>
-    <input type = "email" name ="Username" id="Username" ngModel />
+<form class="form-horizontal col-sm-3" #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
+  <div class="form-group">
+    <label class="col-md-3" for="Username">Username: </label> <br/>
+    <input class="form-control" type = "email" name ="Username" id="Username" ngModel />
   </div>
-  <div>
-    <label for="Password">Password: </label> <br/>
-    <input type = "password" name ="Password" id="Password" ngModel />
+  <div class="form-group">
+    <label class="col-md-3" for="Password">Password: </label> <br/>
+    <input class="form-control" type = "password" name ="Password" id="Password" ngModel />
   </div>
-  <div>
-    <input type = "submit" name="LogIn" value="LogIn" />
+  <div class="form-group">
+    <input class="btn btn-success" type = "submit" name="LogIn" value="LogIn" />
   </div>
 </form>

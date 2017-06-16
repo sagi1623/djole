@@ -1,6 +1,6 @@
 <div *ngIf="showAccommodation()">
   <p>{{accommodation.Name}}</p>
-  <a [routerLink]= "['/home/accommodation-detailed/', accommodation.Id]">detailed</a> 
-  <button *ngIf="shouldShowApprove()" (click)="approveAccommodation()">approve</button>
-  <button *ngIf="shouldShowRemove()" (click)="removeAccommodation()">remove</button>
+  <a class="btn btn-link" [routerLink]= "['/home/accommodation-detailed/', accommodation.Id]">detailed</a> 
+  <button class="btn btn-danger" *ngIf="shouldShowApprove()" (click)="approveAccommodation()">approve</button>
+  <button class="btn btn-danger" *ngIf="shouldShowRemove()" (click)="removeAccommodation()">remove</button>
 </div>
