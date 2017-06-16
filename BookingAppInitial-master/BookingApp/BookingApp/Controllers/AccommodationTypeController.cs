@@ -1,4 +1,7 @@
 ﻿using BookingApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -51,7 +54,7 @@ namespace BookingApp.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }          
 
             db.AccommodationTypes.Add(at);
             db.SaveChanges();
@@ -109,7 +112,7 @@ namespace BookingApp.Controllers
             {
                 return NotFound();
             }
-
+          
             db.AccommodationTypes.Remove(at);
             db.SaveChanges();
 

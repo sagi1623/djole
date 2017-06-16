@@ -63,7 +63,7 @@ namespace BookingApp.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [Route("Accommodations")]
         [ResponseType(typeof(Accommodation))]
         public IHttpActionResult PostAccommodation()
@@ -73,7 +73,7 @@ namespace BookingApp.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }          
 
             var httpRequest = HttpContext.Current.Request;
             a = JsonConvert.DeserializeObject<Accommodation>(httpRequest.Form[0]);
