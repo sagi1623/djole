@@ -24,7 +24,6 @@ export class AddAccommodationtypeComponent implements OnInit {
    onSubmit(at: AccommodationType, form: FormGroup)
   {
     form.reset();
-    this.accommodationtypeService.create(at).subscribe(x => { this.onAccommodationTypeAdded.emit(x as AccommodationType)});
+    this.accommodationtypeService.create(at).subscribe(x => { this.onAccommodationTypeAdded.emit(x as AccommodationType)}, x => alert('Failed to add AccommodationType.'));
   }
-
 }

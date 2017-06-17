@@ -26,6 +26,6 @@ export class AddPlaceComponent implements OnInit {
   {
     form.reset();
     p.RegionId=this.region.Id;
-    this.placeService.create(p).subscribe(x => this.region.Places.push(x as Place));
+    this.placeService.create(p).subscribe(x => this.region.Places.push(x as Place), x => alert('Failed to add Place.'));
   }
 }

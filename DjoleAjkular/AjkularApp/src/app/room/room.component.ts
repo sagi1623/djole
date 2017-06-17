@@ -33,7 +33,7 @@ export class RoomComponent implements OnInit {
 
   removeRoom()
   {
-    this.roomService.delete(this.room.Id).subscribe(x => { console.log(x); this.onRoomDeleted.emit(this.room)});
+    this.roomService.delete(this.room.Id).subscribe(x => { console.log(x); this.onRoomDeleted.emit(this.room)}, x => alert('Failed to remove Room.'));
   }
 
   shouldShowRemove(): boolean

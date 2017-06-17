@@ -20,7 +20,7 @@ export class EditCountryComponent implements OnInit {
   {
     if(form.dirty)
     {
-    this.countryService.update(this.country).subscribe(x => console.log(x));
+    this.countryService.update(this.country).subscribe(x => console.log(x), x => alert('Failed to edit Country.'));
     }
   }
 }

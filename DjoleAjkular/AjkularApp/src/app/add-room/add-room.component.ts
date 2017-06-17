@@ -26,6 +26,6 @@ export class AddRoomComponent implements OnInit {
   {
     form.reset();
     r.AccommodationId=this.accommodation.Id;
-    this.roomService.create(r).subscribe(x => this.accommodation.Rooms.push(x as Room));
+    this.roomService.create(r).subscribe(x => this.accommodation.Rooms.push(x as Room), x => alert('Failed to add Room.'));
   }
 }

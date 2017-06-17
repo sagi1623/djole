@@ -26,7 +26,7 @@ export class CommentComponent implements OnInit {
 
   removeComment()
   {
-    this.commentService.delete(this.comment.AccommodationId,this.comment.CustomerId).subscribe(x => { console.log(x); this.onCommentDeleted.emit(this.comment)});
+    this.commentService.delete(this.comment.AccommodationId,this.comment.CustomerId).subscribe(x => { console.log(x); this.onCommentDeleted.emit(this.comment)}, x => alert('Failed to remove Comment.'));
   }
 
   shouldShowRemove(): boolean

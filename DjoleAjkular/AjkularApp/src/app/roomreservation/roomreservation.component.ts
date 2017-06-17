@@ -30,7 +30,7 @@ export class RoomreservationComponent implements OnInit {
     //this.roomreservationService.delete(this.roomreservation.Id).subscribe(x => { console.log(x); this.onRoomReservationDeleted.emit(this.roomreservation)});
     //dodaj
     this.roomreservation.Canceled=true;
-    this.roomreservationService.update(this.roomreservation).subscribe(x => console.log(x));
+    this.roomreservationService.update(this.roomreservation).subscribe(x => console.log(x), x => alert('Failed to cancel RoomReservation.'));
   }
 
   shouldShowCancel(): boolean

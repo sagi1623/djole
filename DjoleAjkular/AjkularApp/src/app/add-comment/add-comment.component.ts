@@ -28,6 +28,6 @@ export class AddCommentComponent implements OnInit {
     form.reset();
     c.AccommodationId=this.accommodation.Id;
     c.CustomerId=parseInt(this.localStorageService.get('appUserID'));
-    this.commentService.create(c).subscribe(x => this.accommodation.Comments.push(x as Comment));
+    this.commentService.create(c).subscribe(x => this.accommodation.Comments.push(x as Comment), x => alert('Failed to add Comment.'));
   }
 }

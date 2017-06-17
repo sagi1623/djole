@@ -38,7 +38,7 @@ export class AddAccommodationComponent implements OnInit {
     a.PlaceId=this.place.Id;
     a.AppUserId=parseInt(this.localStorageService.get('appUserID'));
     //image
-    this.accommodationService.create(a,this.file).subscribe(x=>this.place.Accommodations.push(x as Accommodation));
+    this.accommodationService.create(a,this.file).subscribe(x=>this.place.Accommodations.push(x as Accommodation), x => alert('Failed to add Accommodation.'));
   }
 
   onChange(event: EventTarget)

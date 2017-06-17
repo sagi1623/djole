@@ -26,7 +26,6 @@ export class AddRegionComponent implements OnInit {
   {
     form.reset();
     r.CountryId=this.country.Id;
-    this.regionService.create(r).subscribe(x => this.country.Regions.push(x as Region));
+    this.regionService.create(r).subscribe(x => this.country.Regions.push(x as Region), x => alert('Failed to add Region.'));
   }
-
 }

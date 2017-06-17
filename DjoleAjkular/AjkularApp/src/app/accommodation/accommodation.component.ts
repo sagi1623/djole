@@ -26,7 +26,7 @@ export class AccommodationComponent implements OnInit {
   
   removeAccommodation()
   {
-    this.accommodationService.delete(this.accommodation.Id).subscribe(x => { console.log(x); this.onAccommodationDeleted.emit(this.accommodation)});
+    this.accommodationService.delete(this.accommodation.Id).subscribe(x => { console.log(x); this.onAccommodationDeleted.emit(this.accommodation)}, x => alert('Failed to remove Accommodation.'));
   }
 
   approveAccommodation()

@@ -23,12 +23,11 @@ export class CountryComponent implements OnInit {
 
   removeCountry()
   {
-    this.countryService.delete(this.country.Id).subscribe(x => { console.log(x); this.onCountryDeleted.emit(this.country) } );
+    this.countryService.delete(this.country.Id).subscribe(x => { console.log(x); this.onCountryDeleted.emit(this.country)}, x => alert('Failed to remove Country.'));
   }
 
   shouldShowRemove(): boolean
   {
     return this.userStatusProviderService.isUserAdmin();
   }
-
 }

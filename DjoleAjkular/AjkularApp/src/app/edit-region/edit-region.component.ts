@@ -20,7 +20,7 @@ export class EditRegionComponent implements OnInit {
   {
     if(form.dirty)
     {
-    this.regionService.update(this.region).subscribe(x => console.log(x));
+    this.regionService.update(this.region).subscribe(x => console.log(x), x => alert('Failed to edit Region.'));
     }
   }
 }

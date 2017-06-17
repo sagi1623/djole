@@ -22,7 +22,7 @@ export class RegionComponent implements OnInit {
 
   removeRegion()
   {
-    this.regionService.delete(this.region.Id).subscribe(x => { console.log(x); this.onRegionDeleted.emit(this.region)});
+    this.regionService.delete(this.region.Id).subscribe(x => { console.log(x); this.onRegionDeleted.emit(this.region)}, x => alert('Failed to remove Region.'));
   }
 
   shouldShowRemove(): boolean

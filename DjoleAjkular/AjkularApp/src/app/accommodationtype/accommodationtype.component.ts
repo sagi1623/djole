@@ -22,7 +22,7 @@ export class AccommodationtypeComponent implements OnInit {
 
   removeAccommodationType()
   {
-    this.accommodationtypeService.delete(this.accommodationtype.Id).subscribe(x => { console.log(x); this.onAccommodationTypeDeleted.emit(this.accommodationtype)});
+    this.accommodationtypeService.delete(this.accommodationtype.Id).subscribe(x => { console.log(x); this.onAccommodationTypeDeleted.emit(this.accommodationtype)}, x => alert('Failed to remove AccommodationType.'));
   }
 
   shouldShowRemove(): boolean

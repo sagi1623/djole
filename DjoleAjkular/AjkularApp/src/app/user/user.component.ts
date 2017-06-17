@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
     if(this.userStatusProviderService.isUserAdmin())
     {
       this.user.Banned=true;
-      this.userService.update(this.user).subscribe(x => console.log(x));
+      this.userService.update(this.user).subscribe(x => console.log(x), x => alert('Failed to bann Manager.'));
     }
   }
 

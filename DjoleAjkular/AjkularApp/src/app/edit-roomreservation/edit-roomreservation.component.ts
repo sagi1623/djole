@@ -24,7 +24,7 @@ export class EditRoomreservationComponent implements OnInit {
     {    
       this.startDate.setDate(this.roomreservation.StartDate.getDate());
       this.endDate.setDate(this.roomreservation.EndDate.getDate());
-      this.roomreservationService.update(this.roomreservation).subscribe(x => console.log(x));
+      this.roomreservationService.update(this.roomreservation).subscribe(x => console.log(x), x => alert('Failed to edit RoomReservation.'));
     }
   }
 }

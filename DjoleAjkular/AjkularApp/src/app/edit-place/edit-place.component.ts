@@ -20,7 +20,7 @@ export class EditPlaceComponent implements OnInit {
   {
     if(form.dirty)
     {
-    this.placeService.update(this.place).subscribe(x => console.log(x));
+    this.placeService.update(this.place).subscribe(x => console.log(x), x => alert('Failed to edit Place.'));
     }
   }
 }

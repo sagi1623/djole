@@ -70,7 +70,9 @@ namespace BookingApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(r.AccommodationId)).FirstOrDefault();
+
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
             if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();
@@ -103,12 +105,13 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            if (r.Accommodation.AppUserId != userId)
+            Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(r.AccommodationId)).FirstOrDefault();
+            if (a.AppUserId != userId)
             {
                 return Unauthorized();
             }
 
-            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
             if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();
@@ -152,12 +155,14 @@ namespace BookingApp.Controllers
                 return NotFound();
             }
 
-            if (r.Accommodation.AppUserId != userId)
+            Accommodation a = db.Accommodations.Where((x) => x.Id.Equals(r.AccommodationId)).FirstOrDefault();
+
+            if (a.AppUserId != userId)
             {
                 return Unauthorized();
             }
 
-            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(r.Accommodation.AppUserId)).FirstOrDefault();
+            AppUser manager = db.AppUsers.Where((x) => x.Id.Equals(a.AppUserId)).FirstOrDefault();
             if ((manager == null) || (manager.Banned))
             {
                 return Unauthorized();

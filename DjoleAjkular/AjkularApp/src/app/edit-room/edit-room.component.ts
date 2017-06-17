@@ -20,7 +20,7 @@ export class EditRoomComponent implements OnInit {
   {
     if(form.dirty)
     {
-      this.roomService.update(this.room).subscribe(x => console.log(x));
+      this.roomService.update(this.room).subscribe(x => console.log(x), x => alert('Failed to edit Room.'));
     }
   }
 }

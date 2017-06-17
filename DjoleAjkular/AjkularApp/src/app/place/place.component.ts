@@ -22,7 +22,7 @@ export class PlaceComponent implements OnInit {
 
   removePlace()
   {
-    this.placeService.delete(this.place.Id).subscribe(x => { console.log(x); this.onPlaceDeleted.emit(this.place) } );
+    this.placeService.delete(this.place.Id).subscribe(x => { console.log(x); this.onPlaceDeleted.emit(this.place)}, x => alert('Failed to remove Place.'));
   }
 
   shouldShowRemove(): boolean

@@ -20,7 +20,7 @@ export class EditAccommodationComponent implements OnInit {
   {
     if(form.dirty)
     {
-      this.accommodationService.update(this.accommodation).subscribe(x => console.log(x));
+      this.accommodationService.update(this.accommodation).subscribe(x => console.log(x), x => alert('Failed to edit Accommodation.'));
     }
   }
 }

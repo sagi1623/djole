@@ -25,7 +25,6 @@ export class AddCountryComponent implements OnInit {
   onSubmit(c: Country, form: FormGroup)
   {
     form.reset();
-    this.countryService.create(c).subscribe(x => { this.onCountryAdded.emit(x as Country) } );
+    this.countryService.create(c).subscribe(x => { this.onCountryAdded.emit(x as Country)}, x => alert('Failed to add Country.'));
   }
-
 }

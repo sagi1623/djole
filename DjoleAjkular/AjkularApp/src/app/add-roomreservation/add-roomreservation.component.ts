@@ -34,6 +34,6 @@ export class AddRoomreservationComponent implements OnInit {
     r.Canceled=false;
     r.RoomId=this.room.Id;
     r.AppUserId=parseInt(this.localStorageService.get('appUserID'));
-    this.roomreservationService.create(r).subscribe(x => this.room.RoomReservations.push(x as RoomReservation));
+    this.roomreservationService.create(r).subscribe(x => this.room.RoomReservations.push(x as RoomReservation), x => alert('Failed to add RoomReservation.'));
   }
 }
