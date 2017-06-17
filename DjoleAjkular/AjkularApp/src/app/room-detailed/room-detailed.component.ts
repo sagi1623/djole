@@ -65,4 +65,13 @@ export class RoomDetailedComponent implements OnInit {
       this.room.RoomReservations.splice(index, 1);
     }
   }
+
+  showRR(rr: RoomReservation): boolean
+  {
+    if(rr.Canceled)
+    {
+      return false;
+    }
+    return true;
+  }
 }

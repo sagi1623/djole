@@ -20,11 +20,20 @@ namespace BookingApp.Hubs
             //hubContext.Clients.All.accommodationAddedNotification(a);
         }
 
-        public void RegisterToRole(string Role)
+        public static void AccommodationApproved(Accommodation a)
+        {
+            hubContext.Clients.Group(a.AppUserId.ToString()).accommodationApprovedNotification(a);
+        }
+
+        public void RegisterToRole(string Role, string id)
         {
             if (Context.User != null)
             {
                 Groups.Add(Context.ConnectionId, Role);
+                if(Role.Equals("Manager"))
+                {
+                    Groups.Add(Context.ConnectionId, id);
+                }
             }
         }
 
