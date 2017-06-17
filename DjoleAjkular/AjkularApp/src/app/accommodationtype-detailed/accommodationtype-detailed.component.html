@@ -11,6 +11,8 @@
   
   <p>Accommodations:</p>
   <ul>
-    <li *ngFor ="let a of accommodationtype.Accommodations"><accommodation [accommodation]="a" (onAccommodationDeleted)="accommodationWasDeleted($event)" ></accommodation></li>
+    <div *ngFor ="let a of accommodationtype.Accommodations" >
+    <li *ngIf="show(a)" ><accommodation [accommodation]="a" (onAccommodationDeleted)="accommodationWasDeleted($event)" ></accommodation></li>
+    </div>
   </ul>
 </fieldset>

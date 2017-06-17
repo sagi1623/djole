@@ -46,4 +46,20 @@ export class PlaceDetailedComponent implements OnInit {
       this.place.Accommodations.splice(index, 1);
     }
   }
+
+  show(a: Accommodation): boolean
+  {
+    if(this.userStatusProviderService.isUserAdmin())
+    {
+      return true;
+    }
+    else
+    {
+      if(a.Approved)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 }

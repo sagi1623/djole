@@ -24,15 +24,21 @@ export class AppComponent implements OnInit  {
   }
 
     private subscribeForNotifications () {
-    this.notificator.accommodationAddedNotification.subscribe(e => this.onNotification(e));
+    this.notificator.accommodationAddedNotification.subscribe(e => this.onAccommodationAddedNotification(e));
+    this.notificator.accommodationApprovedNotification.subscribe(e=> this.onAccommodationApprovedNotification(e));
   }
 
-  public onNotification(notif: Accommodation) {
+  public onAccommodationAddedNotification(notif: Accommodation) {
       this.ngZone.run(() => { 
        alert('Accommodation is added.');  
       });  
   }
 
+  public onAccommodationApprovedNotification(notif: Accommodation) {
+      this.ngZone.run(() => { 
+       alert('Accommodation is approved.');  
+      });  
+  }
 
   isUserLoggedIn():boolean
   {

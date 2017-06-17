@@ -16,19 +16,21 @@ export class NotificationHandlerService {
 
     // create the Event Emitter  
     public accommodationAddedNotification: EventEmitter <Accommodation>;  
+    public accommodationApprovedNotification: EventEmitter <Accommodation>;
     public connectionEstablished: EventEmitter < Boolean >;  
     public connectionExists: Boolean;  
    
     constructor(private urlProviderService: URLProviderService, private localStorageService: LocalStorageService) {  
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter < Boolean > ();  
-        this.accommodationAddedNotification = new EventEmitter < Accommodation > ();        
+        this.accommodationAddedNotification = new EventEmitter < Accommodation > ();  
+        this.accommodationApprovedNotification=new EventEmitter <Accommodation>();     
         this.connectionExists = false;  
     }  
     
     private RegisterToRole() {  
         // server side hub method using proxy.invoke with method name pass as param  
-        this.proxy.invoke('RegisterToRole',this.localStorageService.get('role'));  
+        this.proxy.invoke('RegisterToRole',this.localStorageService.get('role'),this.localStorageService.get('appUserID'));  
     }  
 
     public  connect()
@@ -39,6 +41,7 @@ export class NotificationHandlerService {
         this.proxy = this.connection.createHubProxy(this.proxyName);  
         // register on server events  
         this.registerOnAccommodationAddedEvents();
+        this.registerAccommodationApprovedEvents();
         // call the connecion start method to start the connection to send and receive events. 
         this.startConnection(); 
     }
@@ -55,13 +58,24 @@ export class NotificationHandlerService {
             this.connectionEstablished.emit(false);  
         });  
     }  
-    private registerOnAccommodationAddedEvents(): void {  
+    private registerOnAccommodationAddedEvents(): void
+    {  
         
-        this.proxy.on('accommodationAddedNotification', (data: Accommodation) => this.Notify(data)); 
+        this.proxy.on('accommodationAddedNotification', (data: Accommodation) => this.NotifyAccommodationAdded(data)); 
     }
 
-    Notify(data: Accommodation)
+    private registerAccommodationApprovedEvents(): void
+    {
+        this.proxy.on('accommodationApprovedNotification',(data: Accommodation)=>this.NotifyAccommodationApproved(data));
+    }
+
+    NotifyAccommodationAdded(data: Accommodation)
     {
        this.accommodationAddedNotification.emit(data);
     }  
+
+    NotifyAccommodationApproved(data: Accommodation)
+    {
+        this.accommodationApprovedNotification.emit(data);
+    }
 }  

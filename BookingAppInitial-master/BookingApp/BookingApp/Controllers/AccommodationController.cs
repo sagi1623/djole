@@ -148,6 +148,11 @@ namespace BookingApp.Controllers
                 return Unauthorized();
             }
 
+            if(role.Name.Equals("Admin"))
+            {
+                AccommodationNotificationHub.AccommodationApproved(a);
+            }
+
             db.Entry(a).State = EntityState.Modified;
 
             try

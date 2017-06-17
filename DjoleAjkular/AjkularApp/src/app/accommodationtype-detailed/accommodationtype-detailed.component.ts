@@ -46,4 +46,20 @@ export class AccommodationtypeDetailedComponent implements OnInit {
       this.accommodationtype.Accommodations.splice(index, 1);
     }
   }
+
+  show(a: Accommodation): boolean
+  {
+    if(this.userStatusProviderService.isUserAdmin())
+    {
+      return true;
+    }
+    else
+    {
+      if(a.Approved)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 }

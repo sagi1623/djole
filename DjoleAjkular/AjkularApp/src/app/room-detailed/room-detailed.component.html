@@ -16,6 +16,8 @@
 
   <p>RoomReservations:</p>
   <ul>
-    <li *ngFor ="let rr of room.RoomReservations"><roomreservation [roomreservation]="rr" (onRoomReservationDeleted)="roomreservationWasDeleted($event)" ></roomreservation></li>
+    <div *ngFor ="let rr of room.RoomReservations">
+    <li *ngIf="showRR(rr)" ><roomreservation [roomreservation]="rr" (onRoomReservationDeleted)="roomreservationWasDeleted($event)" ></roomreservation></li>
+    </div>
   </ul>
  </fieldset>
