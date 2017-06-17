@@ -23,6 +23,8 @@ namespace BookingApp.Controllers
 
         private ApplicationUserManager _userManager;
 
+        private static object LockObj = new object();
+
         public ApplicationUserManager UserManager
         {
             get
@@ -66,14 +68,49 @@ namespace BookingApp.Controllers
         [ResponseType(typeof(RoomReservation))]
         public IHttpActionResult PostRoomReservation(RoomReservation rr)
         {
-            if (!ModelState.IsValid)
+            lock (LockObj)
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                if((DateTime)rr.EndDate < (DateTime)rr.StartDate)
+                {
+                    return BadRequest();
+                }
+
+                List<RoomReservation> reservations = db.RoomReservations.Where(x => x.RoomId.Equals(rr.RoomId)).ToList();
+                bool alreadyReserved = false;
+
+                foreach (RoomReservation romyReservy in reservations)
+                {
+                    if (romyReservy.Canceled != null)
+                    {
+                        if (!(bool)romyReservy.Canceled)
+                        {
+                            if (romyReservy.EndDate != null && romyReservy.StartDate != null)
+                            {
+                                if ((DateTime)romyReservy.EndDate >= (DateTime)rr.StartDate && (DateTime)romyReservy.StartDate <= (DateTime)rr.StartDate
+                                    || (DateTime)romyReservy.EndDate <= (DateTime)rr.EndDate && (DateTime)romyReservy.StartDate >= (DateTime)rr.EndDate)
+                                {
+                                    alreadyReserved = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (alreadyReserved)
+                {
+                    return BadRequest();
+                }
+
+                db.RoomReservations.Add(rr);
+                db.SaveChanges();
+
             }
-
-            db.RoomReservations.Add(rr);
-            db.SaveChanges();
-
             return CreatedAtRoute("DefaultApi", new { controller = "RoomReservations", id = rr.Id }, rr);
         }
 
