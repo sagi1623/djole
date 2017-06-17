@@ -9,11 +9,21 @@ export class ODataQueryBuilderService {
     generateQuery(searchParams:SearchParams):string 
     {
         let searchPattern= "";
-
+        
         if (searchParams.Name != "")
         {                 
-            searchPattern += `filter=Name eq '${searchParams.Name}'`;
+            searchPattern += `&$filter=Name eq '${searchParams.Name}'`;
         }
+        
+        if (searchPattern !="")
+          {
+            searchPattern += " and ";
+          }
+          else
+          {
+            searchPattern += `&$filter=`;
+          }
+          searchPattern += `Approved eq true`;
 
         if (searchParams.Country != "")
         {
@@ -23,7 +33,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `Place/Region/Country/Name eq '${searchParams.Country}'`;
         }
@@ -36,7 +46,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `Place/Region/Name eq '${searchParams.Region}'`;
         }
@@ -49,7 +59,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `Place/Name eq '${searchParams.Place}'`;
         }
@@ -62,7 +72,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `AccommodationType/Name eq '${searchParams.AccommodationType}'`;
         }
@@ -75,7 +85,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `Rooms/any(r: r/BedCount ge ${searchParams.BedCount})`;
         }
@@ -88,7 +98,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `AverageGrade ge ${searchParams.Grade}`;
         }
@@ -113,7 +123,7 @@ export class ODataQueryBuilderService {
           }
           else
           {
-            searchPattern += `filter=`;
+            searchPattern += `&$filter=`;
           }
           searchPattern += `Rooms/any(r: r/PricePerNight ge ${min} and r/PricePerNight le ${max})`;
         }
