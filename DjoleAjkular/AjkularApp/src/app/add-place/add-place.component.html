@@ -1,14 +1,12 @@
 <form #f="ngForm" (ngSubmit) = "onSubmit(f.value, f)">
   <fieldset>
     <legend>add new place</legend>
-
   <div>
     <label for="Name">Name: </label> <br/>
     <input type = "text" name ="Name" id="Name" ngModel />
-  </div> <br/>
-  
+  </div> <br/>  
  <div>
-    <input type = "submit" name="Submit"  value="add" />
+    <input class="btn btn-danger" type = "submit" name="Submit"  value="add" />
   </div>
   </fieldset>
 </form>

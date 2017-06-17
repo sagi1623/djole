@@ -1,4 +1,4 @@
 <div >
   <p>{{user.Id}} {{user.FirstName}} {{user.LastName}}</p>
-  <button *ngIf="shouldShowBann()" (click)="bannUser()">bann</button>
+  <button class="btn btn-danger" *ngIf="shouldShowBann()" (click)="bannUser()">bann</button>
 </div>

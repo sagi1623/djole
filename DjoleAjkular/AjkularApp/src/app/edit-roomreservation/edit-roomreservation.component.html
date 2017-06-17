@@ -1,7 +1,6 @@
 <form #f="ngForm" (ngSubmit) = "onSubmit(f)">
   <fieldset>
     <legend>edit roomreservation</legend>
-
   <div>
     <label for="StartDate">StartDate: </label> <br/>
     <input type = "date" name ="StartDate" id="StartDate" [(ngModel)]="startDate" />
@@ -10,9 +9,8 @@
     <label for="EndDate">EndDate: </label> <br/>
     <input type = "date" name ="EndDate" id="EndDate" [(ngModel)]="endDate" />
   </div> <br/>
-  
     <div>
-    <input type = "submit" name="Submit"  value="edit" />
+    <input class="btn btn-danger" type = "submit" name="Submit"  value="edit" />
   </div>
   </fieldset>
 </form>

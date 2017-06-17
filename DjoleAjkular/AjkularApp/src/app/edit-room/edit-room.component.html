@@ -1,7 +1,6 @@
 <form #f="ngForm" (ngSubmit) = "onSubmit(f)">
   <fieldset>
     <legend>edit room</legend>
-
   <div>
     <label for="RoomNumber">RoomNumber: </label> <br/>
     <input type = "number" name ="RoomNumber" id="RoomNumber" min="1" step="1" [(ngModel)]="room.RoomNumber" />
@@ -18,9 +17,8 @@
     <label for="PricePerNight">PricePerNight: </label> <br/>
     <input type = "number" name ="PricePerNight" id="PricePerNight" min="1" [(ngModel)]="room.PricePerNight" />
   </div> <br/>
-  
     <div>
-    <input type = "submit" name="Submit"  value="edit" />
+    <input class="btn btn-danger" type = "submit" name="Submit"  value="edit" />
   </div>
   </fieldset>
 </form>

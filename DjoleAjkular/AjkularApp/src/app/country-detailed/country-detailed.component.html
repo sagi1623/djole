@@ -11,9 +11,11 @@
   </div> 
 
   <add-region *ngIf="shouldShowAdd()" [country]="country" ></add-region>
-
+  <br/>
+  <div>
   <p>Regions:</p>
   <ul>
     <li *ngFor ="let r of country.Regions"><region [region]="r" (onRegionDeleted)="regionWasDeleted($event)" ></region></li>
   </ul>
+  </div>
 </fieldset>
