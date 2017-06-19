@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogOutService } from "../logout/logout.service";
 import { LocalStorageService } from "../localStorage.service";
 import { Router } from "@angular/router";
+import { NotificationHandlerService } from "../notificationHandler.service";
 
 @Component({
   selector: 'logout',
@@ -18,7 +19,7 @@ export class LogoutComponent implements OnInit {
 
   logMeOut()
   {
-    this.logOutService.logout().subscribe(x => { this.localStorageService.clear(); this.router.navigate(['/home']); });
+    this.logOutService.logout().subscribe(x => { this.localStorageService.clear(); this.router.navigate(['/home']);}, x=> this.localStorageService.clear());
   }
 
 }

@@ -19,6 +19,10 @@ export class AppComponent implements OnInit  {
 
   ngOnInit()
   {
+    if(this.userStatusProviderService.isUserLoggedIn() && !this.notificator.connectionExists)
+    {
+      this.notificator.connect();
+    }
     this.subscribeForNotifications ();
     //this.router.navigate(['/home']);
   }
