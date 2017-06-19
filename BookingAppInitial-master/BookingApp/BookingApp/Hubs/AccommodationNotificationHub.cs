@@ -16,13 +16,13 @@ namespace BookingApp.Hubs
 
         public static void AccommodationAdded(Accommodation a)
         {
-            hubContext.Clients.Group("Admin").accommodationAddedNotification(a);
+            hubContext.Clients.Group("Admin").accommodationAddedNotification(new Accommodation() { Name = a.Name, Id = a.Id});
             //hubContext.Clients.All.accommodationAddedNotification(a);
         }
 
         public static void AccommodationApproved(Accommodation a)
         {
-            hubContext.Clients.Group(a.AppUserId.ToString()).accommodationApprovedNotification(a);
+            hubContext.Clients.Group(a.AppUserId.ToString()).accommodationApprovedNotification(new Accommodation() { Name = a.Name, Id = a.Id });
         }
 
         public void RegisterToRole(string Role, string id)

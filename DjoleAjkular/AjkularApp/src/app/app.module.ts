@@ -62,6 +62,7 @@ import { AccommodationListODataService } from "./accommodation-list/accommodatio
 import { NotificationHandlerService } from "./notificationHandler.service";
 import { UserComponent } from './user/user.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { PagerService } from "./pager.service";
 
 const HomeRoutes = [
   {path:"countries", component: CountryListComponent},
@@ -160,7 +161,8 @@ const Routes = [
     UserStatusProviderService,
     ODataQueryBuilderService,
     AccommodationListODataService,
-    NotificationHandlerService
+    NotificationHandlerService,
+    PagerService
     ],
   bootstrap: [AppComponent]
 })
