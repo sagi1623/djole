@@ -118,13 +118,22 @@ namespace BookingApp.Controllers
                 return BadRequest();
             }
 
-            Accommodation acc = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();
+            Accommodation acc = db.Accommodations.Where((x) => x.Id.Equals(comment.AccommodationId)).FirstOrDefault();           
             List<Comment> comments = db.Comments.Where(x => x.AccommodationId == comment.AccommodationId).ToList();
-            RoomReservation rr = db.RoomReservations.Where((x) => x.AppUserId.Equals(comment.CustomerId) && (x.StartDate < DateTime.Now) && (x.Canceled!=false)).FirstOrDefault();
-            if (rr != null)
+            List<Room> lr = db.Rooms.Where((x) => x.AccommodationId.Equals(acc.Id)).ToList();
+            foreach (Room r in lr)
             {
-                db.Comments.Add(comment);
-                added = true;
+                foreach (RoomReservation rr in db.RoomReservations)
+                {
+                    if (rr.RoomId.Equals(r.Id))
+                    {
+                        if ((rr.AppUserId.Equals(comment.CustomerId)) && (rr.StartDate < DateTime.Now) && (rr.Canceled != true))
+                        {
+                            db.Comments.Add(comment);
+                            added = true;
+                        }
+                    }
+                }
             }
 
             if (added)
